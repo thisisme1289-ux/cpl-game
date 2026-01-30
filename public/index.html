@@ -518,6 +518,32 @@
     if (user.displayName) {
       playerName = user.displayName;
     }
+    
+    // Check for auto-play parameter (from login redirect)
+    window.addEventListener('load', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('autoplay') === 'true') {
+        // Auto-open play modal
+        setTimeout(() => {
+          document.getElementById('playModal').classList.add('active');
+        }, 500);
+        // Clean URL
+        window.history.replaceState({}, document.title, '/');
+      }
+      
+      // Handle login success from Google OAuth
+      if (urlParams.get('login') === 'success') {
+        const userData = urlParams.get('user');
+        if (userData) {
+          localStorage.setItem('cpl-user', decodeURIComponent(userData));
+          const user = JSON.parse(decodeURIComponent(userData));
+          localStorage.setItem('cpl-playerName', user.displayName);
+          playerName = user.displayName;
+        }
+        // Clean URL
+        window.history.replaceState({}, document.title, '/');
+      }
+    });
 
     // Modal references
     const playModal = document.getElementById('playModal');
@@ -527,6 +553,15 @@
 
     // Show play modal
     document.getElementById('playGameBtn').addEventListener('click', () => {
+      // Check if user is logged in
+      const user = JSON.parse(localStorage.getItem('cpl-user') || '{}');
+      
+      if (!user.displayName && !playerName) {
+        // Not logged in - redirect to login page
+        window.location.href = '/login.html?redirect=play';
+        return;
+      }
+      
       playModal.classList.add('active');
     });
 
