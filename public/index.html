@@ -511,11 +511,11 @@
   <script>
     const socket = io();
     let selectedMode = null;
-    let playerName = localStorage.getItem('cpl-playerName') || '';
+    let playerName = '';
     
-    // Check if user is logged in (optional)
+    // Only load existing user if they've explicitly logged in
     const user = JSON.parse(localStorage.getItem('cpl-user') || '{}');
-    if (user.displayName) {
+    if (user.displayName && user.id) {
       playerName = user.displayName;
     }
     
@@ -553,15 +553,17 @@
 
     // Show play modal
     document.getElementById('playGameBtn').addEventListener('click', () => {
-      // Check if user is logged in
+      // Check if user is authenticated
       const user = JSON.parse(localStorage.getItem('cpl-user') || '{}');
       
-      if (!user.displayName && !playerName) {
-        // Not logged in - redirect to login page
+      // User must have both id and displayName to be considered authenticated
+      if (!user.id || !user.displayName) {
+        // Not authenticated - redirect to login page
         window.location.href = '/login.html?redirect=play';
         return;
       }
       
+      // Authenticated - show play modal
       playModal.classList.add('active');
     });
 
