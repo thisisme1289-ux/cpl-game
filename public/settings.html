@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CPL - Settings</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+      background: linear-gradient(135deg, #0a1628 0%, #1a2642 100%);
+      color: white;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .settings-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .header h1 {
+      font-size: 48px;
+      margin-bottom: 10px;
+      background: linear-gradient(135deg, #1ABCFE 0%, #00D4A1 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .header p {
+      color: #8BA3C7;
+      font-size: 18px;
+    }
+
+    .back-btn {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      padding: 12px 24px;
+      background: rgba(26, 188, 254, 0.2);
+      border: 2px solid rgba(26, 188, 254, 0.3);
+      border-radius: 12px;
+      color: white;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s;
+    }
+
+    .back-btn:hover {
+      background: rgba(26, 188, 254, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .settings-section {
+      background: rgba(15, 31, 61, 0.6);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(26, 188, 254, 0.2);
+      border-radius: 20px;
+      padding: 30px;
+      margin-bottom: 20px;
+    }
+
+    .settings-section h2 {
+      font-size: 28px;
+      margin-bottom: 25px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .setting-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+      border-bottom: 1px solid rgba(26, 188, 254, 0.1);
+    }
+
+    .setting-item:last-child {
+      border-bottom: none;
+    }
+
+    .setting-label {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .setting-label h3 {
+      font-size: 18px;
+      font-weight: 500;
+    }
+
+    .setting-label p {
+      font-size: 14px;
+      color: #8BA3C7;
+    }
+
+    /* Toggle Switch */
+    .toggle-switch {
+      position: relative;
+      width: 60px;
+      height: 32px;
+      background: rgba(139, 163, 199, 0.3);
+      border-radius: 16px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .toggle-switch.active {
+      background: linear-gradient(135deg, #1ABCFE 0%, #00D4A1 100%);
+    }
+
+    .toggle-slider {
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      width: 24px;
+      height: 24px;
+      background: white;
+      border-radius: 50%;
+      transition: all 0.3s;
+    }
+
+    .toggle-switch.active .toggle-slider {
+      left: 32px;
+    }
+
+    /* Volume Slider */
+    .volume-control {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      flex: 1;
+      max-width: 300px;
+    }
+
+    .volume-slider {
+      flex: 1;
+      height: 6px;
+      background: rgba(26, 188, 254, 0.2);
+      border-radius: 3px;
+      outline: none;
+      -webkit-appearance: none;
+    }
+
+    .volume-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 20px;
+      height: 20px;
+      background: linear-gradient(135deg, #1ABCFE 0%, #00D4A1 100%);
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(26, 188, 254, 0.4);
+    }
+
+    .volume-value {
+      min-width: 40px;
+      text-align: right;
+      font-weight: bold;
+      color: #1ABCFE;
+    }
+
+    /* Select Dropdown */
+    .select-dropdown {
+      padding: 12px 20px;
+      background: rgba(26, 188, 254, 0.1);
+      border: 2px solid rgba(26, 188, 254, 0.2);
+      border-radius: 12px;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      min-width: 180px;
+      outline: none;
+    }
+
+    .select-dropdown:focus {
+      border-color: #1ABCFE;
+    }
+
+    /* Input Field */
+    .text-input {
+      padding: 12px 20px;
+      background: rgba(26, 188, 254, 0.1);
+      border: 2px solid rgba(26, 188, 254, 0.2);
+      border-radius: 12px;
+      color: white;
+      font-size: 16px;
+      min-width: 250px;
+      outline: none;
+    }
+
+    .text-input:focus {
+      border-color: #1ABCFE;
+    }
+
+    /* Avatar Selector */
+    .avatar-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+      margin-top: 15px;
+    }
+
+    .avatar-option {
+      width: 60px;
+      height: 60px;
+      font-size: 36px;
+      background: rgba(26, 188, 254, 0.1);
+      border: 2px solid rgba(26, 188, 254, 0.2);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .avatar-option:hover {
+      background: rgba(26, 188, 254, 0.2);
+      transform: scale(1.1);
+    }
+
+    .avatar-option.selected {
+      background: linear-gradient(135deg, #1ABCFE 0%, #00D4A1 100%);
+      border-color: #00D4A1;
+      transform: scale(1.15);
+    }
+
+    /* Buttons */
+    .btn {
+      padding: 14px 32px;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #1ABCFE 0%, #00D4A1 100%);
+      color: white;
+      box-shadow: 0 4px 20px rgba(26, 188, 254, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(26, 188, 254, 0.4);
+    }
+
+    .btn-danger {
+      background: rgba(255, 107, 107, 0.2);
+      border: 2px solid rgba(255, 107, 107, 0.3);
+      color: #ff6b6b;
+      margin-top: 20px;
+    }
+
+    .btn-danger:hover {
+      background: rgba(255, 107, 107, 0.3);
+    }
+
+    .save-section {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    /* Notification */
+    .notification {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 16px 24px;
+      background: linear-gradient(135deg, #4CAF50 0%, #8BC34A 100%);
+      border-radius: 12px;
+      color: white;
+      font-weight: 500;
+      box-shadow: 0 4px 20px rgba(76, 175, 80, 0.4);
+      transform: translateX(400px);
+      transition: all 0.3s;
+      z-index: 1000;
+    }
+
+    .notification.show {
+      transform: translateX(0);
+    }
+
+    @media (max-width: 768px) {
+      .setting-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+      }
+
+      .volume-control {
+        width: 100%;
+        max-width: none;
+      }
+
+      .avatar-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      .save-section {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="/" class="back-btn">← Back to Home</a>
+
+  <div class="notification" id="notification">Settings saved!</div>
+
+  <div class="settings-container">
+    <div class="header">
+      <h1>⚙️ Settings</h1>
+      <p>Customize your CPL experience</p>
+    </div>
+
+    <!-- Audio Settings -->
+    <div class="settings-section">
+      <h2>🔊 Audio</h2>
+      
+      <div class="setting-item">
+        <div class="setting-label">
+          <h3>Sound Effects</h3>
+          <p>Enable game sound effects</p>
+        </div>
+        <div class="toggle-switch active" id="soundToggle" onclick="toggleSetting('soundToggle')">
+          <div class="toggle-slider"></div>
+        </div>
+      </div>
+      
+      <div class="setting-item">
+        <div class="setting-label">
+          <h3>Sound Volume</h3>
+          <p>Adjust sound effects volume</p>
+        </div>
+        <div class="volume-control">
+          <input type="range" min="0" max="100" value="75" class="volume-slider" id="soundVolume" oninput="updateVolume('sound', this.value)">
+          <span class="volume-value" id="soundVolumeValue">75%</span>
+        </div>
+      </div>
+      
+      <div class="setting-item">
+        <div class="setting-label">
+          <h3>Background Music</h3>
+          <p>Enable background music</p>
+        </div>
+        <div class="toggle-switch" id="musicToggle" onclick="toggleSetting('musicToggle')">
+          <div class="toggle-slider"></div>
+        </div>
+      </div>
+      
+      <div class="setting-item">
+        <div class="setting-label">
+          <h3>Music Volume</h3>
+          <p>Adjust background music volume</p>
+        </div>
+        <div class="volume-control">
+          <input type="range" min="0" max="100" value="50" class="volume-slider" id="musicVolume" oninput="updateVolume('music', this.value)">
+          <span class="volume-value" id="musicVolumeValue">50%</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Display Settings -->
+    <div class="settings-section">
+      <h2>🎨 Display</h2>
+      
+      <div class="setting-item">
+        <div class="setting-label">
+          <h3>Theme</h3>
+          <p>Choose your preferred theme</p>
+        </div>
+        <select class="select-dropdown" id="themeSelect">
+          <option value="dark">Dark Mode</option>
+          <option value="light">Light Mode</option>
+          <option value="auto">Auto (System)</option>
+        </select>
+      </div>
+      
+      <div class="setting-item">
+        <div class="setting-label">
+          <h3>Chat Position</h3>
+          <p>Where to display the chat</p>
+        </div>
+        <select class="select-dropdown" id="chatPosition">
+          <option value="right">Right Side</option>
+          <option value="left">Left Side</option>
+          <option value="bottom">Bottom</option>
+        </select>
+      </div>
+
+      <div class="setting-item">
+        <div class="setting-label">
+          <h3>Animations</h3>
+          <p>Enable smooth animations</p>
+        </div>
+        <div class="toggle-switch active" id="animationsToggle" onclick="toggleSetting('animationsToggle')">
+          <div class="toggle-slider"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Notifications -->
+    <div class="settings-section">
+      <h2>🔔 Notifications</h2>
+      
+      <div class="setting-item">
+        <div class="setting-label">
+          <h3>Push Notifications</h3>
+          <p>Receive browser notifications</p>
+        </div>
+        <div class="toggle-switch active" id="notificationsToggle" onclick="toggleSetting('notificationsToggle')">
+          <div class="toggle-slider"></div>
+        </div>
+      </div>
+      
+      <div class="setting-item">
+        <div class="setting-label">
+          <h3>Match Reminders</h3>
+          <p>Get reminded about ongoing matches</p>
+        </div>
+        <div class="toggle-switch" id="remindersToggle" onclick="toggleSetting('remindersToggle')">
+          <div class="toggle-slider"></div>
+        </div>
+      </div>
+
+      <div class="setting-item">
+        <div class="setting-label">
+          <h3>Chat Messages</h3>
+          <p>Notify for new chat messages</p>
+        </div>
+        <div class="toggle-switch active" id="chatNotifToggle" onclick="toggleSetting('chatNotifToggle')">
+          <div class="toggle-slider"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Gameplay -->
+    <div class="settings-section">
+      <h2>🎮 Gameplay</h2>
+      
+      <div class="setting-item">
+        <div class="setting-label">
+          <h3>Auto-Select</h3>
+          <p>Auto-select players when timer expires</p>
+        </div>
+        <div class="toggle-switch active" id="autoSelectToggle" onclick="toggleSetting('autoSelectToggle')">
+          <div class="toggle-slider"></div>
+        </div>
+      </div>
+
+      <div class="setting-item">
+        <div class="setting-label">
+          <h3>Confirm Actions</h3>
+          <p>Ask for confirmation before important actions</p>
+        </div>
+        <div class="toggle-switch active" id="confirmToggle" onclick="toggleSetting('confirmToggle')">
+          <div class="toggle-slider"></div>
+        </div>
+      </div>
+
+      <div class="setting-item">
+        <div class="setting-label">
+          <h3>Default Overs</h3>
+          <p>Default number of overs for new games</p>
+        </div>
+        <select class="select-dropdown" id="defaultOvers">
+          <option value="3">3 Overs (Quick)</option>
+          <option value="5" selected>5 Overs (Standard)</option>
+          <option value="10">10 Overs (Long)</option>
+          <option value="20">20 Overs (T20)</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Account -->
+    <div class="settings-section">
+      <h2>👤 Account</h2>
+      
+      <div class="setting-item">
+        <div class="setting-label">
+          <h3>Display Name</h3>
+          <p>Your name shown to other players</p>
+        </div>
+        <input type="text" class="text-input" id="displayName" placeholder="Enter your name" value="Player">
+      </div>
+      
+      <div class="setting-item">
+        <div class="setting-label">
+          <h3>Avatar</h3>
+          <p>Choose your avatar emoji</p>
+        </div>
+      </div>
+      <div class="avatar-grid">
+        <div class="avatar-option selected" onclick="selectAvatar(this, '🏏')">🏏</div>
+        <div class="avatar-option" onclick="selectAvatar(this, '⚾')">⚾</div>
+        <div class="avatar-option" onclick="selectAvatar(this, '🎯')">🎯</div>
+        <div class="avatar-option" onclick="selectAvatar(this, '🔥')">🔥</div>
+        <div class="avatar-option" onclick="selectAvatar(this, '⚡')">⚡</div>
+        <div class="avatar-option" onclick="selectAvatar(this, '👑')">👑</div>
+        <div class="avatar-option" onclick="selectAvatar(this, '🏆')">🏆</div>
+        <div class="avatar-option" onclick="selectAvatar(this, '💪')">💪</div>
+        <div class="avatar-option" onclick="selectAvatar(this, '🎮')">🎮</div>
+        <div class="avatar-option" onclick="selectAvatar(this, '🌟')">🌟</div>
+      </div>
+
+      <div class="setting-item" style="margin-top: 20px;">
+        <div class="setting-label">
+          <h3>Language</h3>
+          <p>Select your preferred language</p>
+        </div>
+        <select class="select-dropdown" id="language">
+          <option value="en">English</option>
+          <option value="hi">हिंदी (Hindi)</option>
+          <option value="es">Español</option>
+          <option value="fr">Français</option>
+        </select>
+      </div>
+
+      <button class="btn btn-danger" onclick="signOut()">🚪 Sign Out</button>
+    </div>
+
+    <!-- Save/Cancel -->
+    <div class="save-section">
+      <button class="btn btn-primary" onclick="saveSettings()">💾 Save Settings</button>
+      <button class="btn" style="background: rgba(139, 163, 199, 0.2); color: #8BA3C7;" onclick="window.location.href='/'">❌ Cancel</button>
+    </div>
+  </div>
+
+  <script>
+    // Load settings from localStorage
+    window.addEventListener('load', loadSettings);
+
+    function loadSettings() {
+      const settings = JSON.parse(localStorage.getItem('cpl-settings') || '{}');
+      
+      // Audio
+      setToggle('soundToggle', settings.soundEnabled !== false);
+      setToggle('musicToggle', settings.musicEnabled === true);
+      document.getElementById('soundVolume').value = settings.soundVolume || 75;
+      document.getElementById('musicVolume').value = settings.musicVolume || 50;
+      updateVolume('sound', settings.soundVolume || 75);
+      updateVolume('music', settings.musicVolume || 50);
+      
+      // Display
+      document.getElementById('themeSelect').value = settings.theme || 'dark';
+      document.getElementById('chatPosition').value = settings.chatPosition || 'right';
+      setToggle('animationsToggle', settings.animations !== false);
+      
+      // Notifications
+      setToggle('notificationsToggle', settings.notifications !== false);
+      setToggle('remindersToggle', settings.reminders === true);
+      setToggle('chatNotifToggle', settings.chatNotifications !== false);
+      
+      // Gameplay
+      setToggle('autoSelectToggle', settings.autoSelect !== false);
+      setToggle('confirmToggle', settings.confirmActions !== false);
+      document.getElementById('defaultOvers').value = settings.defaultOvers || 5;
+      
+      // Account
+      document.getElementById('displayName').value = settings.displayName || localStorage.getItem('cpl-playerName') || 'Player';
+      
+      // Avatar - will be selected by onclick
+      if (settings.avatar) {
+        const avatars = document.querySelectorAll('.avatar-option');
+        avatars.forEach(av => {
+          if (av.textContent === settings.avatar) {
+            selectAvatar(av, settings.avatar);
+          }
+        });
+      }
+      
+      document.getElementById('language').value = settings.language || 'en';
+    }
+
+    function setToggle(id, active) {
+      const toggle = document.getElementById(id);
+      if (active) {
+        toggle.classList.add('active');
+      } else {
+        toggle.classList.remove('active');
+      }
+    }
+
+    function toggleSetting(id) {
+      const toggle = document.getElementById(id);
+      toggle.classList.toggle('active');
+    }
+
+    function updateVolume(type, value) {
+      document.getElementById(`${type}VolumeValue`).textContent = value + '%';
+    }
+
+    function selectAvatar(element, emoji) {
+      document.querySelectorAll('.avatar-option').forEach(av => av.classList.remove('selected'));
+      element.classList.add('selected');
+    }
+
+    function saveSettings() {
+      const settings = {
+        // Audio
+        soundEnabled: document.getElementById('soundToggle').classList.contains('active'),
+        musicEnabled: document.getElementById('musicToggle').classList.contains('active'),
+        soundVolume: parseInt(document.getElementById('soundVolume').value),
+        musicVolume: parseInt(document.getElementById('musicVolume').value),
+        
+        // Display
+        theme: document.getElementById('themeSelect').value,
+        chatPosition: document.getElementById('chatPosition').value,
+        animations: document.getElementById('animationsToggle').classList.contains('active'),
+        
+        // Notifications
+        notifications: document.getElementById('notificationsToggle').classList.contains('active'),
+        reminders: document.getElementById('remindersToggle').classList.contains('active'),
+        chatNotifications: document.getElementById('chatNotifToggle').classList.contains('active'),
+        
+        // Gameplay
+        autoSelect: document.getElementById('autoSelectToggle').classList.contains('active'),
+        confirmActions: document.getElementById('confirmToggle').classList.contains('active'),
+        defaultOvers: parseInt(document.getElementById('defaultOvers').value),
+        
+        // Account
+        displayName: document.getElementById('displayName').value,
+        avatar: document.querySelector('.avatar-option.selected').textContent,
+        language: document.getElementById('language').value
+      };
+      
+      // Save to localStorage
+      localStorage.setItem('cpl-settings', JSON.stringify(settings));
+      localStorage.setItem('cpl-playerName', settings.displayName);
+      
+      // Show notification
+      const notif = document.getElementById('notification');
+      notif.classList.add('show');
+      setTimeout(() => notif.classList.remove('show'), 3000);
+    }
+
+    function signOut() {
+      if (confirm('Are you sure you want to sign out?')) {
+        localStorage.removeItem('cpl-auth-token');
+        localStorage.removeItem('cpl-user');
+        window.location.href = '/login.html';
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CPL - System Architecture</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Monaco', 'Courier New', monospace;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 40px 20px;
+      color: white;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 48px;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .subtitle {
+      text-align: center;
+      font-size: 18px;
+      margin-bottom: 40px;
+      opacity: 0.9;
+    }
+
+    .architecture-section {
+      background: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 30px;
+      margin-bottom: 30px;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .section-title {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: #ffd700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    pre {
+      background: rgba(0, 0, 0, 0.5);
+      padding: 20px;
+      border-radius: 10px;
+      overflow-x: auto;
+      line-height: 1.6;
+      font-size: 14px;
+      border-left: 4px solid #4CAF50;
+    }
+
+    .flow-diagram {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .flow-box {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 10px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      transition: all 0.3s;
+    }
+
+    .flow-box:hover {
+      transform: translateY(-5px);
+      background: rgba(255, 255, 255, 0.2);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .flow-box h3 {
+      color: #4CAF50;
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+
+    .flow-box p {
+      font-size: 14px;
+      line-height: 1.6;
+      opacity: 0.9;
+    }
+
+    .event-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .event-list li {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 10px 15px;
+      margin: 5px 0;
+      border-radius: 8px;
+      border-left: 3px solid #2196F3;
+    }
+
+    .highlight {
+      color: #ffd700;
+      font-weight: bold;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(76, 175, 80, 0.3);
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 12px;
+      margin-left: 10px;
+      border: 1px solid #4CAF50;
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 32px;
+      }
+
+      pre {
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🏏 CPL System Architecture</h1>
+    <div class="subtitle">Class Premier League - Multiplayer Finger Cricket Game</div>
+
+    <!-- High-Level Architecture -->
+    <div class="architecture-section">
+      <div class="section-title">
+        1️⃣ HIGH-LEVEL ARCHITECTURE
+      </div>
+      <pre>
+┌───────────────────────────┐
+│        Web Browser        │
+│  (index.html, lobby.html) │
+│                           │
+│  HTML + CSS + JavaScript  │
+└─────────────┬─────────────┘
+              │
+              │ Socket.IO (WebSocket)
+              │ Real-time Events
+              ▼
+┌───────────────────────────┐
+│       Node.js Server      │
+│   Express + Socket.IO     │
+│                           │
+│ ┌─────────────────────┐ │
+│ │     server.js       │ │
+│ │ (event handling)    │ │
+│ └─────────┬───────────┘ │
+│           │              │
+│ ┌─────────▼───────────┐ │
+│ │      room.js        │ │
+│ │ (rooms, teams)      │ │
+│ └─────────┬───────────┘ │
+│           │              │
+│ ┌─────────▼───────────┐ │
+│ │   gameLogic.js      │ │
+│ │ (finger rules)      │ │
+│ └─────────────────────┘ │
+└───────────────────────────┘
+      </pre>
+    </div>
+
+    <!-- Client-Server Flow -->
+    <div class="architecture-section">
+      <div class="section-title">
+        2️⃣ CLIENT-SERVER INTERACTION
+      </div>
+      <pre>
+Player Browser
+     |
+     | enter name
+     | click "Join Random Room"
+     ▼
+Socket Event: "set-name"
+Socket Event: "join-random-room"
+     |
+     ▼
+┌───────────────┐
+│ server.js    │
+│               │
+│ - create room │
+│ - assign team │
+│ - manage state│
+└──────┬────────┘
+       |
+       ▼
+Socket Emit: "room-update"
+Socket Emit: "game-state"
+       |
+       ▼
+Browser updates UI
+(Lobby / Game / Score / Animations)
+      </pre>
+    </div>
+
+    <!-- Key Features -->
+    <div class="architecture-section">
+      <div class="section-title">
+        3️⃣ KEY FEATURES <span class="badge">PRODUCTION READY</span>
+      </div>
+      <div class="flow-diagram">
+        <div class="flow-box">
+          <h3>🔄 Reconnection</h3>
+          <p>Players can refresh without losing their spot. 5-second grace period handles temporary disconnects.</p>
+        </div>
+        <div class="flow-box">
+          <h3>🚫 Duplicate Prevention</h3>
+          <p>Identity based on player name, not socket ID. Old sockets removed when player reconnects.</p>
+        </div>
+        <div class="flow-box">
+          <h3>⚖️ Team Balance</h3>
+          <p>Automatic team assignment ensures fair distribution between Team A and Team B.</p>
+        </div>
+        <div class="flow-box">
+          <h3>✨ Smooth Animations</h3>
+          <p>Rolling score updates, result overlays, and finger pop animations enhance UX.</p>
+        </div>
+        <div class="flow-box">
+          <h3>💬 Real-time Chat</h3>
+          <p>Spectators can chat during gameplay. Active players (batter/bowler) cannot chat.</p>
+        </div>
+        <div class="flow-box">
+          <h3>📊 Score Integrity</h3>
+          <p>Server is authoritative. Score never shows NaN (defaults to 0). Client displays animations only.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Socket Events -->
+    <div class="architecture-section">
+      <div class="section-title">
+        4️⃣ SOCKET EVENTS
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+        <div>
+          <h3 style="color: #4CAF50; margin-bottom: 15px;">Client → Server</h3>
+          <ul class="event-list">
+            <li><span class="highlight">join-random-room</span> - Join available room</li>
+            <li><span class="highlight">rejoin-room</span> - Reconnect after disconnect</li>
+            <li><span class="highlight">select-leaders</span> - Choose team captains</li>
+            <li><span class="highlight">start-game</span> - Begin gameplay</li>
+            <li><span class="highlight">select-players</span> - Pick batter & bowler</li>
+            <li><span class="highlight">player-input</span> - Submit finger choice</li>
+            <li><span class="highlight">chat-message</span> - Send chat message</li>
+          </ul>
+        </div>
+        <div>
+          <h3 style="color: #2196F3; margin-bottom: 15px;">Server → Client</h3>
+          <ul class="event-list">
+            <li><span class="highlight">room-update</span> - Team lists updated</li>
+            <li><span class="highlight">game-state</span> - Score, overs, state</li>
+            <li><span class="highlight">leaders-selected</span> - Captains chosen</li>
+            <li><span class="highlight">players-selected</span> - Batter/bowler set</li>
+            <li><span class="highlight">round-result</span> - Finger choices & outcome</li>
+            <li><span class="highlight">game-over</span> - Match ended</li>
+            <li><span class="highlight">chat-message</span> - Chat broadcast</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Game Flow -->
+    <div class="architecture-section">
+      <div class="section-title">
+        5️⃣ GAMEPLAY FLOW
+      </div>
+      <pre>
+1. JOIN ROOM
+   → Player enters name
+   → Auto-assigned to team
+   → Room created/joined
+
+2. SELECT LEADERS
+   → Any player can trigger
+   → Random selection from each team
+   → Leaders get special privileges
+
+3. START GAME
+   → Leader clicks start
+   → Game state: LOBBY → WAITING_PLAYERS
+
+4. SELECT PLAYERS
+   → Leader picks batter (Team A)
+   → Leader picks bowler (Team B)
+   → Game state: WAITING_PLAYERS → PLAYING
+
+5. PLAY ROUND
+   → Batter chooses fingers (1-5)
+   → Bowler chooses fingers (1-5)
+   → If same → OUT
+   → If different → runs added
+   → Result animation shown
+
+6. CONTINUE/END
+   → If OUT → select new batter
+   → If overs complete → GAME_OVER
+   → If all wickets → GAME_OVER
+      </pre>
+    </div>
+
+    <!-- Room Structure -->
+    <div class="architecture-section">
+      <div class="section-title">
+        6️⃣ ROOM DATA STRUCTURE
+      </div>
+      <pre>
+rooms (in-memory object)
+│
+├── room-xyz123
+│    ├── id: "room-xyz123"
+│    ├── type: "random"
+│    ├── totalOvers: 5
+│    ├── players: [socketId1, socketId2, ...]
+│    ├── playerNames: {
+│    │     socketId1: "Alice",
+│    │     socketId2: "Bob"
+│    │   }
+│    ├── teamA: [socketId1, socketId3]
+│    ├── teamB: [socketId2, socketId4]
+│    ├── leaderA: socketId1
+│    ├── leaderB: socketId2
+│    └── game: {
+│         state: "PLAYING",
+│         score: 45,
+│         wickets: 2,
+│         overs: 3,
+│         balls: 2,
+│         currentBatter: socketId3,
+│         currentBowler: socketId4,
+│         batterInput: null,
+│         bowlerInput: null,
+│         battingTeam: "A",
+│         history: [...]
+│       }
+│
+└── room-abc789
+     └── ...
+      </pre>
+    </div>
+
+    <!-- Important Rules -->
+    <div class="architecture-section">
+      <div class="section-title">
+        7️⃣ CRITICAL DESIGN RULES
+      </div>
+      <div class="flow-diagram">
+        <div class="flow-box">
+          <h3>🔑 Player Identity</h3>
+          <p><strong>Name-based</strong>, not socket-based. Allows seamless reconnection across sessions.</p>
+        </div>
+        <div class="flow-box">
+          <h3>🛡️ No Duplicates</h3>
+          <p>Same name in room? Old socket removed, new one attached. Single identity guaranteed.</p>
+        </div>
+        <div class="flow-box">
+          <h3>📈 Server Authority</h3>
+          <p>All game logic on server. Client displays animations only. Prevents cheating.</p>
+        </div>
+        <div class="flow-box">
+          <h3>⏱️ Grace Period</h3>
+          <p>5-second wait before removing disconnected players. Handles page refresh smoothly.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // Add smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    // Add copy button for code blocks
+    document.querySelectorAll('pre').forEach(block => {
+      block.style.position = 'relative';
+      const button = document.createElement('button');
+      button.textContent = '📋 Copy';
+      button.style.position = 'absolute';
+      button.style.top = '10px';
+      button.style.right = '10px';
+      button.style.background = 'rgba(76, 175, 80, 0.8)';
+      button.style.color = 'white';
+      button.style.border = 'none';
+      button.style.padding = '5px 10px';
+      button.style.borderRadius = '5px';
+      button.style.cursor = 'pointer';
+      button.style.fontSize = '12px';
+      
+      button.addEventListener('click', () => {
+        navigator.clipboard.writeText(block.textContent);
+        button.textContent = '✅ Copied!';
+        setTimeout(() => {
+          button.textContent = '📋 Copy';
+        }, 2000);
+      });
+      
+      block.appendChild(button);
+    });
+  </script>
+</body>
+</html>

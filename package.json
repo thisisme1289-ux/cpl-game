@@ -1,0 +1,28 @@
+{
+  "name": "cpl-finger-cricket",
+  "version": "1.0.0",
+  "description": "Class Premier League - Multiplayer Finger Cricket Game",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "dev": "nodemon server/server.js"
+  },
+  "keywords": [
+    "finger-cricket",
+    "multiplayer",
+    "socket.io",
+    "game"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-session": "^1.19.0",
+    "passport": "^0.7.0",
+    "passport-google-oauth20": "^2.0.0",
+    "socket.io": "^4.6.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}

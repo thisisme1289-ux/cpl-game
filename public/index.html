@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CPL - Class Premier League</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #0a1628 0%, #1a2642 50%, #0f1f3d 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Animated background */
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(26, 188, 254, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(102, 126, 234, 0.1) 0%, transparent 50%);
+      animation: bgPulse 8s ease-in-out infinite;
+    }
+
+    @keyframes bgPulse {
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 1; }
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 500px;
+      padding: 20px;
+    }
+
+    .logo-section {
+      text-align: center;
+      margin-bottom: 60px;
+      animation: fadeInDown 0.8s ease;
+    }
+
+    .logo {
+      font-size: 96px;
+      font-weight: 900;
+      background: linear-gradient(135deg, #1ABCFE 0%, #00D4A1 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -2px;
+      margin-bottom: 10px;
+      text-shadow: 0 0 80px rgba(26, 188, 254, 0.5);
+    }
+
+    .tagline {
+      font-size: 24px;
+      color: #8BA3C7;
+      font-weight: 300;
+      letter-spacing: 1px;
+    }
+
+    .menu-container {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      animation: fadeInUp 0.8s ease;
+    }
+
+    .menu-btn {
+      background: rgba(15, 31, 61, 0.6);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(139, 163, 199, 0.1);
+      padding: 24px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .menu-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(26, 188, 254, 0.1), transparent);
+      transition: left 0.5s;
+    }
+
+    .menu-btn:hover::before {
+      left: 100%;
+    }
+
+    .menu-btn:hover {
+      transform: translateY(-4px);
+      border-color: rgba(26, 188, 254, 0.5);
+      box-shadow: 0 8px 32px rgba(26, 188, 254, 0.2);
+    }
+
+    .menu-btn.primary {
+      background: linear-gradient(135deg, #1ABCFE 0%, #00D4A1 100%);
+      border: none;
+    }
+
+    .menu-btn.primary:hover {
+      box-shadow: 0 8px 32px rgba(26, 188, 254, 0.4);
+    }
+
+    .menu-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      flex-shrink: 0;
+    }
+
+    .menu-btn.primary .menu-icon {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .menu-btn:not(.primary) .menu-icon {
+      background: linear-gradient(135deg, #1ABCFE 0%, #00D4A1 100%);
+    }
+
+    .menu-text {
+      flex: 1;
+      text-align: left;
+    }
+
+    .menu-title {
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .menu-subtitle {
+      font-size: 14px;
+      opacity: 0.7;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 40px;
+      opacity: 0.5;
+      font-size: 13px;
+    }
+
+    .help-btn {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: rgba(26, 188, 254, 0.2);
+      border: 1px solid rgba(26, 188, 254, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 20px;
+      transition: all 0.3s;
+      z-index: 100;
+    }
+
+    .help-btn:hover {
+      background: rgba(26, 188, 254, 0.3);
+      transform: scale(1.1);
+    }
+
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(10px);
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: linear-gradient(135deg, #0f1f3d 0%, #1a2642 100%);
+      padding: 40px;
+      border-radius: 24px;
+      max-width: 500px;
+      width: 90%;
+      border: 1px solid rgba(26, 188, 254, 0.2);
+      animation: modalSlideIn 0.3s ease;
+    }
+
+    @keyframes modalSlideIn {
+      from {
+        transform: scale(0.9) translateY(20px);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .modal-header {
+      font-size: 32px;
+      font-weight: bold;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #1ABCFE 0%, #00D4A1 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .modal-subtitle {
+      color: #8BA3C7;
+      margin-bottom: 30px;
+      font-size: 16px;
+    }
+
+    .input-group {
+      margin-bottom: 24px;
+    }
+
+    .input-label {
+      display: block;
+      margin-bottom: 12px;
+      font-size: 14px;
+      color: #8BA3C7;
+      font-weight: 500;
+    }
+
+    .input-field {
+      width: 100%;
+      padding: 16px 20px;
+      font-size: 18px;
+      border: 1px solid rgba(139, 163, 199, 0.2);
+      border-radius: 12px;
+      background: rgba(15, 31, 61, 0.6);
+      color: white;
+      transition: all 0.3s;
+    }
+
+    .input-field:focus {
+      outline: none;
+      border-color: #1ABCFE;
+      box-shadow: 0 0 0 3px rgba(26, 188, 254, 0.1);
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .btn {
+      flex: 1;
+      padding: 16px;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #1ABCFE 0%, #00D4A1 100%);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(26, 188, 254, 0.4);
+    }
+
+    .btn-secondary {
+      background: rgba(139, 163, 199, 0.1);
+      color: #8BA3C7;
+      border: 1px solid rgba(139, 163, 199, 0.2);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(139, 163, 199, 0.2);
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .error-msg {
+      background: rgba(244, 67, 54, 0.2);
+      border: 1px solid rgba(244, 67, 54, 0.5);
+      color: #ff6b6b;
+      padding: 12px 16px;
+      border-radius: 8px;
+      margin-top: 16px;
+      display: none;
+      animation: shake 0.5s;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-10px); }
+      75% { transform: translateX(10px); }
+    }
+
+    @media (max-width: 600px) {
+      .logo { font-size: 72px; }
+      .tagline { font-size: 20px; }
+      .menu-title { font-size: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo-section">
+      <div class="logo">CPL</div>
+      <div class="tagline">Class Premier League</div>
+    </div>
+
+    <div class="menu-container">
+      <div class="menu-btn primary" id="playGameBtn">
+        <div class="menu-icon">▶</div>
+        <div class="menu-text">
+          <div class="menu-title">Play Game</div>
+          <div class="menu-subtitle">Start playing now</div>
+        </div>
+      </div>
+
+      <div class="menu-btn" id="profileBtn">
+        <div class="menu-icon">👤</div>
+        <div class="menu-text">
+          <div class="menu-title">Profile</div>
+          <div class="menu-subtitle">View your stats</div>
+        </div>
+      </div>
+
+      <div class="menu-btn" id="leaderboardBtn">
+        <div class="menu-icon">🏆</div>
+        <div class="menu-text">
+          <div class="menu-title">Leaderboard</div>
+          <div class="menu-subtitle">Top players</div>
+        </div>
+      </div>
+
+      <div class="menu-btn" id="settingsBtn">
+        <div class="menu-icon">⚙️</div>
+        <div class="menu-text">
+          <div class="menu-title">Settings</div>
+          <div class="menu-subtitle">Customize your game</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      v1.0.0 • © 2026 CPL
+    </div>
+  </div>
+
+  <div class="help-btn">?</div>
+
+  <!-- Play Game Modal -->
+  <div class="modal" id="playModal">
+    <div class="modal-content">
+      <div class="modal-header">Choose Game Mode</div>
+      <div class="modal-subtitle">Select how you want to play</div>
+      
+      <div class="menu-container">
+        <div class="menu-btn primary" id="randomMatchBtn">
+          <div class="menu-icon">🎲</div>
+          <div class="menu-text">
+            <div class="menu-title">Random Match</div>
+            <div class="menu-subtitle">Quick 5-over game</div>
+          </div>
+        </div>
+
+        <div class="menu-btn" id="createCustomBtn">
+          <div class="menu-icon">➕</div>
+          <div class="menu-text">
+            <div class="menu-title">Create Custom</div>
+            <div class="menu-subtitle">Custom overs & private</div>
+          </div>
+        </div>
+
+        <div class="menu-btn" id="joinCodeBtn">
+          <div class="menu-icon">🔗</div>
+          <div class="menu-text">
+            <div class="menu-title">Join with Code</div>
+            <div class="menu-subtitle">Enter room code</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="btn-group" style="margin-top: 24px;">
+        <button class="btn btn-secondary" id="cancelPlayBtn">Back</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Enter Name Modal -->
+  <div class="modal" id="nameModal">
+    <div class="modal-content">
+      <div class="modal-header">Enter Your Name</div>
+      <div class="modal-subtitle">Choose a display name</div>
+      
+      <div class="input-group">
+        <label class="input-label">Player Name</label>
+        <input type="text" id="playerNameInput" class="input-field" placeholder="Enter your name..." maxlength="20" autocomplete="off">
+      </div>
+
+      <div class="error-msg" id="nameError"></div>
+
+      <div class="btn-group">
+        <button class="btn btn-primary" id="confirmNameBtn">Continue</button>
+        <button class="btn btn-secondary" id="cancelNameBtn">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Custom Room Modal -->
+  <div class="modal" id="customModal">
+    <div class="modal-content">
+      <div class="modal-header">Create Custom Room</div>
+      <div class="modal-subtitle">Configure your match</div>
+      
+      <div class="input-group">
+        <label class="input-label">Number of Overs</label>
+        <input type="number" id="oversInput" class="input-field" min="1" max="20" value="5">
+        <div style="font-size: 12px; color: #8BA3C7; margin-top: 8px;">Min: 1, Max: 20</div>
+      </div>
+
+      <div class="error-msg" id="customError"></div>
+
+      <div class="btn-group">
+        <button class="btn btn-primary" id="confirmCustomBtn">Create Room</button>
+        <button class="btn btn-secondary" id="cancelCustomBtn">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Join Code Modal -->
+  <div class="modal" id="joinModal">
+    <div class="modal-content">
+      <div class="modal-header">Join Room</div>
+      <div class="modal-subtitle">Enter the room code</div>
+      
+      <div class="input-group">
+        <label class="input-label">Room Code</label>
+        <input type="text" id="roomCodeInput" class="input-field" placeholder="room-xxxxx" autocomplete="off">
+      </div>
+
+      <div class="error-msg" id="joinError"></div>
+
+      <div class="btn-group">
+        <button class="btn btn-primary" id="confirmJoinBtn">Join</button>
+        <button class="btn btn-secondary" id="cancelJoinBtn">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io();
+    let selectedMode = null;
+    let playerName = localStorage.getItem('cpl-playerName') || '';
+    
+    // Check if user is logged in (optional)
+    const user = JSON.parse(localStorage.getItem('cpl-user') || '{}');
+    if (user.displayName) {
+      playerName = user.displayName;
+    }
+
+    // Modal references
+    const playModal = document.getElementById('playModal');
+    const nameModal = document.getElementById('nameModal');
+    const customModal = document.getElementById('customModal');
+    const joinModal = document.getElementById('joinModal');
+
+    // Show play modal
+    document.getElementById('playGameBtn').addEventListener('click', () => {
+      playModal.classList.add('active');
+    });
+
+    document.getElementById('cancelPlayBtn').addEventListener('click', () => {
+      playModal.classList.remove('active');
+    });
+
+    // Random match
+    document.getElementById('randomMatchBtn').addEventListener('click', () => {
+      selectedMode = 'random';
+      playModal.classList.remove('active');
+      showNameModal();
+    });
+
+    // Create custom
+    document.getElementById('createCustomBtn').addEventListener('click', () => {
+      selectedMode = 'custom';
+      playModal.classList.remove('active');
+      showNameModal();
+    });
+
+    // Join with code
+    document.getElementById('joinCodeBtn').addEventListener('click', () => {
+      selectedMode = 'join';
+      playModal.classList.remove('active');
+      showNameModal();
+    });
+
+    // Name modal
+    function showNameModal() {
+      const input = document.getElementById('playerNameInput');
+      if (playerName) input.value = playerName;
+      nameModal.classList.add('active');
+      input.focus();
+    }
+
+    document.getElementById('confirmNameBtn').addEventListener('click', () => {
+      const name = document.getElementById('playerNameInput').value.trim();
+      if (!name) {
+        showError('nameError', 'Please enter your name');
+        return;
+      }
+      if (name.length < 2) {
+        showError('nameError', 'Name must be at least 2 characters');
+        return;
+      }
+
+      playerName = name;
+      localStorage.setItem('cpl-playerName', name);
+      nameModal.classList.remove('active');
+
+      if (selectedMode === 'random') {
+        socket.emit('join-random-room', name);
+      } else if (selectedMode === 'custom') {
+        customModal.classList.add('active');
+      } else if (selectedMode === 'join') {
+        joinModal.classList.add('active');
+      }
+    });
+
+    document.getElementById('cancelNameBtn').addEventListener('click', () => {
+      nameModal.classList.remove('active');
+      playModal.classList.add('active');
+    });
+
+    // Custom room
+    document.getElementById('confirmCustomBtn').addEventListener('click', () => {
+      const overs = parseInt(document.getElementById('oversInput').value);
+      if (overs < 1 || overs > 20) {
+        showError('customError', 'Overs must be between 1 and 20');
+        return;
+      }
+
+      socket.emit('create-custom-room', { playerName, overs });
+    });
+
+    document.getElementById('cancelCustomBtn').addEventListener('click', () => {
+      customModal.classList.remove('active');
+      playModal.classList.add('active');
+    });
+
+    // Join room
+    document.getElementById('confirmJoinBtn').addEventListener('click', () => {
+      const code = document.getElementById('roomCodeInput').value.trim();
+      if (!code) {
+        showError('joinError', 'Please enter room code');
+        return;
+      }
+
+      socket.emit('join-custom-room', { playerName, roomCode: code });
+    });
+
+    document.getElementById('cancelJoinBtn').addEventListener('click', () => {
+      joinModal.classList.remove('active');
+      playModal.classList.add('active');
+    });
+
+    // Enter key handlers
+    document.getElementById('playerNameInput').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') document.getElementById('confirmNameBtn').click();
+    });
+    document.getElementById('roomCodeInput').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') document.getElementById('confirmJoinBtn').click();
+    });
+
+    // Socket events
+    socket.on('joined-room', (data) => {
+      localStorage.setItem('cpl-roomId', data.roomId);
+      localStorage.setItem('cpl-playerName', data.playerName);
+      localStorage.setItem('cpl-team', data.team);
+      localStorage.setItem('cpl-roomType', data.roomType);
+      window.location.href = '/lobby';
+    });
+
+    socket.on('custom-room-created', (data) => {
+      localStorage.setItem('cpl-roomId', data.roomId);
+      localStorage.setItem('cpl-playerName', data.playerName);
+      localStorage.setItem('cpl-team', data.team);
+      localStorage.setItem('cpl-roomType', data.roomType);
+      window.location.href = '/lobby';
+    });
+
+    socket.on('error', (data) => {
+      if (customModal.classList.contains('active')) {
+        showError('customError', data.message);
+      } else if (joinModal.classList.contains('active')) {
+        showError('joinError', data.message);
+      } else if (nameModal.classList.contains('active')) {
+        showError('nameError', data.message);
+      }
+    });
+
+    function showError(id, message) {
+      const el = document.getElementById(id);
+      el.textContent = message;
+      el.style.display = 'block';
+      setTimeout(() => el.style.display = 'none', 3000);
+    }
+
+    // Navigate to pages
+    document.getElementById('profileBtn').addEventListener('click', () => {
+      window.location.href = '/profile.html';
+    });
+    document.getElementById('leaderboardBtn').addEventListener('click', () => {
+      window.location.href = '/leaderboard.html';
+    });
+    document.getElementById('settingsBtn').addEventListener('click', () => {
+      window.location.href = '/settings.html';
+    });
+  </script>
+</body>
+</html>

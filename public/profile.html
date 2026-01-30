@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CPL - Profile</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+      background: linear-gradient(135deg, #0a1628 0%, #1a2642 100%);
+      color: white;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .profile-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .back-btn {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      padding: 12px 24px;
+      background: rgba(26, 188, 254, 0.2);
+      border: 2px solid rgba(26, 188, 254, 0.3);
+      border-radius: 12px;
+      color: white;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s;
+      z-index: 100;
+    }
+
+    .back-btn:hover {
+      background: rgba(26, 188, 254, 0.3);
+      transform: translateY(-2px);
+    }
+
+    /* Profile Header */
+    .profile-header {
+      background: rgba(15, 31, 61, 0.6);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(26, 188, 254, 0.2);
+      border-radius: 24px;
+      padding: 40px;
+      margin-bottom: 30px;
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      animation: slideUp 0.6s ease;
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(30px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .profile-pic {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 4px solid rgba(26, 188, 254, 0.3);
+      object-fit: cover;
+      background: linear-gradient(135deg, #1ABCFE 0%, #00D4A1 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 60px;
+    }
+
+    .profile-info {
+      flex: 1;
+    }
+
+    .profile-info h1 {
+      font-size: 42px;
+      margin-bottom: 10px;
+      background: linear-gradient(135deg, #1ABCFE 0%, #00D4A1 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .rank {
+      font-size: 24px;
+      color: #FFD700;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .member-since {
+      font-size: 16px;
+      color: #8BA3C7;
+    }
+
+    /* Stats Grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .stat-card {
+      background: rgba(15, 31, 61, 0.6);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(26, 188, 254, 0.2);
+      border-radius: 20px;
+      padding: 30px;
+      text-align: center;
+      transition: all 0.3s;
+      animation: fadeIn 0.8s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .stat-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(26, 188, 254, 0.4);
+      box-shadow: 0 8px 24px rgba(26, 188, 254, 0.2);
+    }
+
+    .stat-value {
+      font-size: 48px;
+      font-weight: bold;
+      background: linear-gradient(135deg, #1ABCFE 0%, #00D4A1 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 10px;
+    }
+
+    .stat-label {
+      font-size: 16px;
+      color: #8BA3C7;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* Detailed Stats */
+    .detailed-stats {
+      background: rgba(15, 31, 61, 0.6);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(26, 188, 254, 0.2);
+      border-radius: 24px;
+      padding: 40px;
+      margin-bottom: 30px;
+    }
+
+    .detailed-stats h2 {
+      font-size: 32px;
+      margin-bottom: 30px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .stat-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 20px 0;
+      border-bottom: 1px solid rgba(26, 188, 254, 0.1);
+      font-size: 18px;
+    }
+
+    .stat-row:last-child {
+      border-bottom: none;
+    }
+
+    .stat-row span:first-child {
+      color: #8BA3C7;
+    }
+
+    .stat-row span:last-child {
+      font-weight: bold;
+      color: #1ABCFE;
+    }
+
+    /* Achievements */
+    .achievements {
+      background: rgba(15, 31, 61, 0.6);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(26, 188, 254, 0.2);
+      border-radius: 24px;
+      padding: 40px;
+      margin-bottom: 30px;
+    }
+
+    .achievements h2 {
+      font-size: 32px;
+      margin-bottom: 30px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .achievement-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 20px;
+    }
+
+    .achievement {
+      background: rgba(26, 188, 254, 0.1);
+      border: 2px solid rgba(26, 188, 254, 0.2);
+      border-radius: 16px;
+      padding: 24px;
+      text-align: center;
+      transition: all 0.3s;
+    }
+
+    .achievement.unlocked {
+      border-color: #FFD700;
+      box-shadow: 0 4px 20px rgba(255, 215, 0, 0.2);
+    }
+
+    .achievement.locked {
+      opacity: 0.4;
+      filter: grayscale(100%);
+    }
+
+    .achievement:hover.unlocked {
+      transform: scale(1.05);
+    }
+
+    .achievement-icon {
+      font-size: 48px;
+      margin-bottom: 12px;
+    }
+
+    .achievement-name {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .achievement-desc {
+      font-size: 14px;
+      color: #8BA3C7;
+    }
+
+    /* Recent Matches */
+    .recent-matches {
+      background: rgba(15, 31, 61, 0.6);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(26, 188, 254, 0.2);
+      border-radius: 24px;
+      padding: 40px;
+    }
+
+    .recent-matches h2 {
+      font-size: 32px;
+      margin-bottom: 30px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .match-history {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .match-item {
+      background: rgba(26, 188, 254, 0.05);
+      border: 2px solid rgba(26, 188, 254, 0.2);
+      border-radius: 16px;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      transition: all 0.3s;
+    }
+
+    .match-item:hover {
+      background: rgba(26, 188, 254, 0.1);
+      transform: translateX(5px);
+    }
+
+    .match-item.won {
+      border-left: 4px solid #4CAF50;
+    }
+
+    .match-item.lost {
+      border-left: 4px solid #ff6b6b;
+    }
+
+    .match-result {
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 14px;
+      min-width: 60px;
+      text-align: center;
+    }
+
+    .match-item.won .match-result {
+      background: rgba(76, 175, 80, 0.2);
+      color: #4CAF50;
+    }
+
+    .match-item.lost .match-result {
+      background: rgba(255, 107, 107, 0.2);
+      color: #ff6b6b;
+    }
+
+    .match-details {
+      flex: 1;
+    }
+
+    .match-score {
+      font-size: 14px;
+      color: #8BA3C7;
+      margin-top: 5px;
+    }
+
+    .match-date {
+      color: #8BA3C7;
+      font-size: 14px;
+    }
+
+    @media (max-width: 768px) {
+      .profile-header {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .achievement-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .match-item {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="/" class="back-btn">← Back to Home</a>
+
+  <div class="profile-container">
+    <!-- Profile Header -->
+    <div class="profile-header">
+      <div class="profile-pic" id="profilePic">🏏</div>
+      <div class="profile-info">
+        <h1 id="playerName">Loading...</h1>
+        <p class="rank" id="playerRank">🏆 Rank #--</p>
+        <p class="member-since" id="memberSince">Member since ...</p>
+      </div>
+    </div>
+
+    <!-- Stats Overview -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-value" id="matchesPlayed">0</div>
+        <div class="stat-label">Matches Played</div>
+      </div>
+      
+      <div class="stat-card">
+        <div class="stat-value" id="wins">0</div>
+        <div class="stat-label">Wins</div>
+      </div>
+      
+      <div class="stat-card">
+        <div class="stat-value" id="winRate">0%</div>
+        <div class="stat-label">Win Rate</div>
+      </div>
+      
+      <div class="stat-card">
+        <div class="stat-value" id="highScore">0</div>
+        <div class="stat-label">High Score</div>
+      </div>
+    </div>
+
+    <!-- Detailed Stats -->
+    <div class="detailed-stats">
+      <h2>📊 Detailed Statistics</h2>
+      
+      <div class="stat-row">
+        <span>Total Runs Scored</span>
+        <span id="totalRuns">0</span>
+      </div>
+      
+      <div class="stat-row">
+        <span>Total Wickets Taken</span>
+        <span id="totalWickets">0</span>
+      </div>
+      
+      <div class="stat-row">
+        <span>Average Runs per Match</span>
+        <span id="avgRuns">0.0</span>
+      </div>
+      
+      <div class="stat-row">
+        <span>Average Wickets per Match</span>
+        <span id="avgWickets">0.0</span>
+      </div>
+      
+      <div class="stat-row">
+        <span>Best Bowling Figures</span>
+        <span id="bestBowling">0/0</span>
+      </div>
+      
+      <div class="stat-row">
+        <span>Total Boundaries (4s)</span>
+        <span id="totalFours">0</span>
+      </div>
+      
+      <div class="stat-row">
+        <span>Total Sixes</span>
+        <span id="totalSixes">0</span>
+      </div>
+    </div>
+
+    <!-- Achievements -->
+    <div class="achievements">
+      <h2>🏅 Achievements</h2>
+      
+      <div class="achievement-grid" id="achievementGrid">
+        <!-- Achievements will be loaded here -->
+      </div>
+    </div>
+
+    <!-- Recent Matches -->
+    <div class="recent-matches">
+      <h2>📅 Recent Matches</h2>
+      
+      <div class="match-history" id="matchHistory">
+        <!-- Match history will be loaded here -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const achievements = [
+      { id: 'first_match', icon: '🎮', name: 'First Match', desc: 'Play your first match', minMatches: 1 },
+      { id: 'veteran', icon: '🏏', name: 'Veteran Player', desc: 'Play 10 matches', minMatches: 10 },
+      { id: 'champion', icon: '🏆', name: 'Champion', desc: 'Play 50 matches', minMatches: 50 },
+      { id: 'first_win', icon: '✨', name: 'First Victory', desc: 'Win your first match', minWins: 1 },
+      { id: 'winning_streak', icon: '🔥', name: 'Winning Streak', desc: 'Win 5 matches in a row', streak: 5 },
+      { id: 'century', icon: '💯', name: 'Century Master', desc: 'Score 100+ runs', minRuns: 100 },
+      { id: 'big_hitter', icon: '🚀', name: 'Big Hitter', desc: 'Hit 10 sixes', minSixes: 10 },
+      { id: 'wicket_taker', icon: '🎯', name: 'Wicket Taker', desc: 'Take 20 wickets', minWickets: 20 },
+      { id: 'top_ten', icon: '👑', name: 'Top 10', desc: 'Reach top 10 on leaderboard', maxRank: 10 },
+      { id: 'number_one', icon: '⭐', name: 'Number One', desc: 'Reach rank #1', maxRank: 1 }
+    ];
+
+    // Load profile data
+    window.addEventListener('load', loadProfile);
+
+    async function loadProfile() {
+      try {
+        // Get user info from localStorage (or API in production)
+        const user = JSON.parse(localStorage.getItem('cpl-user') || '{}');
+        const token = localStorage.getItem('cpl-auth-token');
+        
+        // Display basic info
+        document.getElementById('playerName').textContent = user.displayName || 'Guest Player';
+        document.getElementById('memberSince').textContent = `Member since ${new Date(user.createdAt || Date.now()).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}`;
+        
+        // Set profile pic
+        const profilePic = document.getElementById('profilePic');
+        if (user.photoURL) {
+          profilePic.innerHTML = `<img src="${user.photoURL}" style="width: 100%; height: 100%; border-radius: 50%;">`;
+        } else {
+          const avatar = JSON.parse(localStorage.getItem('cpl-settings') || '{}').avatar || '🏏';
+          profilePic.textContent = avatar;
+        }
+        
+        // Load stats from API or localStorage
+        const stats = await loadStats(user.id, token);
+        displayStats(stats);
+        displayAchievements(stats);
+        displayMatchHistory(stats.recentMatches || []);
+        
+      } catch (error) {
+        console.error('Error loading profile:', error);
+        // Show demo data
+        showDemoData();
+      }
+    }
+
+    async function loadStats(userId, token) {
+      // Try to fetch from API
+      try {
+        if (token && userId) {
+          const response = await fetch(`/api/profile/${userId}`, {
+            headers: {
+              'Authorization': `Bearer ${token}`
+            }
+          });
+          
+          if (response.ok) {
+            const data = await response.json();
+            return {
+              matchesPlayed: data.user.stats.matchesPlayed || 0,
+              matchesWon: data.user.stats.matchesWon || 0,
+              matchesLost: data.user.stats.matchesLost || 0,
+              totalRuns: data.user.stats.totalRuns || 0,
+              totalWickets: data.user.stats.totalWickets || 0,
+              highestScore: data.user.stats.highestScore || 0,
+              bestBowling: data.user.stats.bestBowling || { wickets: 0, runs: 0 },
+              winRate: data.user.stats.winRate || 0,
+              rank: data.user.stats.rank || 999,
+              totalFours: data.user.stats.totalFours || 0,
+              totalSixes: data.user.stats.totalSixes || 0,
+              currentStreak: data.user.stats.currentStreak || 0,
+              recentMatches: data.recentMatches || []
+            };
+          }
+        }
+      } catch (error) {
+        console.error('Error fetching stats:', error);
+      }
+      
+      // Return empty stats if no data available
+      return {
+        matchesPlayed: 0,
+        matchesWon: 0,
+        matchesLost: 0,
+        totalRuns: 0,
+        totalWickets: 0,
+        highestScore: 0,
+        bestBowling: { wickets: 0, runs: 0 },
+        winRate: 0,
+        rank: 999,
+        totalFours: 0,
+        totalSixes: 0,
+        currentStreak: 0,
+        recentMatches: []
+      };
+    }
+
+    function displayStats(stats) {
+      document.getElementById('matchesPlayed').textContent = stats.matchesPlayed;
+      document.getElementById('wins').textContent = stats.matchesWon;
+      document.getElementById('winRate').textContent = stats.winRate + '%';
+      document.getElementById('highScore').textContent = stats.highestScore;
+      document.getElementById('playerRank').textContent = `🏆 Rank #${stats.rank}`;
+      
+      document.getElementById('totalRuns').textContent = stats.totalRuns;
+      document.getElementById('totalWickets').textContent = stats.totalWickets;
+      document.getElementById('avgRuns').textContent = (stats.totalRuns / stats.matchesPlayed).toFixed(1);
+      document.getElementById('avgWickets').textContent = (stats.totalWickets / stats.matchesPlayed).toFixed(1);
+      document.getElementById('bestBowling').textContent = `${stats.bestBowling.wickets}/${stats.bestBowling.runs}`;
+      document.getElementById('totalFours').textContent = stats.totalFours;
+      document.getElementById('totalSixes').textContent = stats.totalSixes;
+    }
+
+    function displayAchievements(stats) {
+      const grid = document.getElementById('achievementGrid');
+      grid.innerHTML = '';
+      
+      achievements.forEach(ach => {
+        const unlocked = checkAchievement(ach, stats);
+        
+        const div = document.createElement('div');
+        div.className = `achievement ${unlocked ? 'unlocked' : 'locked'}`;
+        div.innerHTML = `
+          <div class="achievement-icon">${ach.icon}</div>
+          <div class="achievement-name">${ach.name}</div>
+          <div class="achievement-desc">${ach.desc}</div>
+        `;
+        
+        grid.appendChild(div);
+      });
+    }
+
+    function checkAchievement(ach, stats) {
+      if (ach.minMatches && stats.matchesPlayed >= ach.minMatches) return true;
+      if (ach.minWins && stats.matchesWon >= ach.minWins) return true;
+      if (ach.minRuns && stats.totalRuns >= ach.minRuns) return true;
+      if (ach.minSixes && stats.totalSixes >= ach.minSixes) return true;
+      if (ach.minWickets && stats.totalWickets >= ach.minWickets) return true;
+      if (ach.maxRank && stats.rank <= ach.maxRank) return true;
+      if (ach.streak && stats.currentStreak >= ach.streak) return true;
+      return false;
+    }
+
+    function displayMatchHistory(matches) {
+      const history = document.getElementById('matchHistory');
+      history.innerHTML = '';
+      
+      if (matches.length === 0) {
+        history.innerHTML = '<p style="text-align: center; color: #8BA3C7;">No matches played yet. Start playing to see your history!</p>';
+        return;
+      }
+      
+      matches.forEach(match => {
+        const div = document.createElement('div');
+        div.className = `match-item ${match.won ? 'won' : 'lost'}`;
+        div.innerHTML = `
+          <div class="match-result">${match.won ? 'WON' : 'LOST'}</div>
+          <div class="match-details">
+            <div>vs ${match.opponent}</div>
+            <div class="match-score">${match.score} vs ${match.opponentScore}</div>
+          </div>
+          <div class="match-date">${match.date}</div>
+        `;
+        history.appendChild(div);
+      });
+    }
+
+    function showDemoData() {
+      displayStats({
+        matchesPlayed: 0,
+        matchesWon: 0,
+        matchesLost: 0,
+        totalRuns: 0,
+        totalWickets: 0,
+        highestScore: 0,
+        bestBowling: { wickets: 0, runs: 0 },
+        winRate: 0,
+        rank: 999,
+        totalFours: 0,
+        totalSixes: 0,
+        currentStreak: 0
+      });
+      displayAchievements({
+        matchesPlayed: 0,
+        matchesWon: 0,
+        totalRuns: 0,
+        totalSixes: 0,
+        totalWickets: 0,
+        rank: 999,
+        currentStreak: 0
+      });
+      displayMatchHistory([]);
+    }
+  </script>
+</body>
+</html>
