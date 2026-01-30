@@ -1,10 +1,12 @@
-const session = require('express-session');
-const passport = require('passport');
-const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const express = require('express');
 const http = require('http');
 const socketIO = require('socket.io');
 const path = require('path');
+const session = require('express-session');
+const passport = require('./auth');
+const authRoutes = require('./authRoutes');
+const { BotManager } = require('./botPlayer');
+const KeepAlive = require('./keepAlive');
 const { 
   createRoom, 
   addPlayerToRoom, 
@@ -32,20 +34,71 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIO(server);
 
+// Initialize Bot Manager
+const botManager = new BotManager();
+
+// Session middleware
+app.use(session({
+  secret: process.env.SESSION_SECRET || 'cpl-cricket-secret',
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production'
+  }
+}));
+
+// Passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
+// JSON body parser
+app.use(express.json());
+
+// Auth routes
+app.use('/auth', authRoutes);
+
 const PORT = process.env.PORT || 3000;
 
 // Serve static files
 app.use(express.static(path.join(__dirname, '../public')));
-app.use(
-  session({
-    secret: 'cpl-secret-key',
-    resave: false,
-    saveUninitialized: false,
-  })
-);
 
-app.use(passport.initialize());
-app.use(passport.session());
+// Health check endpoint (for keep-alive)
+app.get('/health', (req, res) => {
+  res.json({ 
+    status: 'ok', 
+    timestamp: new Date().toISOString(),
+    uptime: process.uptime(),
+    rooms: getAllRooms().length
+  });
+});
+
+// API endpoints
+app.get('/api/profile/:userId', (req, res) => {
+  // Return empty profile for now (will connect to MongoDB later)
+  res.json({
+    user: {
+      stats: {
+        matchesPlayed: 0,
+        matchesWon: 0,
+        totalRuns: 0,
+        totalWickets: 0,
+        highestScore: 0,
+        winRate: 0,
+        rank: 999
+      }
+    },
+    recentMatches: []
+  });
+});
+
+app.get('/api/leaderboard', (req, res) => {
+  // Return empty leaderboard for now
+  res.json({
+    leaderboard: []
+  });
+});
 
 // Root route
 app.get('/', (req, res) => {
@@ -884,6 +937,13 @@ io.on('connection', (socket) => {
 });
 
 server.listen(PORT, () => {
-  console.log(`🏏 CPL Server running on http://localhost:3000`);
+  console.log(`🏏 CPL Server running on http://localhost:${PORT}`);
   console.log(`Ready for multiplayer finger cricket!`);
+  
+  // Start keep-alive system (only in production)
+  if (process.env.NODE_ENV === 'production' && process.env.CLIENT_URL) {
+    const keepAlive = new KeepAlive(process.env.CLIENT_URL + '/health', 14);
+    keepAlive.start();
+    console.log(`⏰ Keep-alive system started`);
+  }
 });
