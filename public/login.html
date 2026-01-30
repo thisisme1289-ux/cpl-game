@@ -307,8 +307,17 @@
       
       localStorage.setItem('cpl-playerName', guestName);
       
-      // Redirect to home
-      window.location.href = '/';
+      // Check for redirect parameter
+      const urlParams = new URLSearchParams(window.location.search);
+      const redirect = urlParams.get('redirect');
+      
+      if (redirect === 'play') {
+        // Redirect to home and auto-open play modal
+        window.location.href = '/?autoplay=true';
+      } else {
+        // Redirect to home
+        window.location.href = '/';
+      }
     }
 
     // Handle OAuth callback
