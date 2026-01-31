@@ -18,20 +18,41 @@ router.get('/google', (req, res, next) => {
 router.get('/google/callback',
   passport.authenticate('google', { failureRedirect: '/login.html?error=auth_failed' }),
   (req, res) => {
-    // Send user data to frontend
+   // Send user data to frontend and persist to DB (upsert)
     const userData = {
-      id: req.user.googleId,
+      googleId: req.user.id,
       displayName: req.user.displayName,
       email: req.user.email,
       photoURL: req.user.photoURL
     };
-    
-    // Store in session
-    req.session.user = userData;
-    
-    // Redirect to home with user data
-    res.redirect(`/?login=success&user=${encodeURIComponent(JSON.stringify(userData))}`);
-  }
+
+    // Upsert to MongoDB (if available)
+    try {
+      const User = require('./models/user');
+      (async () => {
+        const user = await User.findOneAndUpdate(
+          { googleId: userData.googleId },
+          { $set: { displayName: userData.displayName, email: userData.email, photoURL: userData.photoURL, updatedAt: new Date() }, $setOnInsert: { createdAt: new Date() } },
+          { upsert: true, new: true }
+        );
+
+        // Store minimal user info in session
+        req.session.user = { id: user._id.toString(), displayName: user.displayName, photoURL: user.photoURL };
+
+        // Redirect to home with session user (frontend will store in localStorage)
+        res.redirect(`/?login=success&user=${encodeURIComponent(JSON.stringify(req.session.user))}`);
+      })().catch(err => {
+        console.error('User upsert failed:', err);
+        // Fallback to session-only behavior
+        req.session.user = userData;
+        res.redirect(`/?login=success&user=${encodeURIComponent(JSON.stringify(userData))}`);
+      });
+    } catch (err) {
+      // If models/db not available, fallback
+      console.warn('MongoDB not available, falling back to session-only user save');
+      req.session.user = userData;
+      res.redirect(`/?login=success&user=${encodeURIComponent(JSON.stringify(userData))}`);
+    }
 );
 
 // @route   GET /auth/logout
