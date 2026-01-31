@@ -701,6 +701,11 @@ function addChatMessage(sender, message) {
 }
 
 function showNotification(message, duration = 3000) {
+  // Notifications disabled - was showing game updates at bottom
+  // Keep function for compatibility but don't show anything
+  return;
+  
+  /* Original code commented out:
   const notification = document.createElement('div');
   notification.className = 'notification';
   notification.textContent = message;
@@ -710,6 +715,7 @@ function showNotification(message, duration = 3000) {
     notification.style.opacity = '0';
     setTimeout(() => notification.remove(), 300);
   }, duration);
+  */
 }
 
 function updateSoundToggle() {
