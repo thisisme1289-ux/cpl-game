@@ -648,10 +648,35 @@
       localStorage.setItem('cpl-settings', JSON.stringify(settings));
       localStorage.setItem('cpl-playerName', settings.displayName);
       
+      // Apply theme immediately
+      applyTheme(settings.theme);
+      
       // Show notification
       const notif = document.getElementById('notification');
       notif.classList.add('show');
       setTimeout(() => notif.classList.remove('show'), 3000);
+    }
+    
+    // Function to apply theme
+    function applyTheme(theme) {
+      const body = document.body;
+      
+      if (theme === 'light') {
+        body.style.background = 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)';
+        body.style.color = '#333';
+        document.querySelectorAll('.settings-section').forEach(section => {
+          section.style.background = 'rgba(255, 255, 255, 0.9)';
+          section.style.color = '#333';
+        });
+      } else if (theme === 'dark') {
+        body.style.background = 'linear-gradient(135deg, #0a1628 0%, #1a2642 100%)';
+        body.style.color = 'white';
+        document.querySelectorAll('.settings-section').forEach(section => {
+          section.style.background = 'rgba(15, 31, 61, 0.6)';
+          section.style.color = 'white';
+        });
+      }
+      // 'auto' will use system preference (default CSS)
     }
 
     function signOut() {
