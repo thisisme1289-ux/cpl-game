@@ -34,22 +34,6 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIO(server);
 
-// MongoDB connection (optional)
-const mongoose = require('mongoose');
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/cpl';
-mongoose.connect(MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-}).then(() => {
-  console.log('✅ Connected to MongoDB');
-}).catch(err => {
-  console.warn('⚠️ MongoDB connection failed:', err.message || err);
-});
-
-// Require User model for API endpoints
-let User;
-try { User = require('./models/user'); } catch (err) { /* optional */ }
-
 // Initialize Bot Manager
 const botManager = new BotManager();
 
@@ -89,71 +73,31 @@ app.get('/health', (req, res) => {
     rooms: getAllRooms().length
   });
 });
-// DB health endpoint (helpful for debugging Atlas connectivity)
-app.get('/db-health', async (req, res) => {
-  try {
-    const readyState = mongoose && mongoose.connection ? mongoose.connection.readyState : 0;
-    // readyState: 0 = disconnected, 1 = connected, 2 = connecting, 3 = disconnecting
-    let userCount = null;
-    if (User && readyState === 1) {
-      try {
-        userCount = await User.countDocuments();
-      } catch (e) {
-        userCount = `error: ${e.message}`;
-      }
-    }
 
-    return res.json({
-      mongooseReadyState: readyState,
-      userCount
-    });
-  } catch (err) {
-    return res.status(500).json({ error: err.message });
-  }
-});
 // API endpoints
-app.get('/api/profile/:userId', async (req, res) => {
-  const userId = req.params.userId;
-  if (!User) {
-    return res.json({ user: { stats: {} }, recentMatches: [] });
-  }
-
-  try {
-    // Try by MongoDB _id first, fall back to googleId
-    let user = null;
-    if (mongoose.Types.ObjectId.isValid(userId)) {
-      user = await User.findById(userId).lean();
-    }
-    if (!user) {
-      user = await User.findOne({ googleId: userId }).lean();
-    }
-
-    if (!user) {
-      return res.json({ user: { stats: {} }, recentMatches: [] });
-    }
-
-    return res.json({ user: { stats: user.stats || {} , displayName: user.displayName, photoURL: user.photoURL }, recentMatches: user.recentMatches || [] });
-  } catch (err) {
-    console.error('Error fetching profile:', err);
-    return res.status(500).json({ error: 'Failed to fetch profile' });
-  }
+app.get('/api/profile/:userId', (req, res) => {
+  // Return empty profile for now (will connect to MongoDB later)
+  res.json({
+    user: {
+      stats: {
+        matchesPlayed: 0,
+        matchesWon: 0,
+        totalRuns: 0,
+        totalWickets: 0,
+        highestScore: 0,
+        winRate: 0,
+        rank: 999
+      }
+    },
+    recentMatches: []
+  });
 });
 
-app.get('/api/leaderboard', async (req, res) => {
-  if (!User) {
-    return res.json({ leaderboard: [] });
-  }
-
-  try {
-    // Simple leaderboard: sort by matchesWon desc, then totalRuns desc
-    const users = await User.find({}).sort({ 'stats.matchesWon': -1, 'stats.totalRuns': -1 }).limit(100).lean();
-
-    const leaderboard = users.map(u => ({ displayName: u.displayName, photoURL: u.photoURL, stats: u.stats || {}, settings: u.settings || {} }));
-    return res.json({ leaderboard });
-  } catch (err) {
-    console.error('Error fetching leaderboard:', err);
-    return res.status(500).json({ error: 'Failed to fetch leaderboard' });
-  }
+app.get('/api/leaderboard', (req, res) => {
+  // Return empty leaderboard for now
+  res.json({
+    leaderboard: []
+  });
 });
 
 // Root route
