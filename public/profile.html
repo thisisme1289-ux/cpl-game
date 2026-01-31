@@ -502,30 +502,31 @@
     async function loadStats(userId, token) {
       // Try to fetch from API
       try {
-        if (token && userId) {
-          const response = await fetch(`/api/profile/${userId}`, {
-            headers: {
-              'Authorization': `Bearer ${token}`
-            }
-          });
+        if (userId) {
+          console.log('Fetching profile for user:', userId);
+          const response = await fetch(`/api/profile/${userId}`);
           
           if (response.ok) {
             const data = await response.json();
-            return {
-              matchesPlayed: data.user.stats.matchesPlayed || 0,
-              matchesWon: data.user.stats.matchesWon || 0,
-              matchesLost: data.user.stats.matchesLost || 0,
-              totalRuns: data.user.stats.totalRuns || 0,
-              totalWickets: data.user.stats.totalWickets || 0,
-              highestScore: data.user.stats.highestScore || 0,
-              bestBowling: data.user.stats.bestBowling || { wickets: 0, runs: 0 },
-              winRate: data.user.stats.winRate || 0,
-              rank: data.user.stats.rank || 999,
-              totalFours: data.user.stats.totalFours || 0,
-              totalSixes: data.user.stats.totalSixes || 0,
-              currentStreak: data.user.stats.currentStreak || 0,
-              recentMatches: data.recentMatches || []
-            };
+            console.log('Profile data received:', data);
+            
+            if (data.user && data.user.stats) {
+              return {
+                matchesPlayed: data.user.stats.matchesPlayed || 0,
+                matchesWon: data.user.stats.matchesWon || 0,
+                matchesLost: data.user.stats.matchesLost || 0,
+                totalRuns: data.user.stats.totalRuns || 0,
+                totalWickets: data.user.stats.totalWickets || 0,
+                highestScore: data.user.stats.highestScore || 0,
+                bestBowling: data.user.stats.bestBowling || { wickets: 0, runs: 0 },
+                winRate: data.user.stats.winRate || 0,
+                rank: data.user.stats.rank || 999,
+                totalFours: data.user.stats.totalFours || 0,
+                totalSixes: data.user.stats.totalSixes || 0,
+                currentStreak: data.user.stats.currentStreak || 0,
+                recentMatches: data.recentMatches || []
+              };
+            }
           }
         }
       } catch (error) {
@@ -533,6 +534,7 @@
       }
       
       // Return empty stats if no data available
+      console.log('No stats found, returning empty data');
       return {
         matchesPlayed: 0,
         matchesWon: 0,
@@ -555,15 +557,39 @@
       document.getElementById('wins').textContent = stats.matchesWon;
       document.getElementById('winRate').textContent = stats.winRate + '%';
       document.getElementById('highScore').textContent = stats.highestScore;
-      document.getElementById('playerRank').textContent = `🏆 Rank #${stats.rank}`;
+      document.getElementById('playerRank').textContent = stats.matchesPlayed > 0 ? `🏆 Rank #${stats.rank}` : '🏆 Unranked';
       
       document.getElementById('totalRuns').textContent = stats.totalRuns;
       document.getElementById('totalWickets').textContent = stats.totalWickets;
-      document.getElementById('avgRuns').textContent = (stats.totalRuns / stats.matchesPlayed).toFixed(1);
-      document.getElementById('avgWickets').textContent = (stats.totalWickets / stats.matchesPlayed).toFixed(1);
+      
+      // Handle division by zero for averages
+      const avgRuns = stats.matchesPlayed > 0 ? (stats.totalRuns / stats.matchesPlayed).toFixed(1) : '0.0';
+      const avgWickets = stats.matchesPlayed > 0 ? (stats.totalWickets / stats.matchesPlayed).toFixed(1) : '0.0';
+      
+      document.getElementById('avgRuns').textContent = avgRuns;
+      document.getElementById('avgWickets').textContent = avgWickets;
       document.getElementById('bestBowling').textContent = `${stats.bestBowling.wickets}/${stats.bestBowling.runs}`;
       document.getElementById('totalFours').textContent = stats.totalFours;
       document.getElementById('totalSixes').textContent = stats.totalSixes;
+      
+      // Show empty state message if no matches played
+      if (stats.matchesPlayed === 0) {
+        const profileContainer = document.querySelector('.profile-container');
+        const emptyMessage = document.createElement('div');
+        emptyMessage.style.cssText = 'text-align: center; padding: 40px; margin: 20px 0; background: rgba(26, 188, 254, 0.1); border-radius: 16px; border: 2px dashed rgba(26, 188, 254, 0.3);';
+        emptyMessage.innerHTML = `
+          <div style="font-size: 64px; margin-bottom: 16px;">🏏</div>
+          <div style="font-size: 24px; font-weight: bold; margin-bottom: 12px;">No Matches Played Yet</div>
+          <div style="color: #8BA3C7; margin-bottom: 20px;">Start playing to see your stats here!</div>
+          <a href="/" style="display: inline-block; padding: 12px 24px; background: linear-gradient(135deg, #1ABCFE 0%, #00D4A1 100%); color: white; text-decoration: none; border-radius: 12px; font-weight: 600;">Play Your First Match</a>
+        `;
+        
+        // Insert after header, before stats
+        const statsOverview = document.querySelector('.stats-overview');
+        if (statsOverview && statsOverview.parentNode) {
+          statsOverview.parentNode.insertBefore(emptyMessage, statsOverview);
+        }
+      }
     }
 
     function displayAchievements(stats) {
