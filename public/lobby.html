@@ -1079,11 +1079,69 @@
       }
 
       .chat-container {
-        display: none;
+        width: 100%;
+        max-width: 100%;
+        right: 0;
+        bottom: 0;
+        border-radius: 16px 16px 0 0;
+        max-height: 60vh;
+      }
+      
+      .chat-show-btn {
+        bottom: 80px;
+        right: 20px;
+        width: 56px;
+        height: 56px;
+        font-size: 24px;
       }
 
       .player-grid {
         grid-template-columns: 1fr;
+      }
+      
+      /* Fix mobile victory/defeat screen overflow */
+      .match-summary {
+        padding: 20px;
+        max-height: 95vh;
+        overflow-y: auto;
+      }
+      
+      .summary-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin: 20px 0;
+      }
+      
+      .summary-card {
+        padding: 16px;
+        font-size: 14px;
+      }
+      
+      .summary-score {
+        font-size: 36px;
+      }
+      
+      .summary-team {
+        font-size: 14px;
+      }
+      
+      .summary-vs {
+        font-size: 24px;
+        margin: 10px 0;
+      }
+      
+      .summary-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        margin: 20px 0;
+      }
+      
+      .summary-title {
+        font-size: 36px;
+      }
+      
+      .summary-winner {
+        font-size: 20px;
       }
     }
   </style>
@@ -1230,10 +1288,6 @@
           <div class="stat-label">Boundaries</div>
         </div>
         <div class="stat-item">
-          <div class="stat-value" id="statSixes">3</div>
-          <div class="stat-label">Sixes</div>
-        </div>
-        <div class="stat-item">
           <div class="stat-value" id="statOvers">18.2</div>
           <div class="stat-label">Overs</div>
         </div>
@@ -1302,6 +1356,23 @@
     if (chatHidden) {
       chatContainer.classList.add('hidden');
       chatShowBtn.classList.add('visible');
+    }
+    
+    // Apply chat position from settings
+    const settings = JSON.parse(localStorage.getItem('cpl-settings') || '{}');
+    if (settings.chatPosition === 'left') {
+      chatContainer.style.right = 'auto';
+      chatContainer.style.left = '20px';
+      chatShowBtn.style.right = 'auto';
+      chatShowBtn.style.left = '20px';
+    } else if (settings.chatPosition === 'bottom') {
+      chatContainer.style.top = 'auto';
+      chatContainer.style.bottom = '0';
+      chatContainer.style.right = '0';
+      chatContainer.style.left = '0';
+      chatContainer.style.width = '100%';
+      chatContainer.style.maxWidth = '100%';
+      chatContainer.style.borderRadius = '16px 16px 0 0';
     }
     
     chatClose.addEventListener('click', () => {
