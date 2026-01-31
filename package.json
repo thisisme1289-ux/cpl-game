@@ -1,24 +1,21 @@
 {
-  "name": "cpl-cricket-game",
+  "name": "cpl-finger-cricket",
   "version": "1.0.0",
-  "description": "Class Premier League Cricket Game",
+  "description": "Class Premier League - Multiplayer Finger Cricket Game",
   "main": "server/server.js",
   "scripts": {
     "start": "node server/server.js",
-    "dev": "node server/server.js"
+    "dev": "nodemon server/server.js"
   },
-  "keywords": ["cricket", "game", "multiplayer"],
-  "author": "Your Name",
+  "keywords": ["finger-cricket", "multiplayer", "socket.io", "game"],
+  "author": "",
   "license": "MIT",
   "dependencies": {
-    "socket.io": "^4.6.1",
     "express": "^4.18.2",
-    "passport": "^0.7.0",
-    "passport-google-oauth20": "^2.0.0",
-    "express-session": "^1.17.3",
-    "mongoose": "^8.0.3",
-    "connect-mongo": "^5.1.0",
-    "dotenv": "^16.3.1",
-    "jsonwebtoken": "^9.0.2"
+    "socket.io": "^4.6.1",
+    "mongoose": "^7.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
   }
 }
