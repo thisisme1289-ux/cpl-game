@@ -160,16 +160,15 @@ class BotManager {
 
     const game = room.game;
 
-    // Determine if bot is batting or bowling
-    const botPlayer = room.players.find(p => p.id === bot.socketId);
-    const isBatting = game.currentBatter === bot.name;
-    const isBowling = game.currentBowler === bot.name;
+    // Determine if bot is batting or bowling (by name comparison)
+    const isBotBatter = game.currentBatter && room.playerNames[game.currentBatter] === bot.name;
+    const isBotBowler = game.currentBowler && room.playerNames[game.currentBowler] === bot.name;
 
-    if (!isBatting && !isBowling) return;
+    if (!isBotBatter && !isBotBowler) return;
 
     // Bot makes decision
     const fingers = bot.chooseFingers({
-      isBatting,
+      isBatting: isBotBatter,
       currentScore: game.score || 0,
       target: game.innings === 2 ? game.innings1Score + 1 : null,
       wickets: game.wickets || 0
@@ -179,9 +178,8 @@ class BotManager {
     const delay = bot.getThinkingDelay();
 
     const timer = setTimeout(() => {
-      // Record bot's input
-      const role = isBatting ? 'batter' : 'bowler';
-      gameLogic.recordPlayerInput(roomId, role, fingers);
+      // Record bot's input using socket ID (not name)
+      gameLogic.recordPlayerInput(roomId, bot.socketId, fingers);
 
       // Emit bot's choice
       io.to(roomId).emit('bot-selected', {
@@ -213,11 +211,13 @@ class BotManager {
     // Only act during PLAYING state
     if (game.state !== 'PLAYING') return;
 
-    // Check if it's bot's turn
-    const botPlayer = room.players.find(p => p.id === bot.socketId);
-    const isBotTurn = game.currentBatter === bot.name || game.currentBowler === bot.name;
+    // Check if it's bot's turn (compare by name, not socket ID)
+    const isBotBatter = game.currentBatter && room.playerNames[game.currentBatter] === bot.name;
+    const isBotBowler = game.currentBowler && room.playerNames[game.currentBowler] === bot.name;
+    const isBotTurn = isBotBatter || isBotBowler;
 
     if (isBotTurn) {
+      console.log(`🤖 Bot's turn! ${bot.name} is ${isBotBatter ? 'batting' : 'bowling'}`);
       this.makeBotMove(roomId, io, room, gameLogic);
     }
   }
