@@ -34,14 +34,173 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIO(server);
 
+// MongoDB connection (optional)
+const mongoose = require('mongoose');
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/cpl';
+mongoose.connect(MONGODB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+}).then(() => {
+  console.log('✅ Connected to MongoDB');
+}).catch(err => {
+  console.warn('⚠️ MongoDB connection failed:', err.message || err);
+});
+
+// Require User model for API endpoints
+let User;
+try { User = require('./models/user'); } catch (err) { /* optional */ }
+
+// 🆕 FUNCTION TO SAVE MATCH STATS TO DATABASE
+async function saveMatchStats(room) {
+  if (!User || !room) return;
+  
+  try {
+    const game = room.game;
+    const teamAScore = game.battingTeam === 'A' ? game.innings1Score : game.innings2Score;
+    const teamBScore = game.battingTeam === 'B' ? game.innings1Score : game.innings2Score;
+    const teamAWickets = game.battingTeam === 'A' ? game.innings1Wickets : game.innings2Wickets;
+    const teamBWickets = game.battingTeam === 'B' ? game.innings1Wickets : game.innings2Wickets;
+    
+    // Determine winner
+    let winningTeam = null;
+    if (teamAScore > teamBScore) winningTeam = 'A';
+    else if (teamBScore > teamAScore) winningTeam = 'B';
+    
+    console.log(`💾 Saving match stats - Team A: ${teamAScore}/${teamAWickets}, Team B: ${teamBScore}/${teamBWickets}, Winner: ${winningTeam}`);
+    
+    // Create match record
+    const matchRecord = {
+      date: new Date(),
+      teamAScore,
+      teamBScore,
+      teamAWickets,
+      teamBWickets,
+      winner: winningTeam,
+      overs: room.totalOvers
+    };
+    
+    // Update stats for all players
+    const updatePromises = [];
+    
+    // Update Team A players
+    for (const socketId of room.teamA) {
+      const playerName = room.playerNames[socketId];
+      const isBot = room.players.find(p => p.id === socketId)?.isBot;
+      
+      if (!isBot && playerName) {
+        const won = winningTeam === 'A';
+        const score = teamAScore;
+        
+        updatePromises.push(
+          updatePlayerStats(playerName, {
+            matchesPlayed: 1,
+            matchesWon: won ? 1 : 0,
+            totalRuns: score,
+            totalWickets: teamBWickets,
+            highestScore: score,
+            matchRecord
+          })
+        );
+      }
+    }
+    
+    // Update Team B players
+    for (const socketId of room.teamB) {
+      const playerName = room.playerNames[socketId];
+      const isBot = room.players.find(p => p.id === socketId)?.isBot;
+      
+      if (!isBot && playerName) {
+        const won = winningTeam === 'B';
+        const score = teamBScore;
+        
+        updatePromises.push(
+          updatePlayerStats(playerName, {
+            matchesPlayed: 1,
+            matchesWon: won ? 1 : 0,
+            totalRuns: score,
+            totalWickets: teamAWickets,
+            highestScore: score,
+            matchRecord
+          })
+        );
+      }
+    }
+    
+    await Promise.all(updatePromises);
+    console.log(`✅ Match stats saved for ${updatePromises.length} players`);
+    
+  } catch (error) {
+    console.error('❌ Error in saveMatchStats:', error);
+  }
+}
+
+async function updatePlayerStats(playerName, stats) {
+  if (!User) return;
+  
+  try {
+    // Find user by display name
+    let user = await User.findOne({ displayName: playerName });
+    
+    if (!user) {
+      console.log(`⚠️ User not found: ${playerName} - skipping stat update`);
+      return;
+    }
+    
+    // Initialize stats if not exists
+    if (!user.stats) {
+      user.stats = {
+        matchesPlayed: 0,
+        matchesWon: 0,
+        totalRuns: 0,
+        totalWickets: 0,
+        highestScore: 0,
+        winRate: 0,
+        rank: 0
+      };
+    }
+    
+    // Update stats
+    user.stats.matchesPlayed = (user.stats.matchesPlayed || 0) + stats.matchesPlayed;
+    user.stats.matchesWon = (user.stats.matchesWon || 0) + stats.matchesWon;
+    user.stats.totalRuns = (user.stats.totalRuns || 0) + stats.totalRuns;
+    user.stats.totalWickets = (user.stats.totalWickets || 0) + stats.totalWickets;
+    user.stats.highestScore = Math.max(user.stats.highestScore || 0, stats.highestScore);
+    
+    // Calculate win rate
+    if (user.stats.matchesPlayed > 0) {
+      user.stats.winRate = Math.round((user.stats.matchesWon / user.stats.matchesPlayed) * 100);
+    }
+    
+    // Add match to recent matches (keep last 10)
+    if (!user.recentMatches) user.recentMatches = [];
+    user.recentMatches.unshift(stats.matchRecord);
+    user.recentMatches = user.recentMatches.slice(0, 10); // Keep only last 10
+    
+    await user.save();
+    console.log(`✅ Updated stats for ${playerName}: ${user.stats.matchesWon}/${user.stats.matchesPlayed} wins`);
+    
+  } catch (error) {
+    console.error(`❌ Error updating stats for ${playerName}:`, error);
+  }
+}
+
 // Initialize Bot Manager
 const botManager = new BotManager();
 
-// Session middleware
+// Session middleware with MongoDB store
+const MongoStore = require('connect-mongo');
+
 app.use(session({
   secret: process.env.SESSION_SECRET || 'cpl-cricket-secret',
   resave: false,
   saveUninitialized: false,
+  store: process.env.MONGODB_URI ? MongoStore.create({
+    mongoUrl: process.env.MONGODB_URI,
+    touchAfter: 24 * 3600, // Lazy session update
+    crypto: {
+      secret: process.env.SESSION_SECRET || 'cpl-cricket-secret'
+    }
+  }) : undefined, // Falls back to MemoryStore if no MongoDB
   cookie: {
     maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
     httpOnly: true,
@@ -75,29 +234,48 @@ app.get('/health', (req, res) => {
 });
 
 // API endpoints
-app.get('/api/profile/:userId', (req, res) => {
-  // Return empty profile for now (will connect to MongoDB later)
-  res.json({
-    user: {
-      stats: {
-        matchesPlayed: 0,
-        matchesWon: 0,
-        totalRuns: 0,
-        totalWickets: 0,
-        highestScore: 0,
-        winRate: 0,
-        rank: 999
-      }
-    },
-    recentMatches: []
-  });
+app.get('/api/profile/:userId', async (req, res) => {
+  const userId = req.params.userId;
+  if (!User) {
+    return res.json({ user: { stats: {} }, recentMatches: [] });
+  }
+
+  try {
+    // Try by MongoDB _id first, fall back to googleId
+    let user = null;
+    if (mongoose.Types.ObjectId.isValid(userId)) {
+      user = await User.findById(userId).lean();
+    }
+    if (!user) {
+      user = await User.findOne({ googleId: userId }).lean();
+    }
+
+    if (!user) {
+      return res.json({ user: { stats: {} }, recentMatches: [] });
+    }
+
+    return res.json({ user: { stats: user.stats || {} , displayName: user.displayName, photoURL: user.photoURL }, recentMatches: user.recentMatches || [] });
+  } catch (err) {
+    console.error('Error fetching profile:', err);
+    return res.status(500).json({ error: 'Failed to fetch profile' });
+  }
 });
 
-app.get('/api/leaderboard', (req, res) => {
-  // Return empty leaderboard for now
-  res.json({
-    leaderboard: []
-  });
+app.get('/api/leaderboard', async (req, res) => {
+  if (!User) {
+    return res.json({ leaderboard: [] });
+  }
+
+  try {
+    // Simple leaderboard: sort by matchesWon desc, then totalRuns desc
+    const users = await User.find({}).sort({ 'stats.matchesWon': -1, 'stats.totalRuns': -1 }).limit(100).lean();
+
+    const leaderboard = users.map(u => ({ displayName: u.displayName, photoURL: u.photoURL, stats: u.stats || {}, settings: u.settings || {} }));
+    return res.json({ leaderboard });
+  } catch (err) {
+    console.error('Error fetching leaderboard:', err);
+    return res.status(500).json({ error: 'Failed to fetch leaderboard' });
+  }
 });
 
 // Root route
@@ -192,6 +370,31 @@ io.on('connection', (socket) => {
       });
 
       console.log(`${name} joined ${targetRoom} (${room.type}) in Team ${result.team}`);
+      
+      // 🤖 START BOT TIMER: Add bot after 30 seconds if alone
+      setTimeout(() => {
+        const currentRoom = getRoom(targetRoom);
+        if (currentRoom && botManager.shouldAddBot(currentRoom)) {
+          console.log(`⏰ 30 seconds passed - checking if bot needed in ${targetRoom}`);
+          const bot = botManager.addBot(targetRoom, io, currentRoom);
+          if (bot) {
+            // Update room display
+            io.to(targetRoom).emit('room-update', {
+              roomId: targetRoom,
+              teamA: currentRoom.teamA.map(sid => currentRoom.playerNames[sid]),
+              teamB: currentRoom.teamB.map(sid => currentRoom.playerNames[sid]),
+              players: currentRoom.players.map(sid => currentRoom.playerNames[sid]),
+              leaderA: currentRoom.leaderA ? currentRoom.playerNames[currentRoom.leaderA] : null,
+              leaderB: currentRoom.leaderB ? currentRoom.playerNames[currentRoom.leaderB] : null
+            });
+            
+            io.to(targetRoom).emit('bot-joined', {
+              message: `🤖 ${bot.name} joined to help you play!`
+            });
+          }
+        }
+      }, 30000); // 30 seconds
+      
     } else {
       socket.emit('error', { message: result.message });
     }
@@ -199,7 +402,7 @@ io.on('connection', (socket) => {
 
   // Create custom room
   socket.on('create-custom-room', (data) => {
-    const { playerName, overs } = data;
+    const { playerName, overs, preferredTeam } = data;
     
     if (!playerName || typeof playerName !== 'string') return;
     if (!overs || overs < 1 || overs > 20) {
@@ -212,7 +415,7 @@ io.on('connection', (socket) => {
 
     // Create new custom room
     const roomId = createRoom('custom', overs);
-    console.log(`Created custom room: ${roomId} with ${overs} overs`);
+    console.log(`Created custom room: ${roomId} with ${overs} overs, preferred team: ${preferredTeam}`);
 
     // Add creator to room
     const result = addPlayerToRoom(roomId, socket.id, name);
@@ -222,6 +425,23 @@ io.on('connection', (socket) => {
       socket.currentRoom = roomId;
       
       const room = getRoom(roomId);
+      
+      // 🆕 Apply team preference if specified
+      if (preferredTeam && (preferredTeam === 'A' || preferredTeam === 'B')) {
+        // Remove from auto-assigned team
+        room.teamA = room.teamA.filter(id => id !== socket.id);
+        room.teamB = room.teamB.filter(id => id !== socket.id);
+        
+        // Add to preferred team
+        if (preferredTeam === 'A') {
+          room.teamA.push(socket.id);
+          console.log(`✅ ${name} assigned to preferred Team A`);
+        } else {
+          room.teamB.push(socket.id);
+          console.log(`✅ ${name} assigned to preferred Team B`);
+        }
+      }
+      // If 'random' or not specified, keep auto-assignment from addPlayerToRoom
       
       // Send room data
       io.to(roomId).emit('room-update', {
@@ -255,6 +475,31 @@ io.on('connection', (socket) => {
       });
 
       console.log(`${name} created custom room ${roomId} with ${overs} overs`);
+      
+      // 🤖 START BOT TIMER: Add bot after 30 seconds if alone
+      setTimeout(() => {
+        const currentRoom = getRoom(roomId);
+        if (currentRoom && botManager.shouldAddBot(currentRoom)) {
+          console.log(`⏰ 30 seconds passed - checking if bot needed in ${roomId}`);
+          const bot = botManager.addBot(roomId, io, currentRoom);
+          if (bot) {
+            // Update room display
+            io.to(roomId).emit('room-update', {
+              roomId: roomId,
+              teamA: currentRoom.teamA.map(sid => currentRoom.playerNames[sid]),
+              teamB: currentRoom.teamB.map(sid => currentRoom.playerNames[sid]),
+              players: currentRoom.players.map(sid => currentRoom.playerNames[sid]),
+              leaderA: currentRoom.leaderA ? currentRoom.playerNames[currentRoom.leaderA] : null,
+              leaderB: currentRoom.leaderB ? currentRoom.playerNames[currentRoom.leaderB] : null
+            });
+            
+            io.to(roomId).emit('bot-joined', {
+              message: `🤖 ${bot.name} joined to help you play!`
+            });
+          }
+        }
+      }, 30000); // 30 seconds
+      
     } else {
       socket.emit('error', { message: result.message });
     }
@@ -481,6 +726,14 @@ io.on('connection', (socket) => {
           });
 
           console.log(`[PLAYERS SET] ${roomId}: ${batterName} vs ${bowlerName}, State → ${result.state}`);
+          
+          // 🤖 Check if bot needs to act
+          botManager.checkBotAction(roomId, io, room, {
+            recordPlayerInput,
+            areBothInputsReceived,
+            processRound
+          });
+          
         } else {
           io.to(roomId).emit('error', { message: result.message });
         }
@@ -745,6 +998,9 @@ io.on('connection', (socket) => {
               reason: result.gameOverReason
             });
             console.log(`[MATCH END] ${roomId}: ${result.gameOverReason}`);
+            
+            // 🆕 SAVE MATCH STATS TO DATABASE
+            saveMatchStats(room).catch(err => console.error('Error saving match stats:', err));
             
           } else if (result.nextState === GAME_STATES.PLAYER_SELECTION) {
             // Need to select new players
