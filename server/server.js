@@ -89,7 +89,28 @@ app.get('/health', (req, res) => {
     rooms: getAllRooms().length
   });
 });
+// DB health endpoint (helpful for debugging Atlas connectivity)
+app.get('/db-health', async (req, res) => {
+  try {
+    const readyState = mongoose && mongoose.connection ? mongoose.connection.readyState : 0;
+    // readyState: 0 = disconnected, 1 = connected, 2 = connecting, 3 = disconnecting
+    let userCount = null;
+    if (User && readyState === 1) {
+      try {
+        userCount = await User.countDocuments();
+      } catch (e) {
+        userCount = `error: ${e.message}`;
+      }
+    }
 
+    return res.json({
+      mongooseReadyState: readyState,
+      userCount
+    });
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
+});
 // API endpoints
 app.get('/api/profile/:userId', async (req, res) => {
   const userId = req.params.userId;
