@@ -28,6 +28,15 @@ const userSchema = new mongoose.Schema({
     winRate: { type: Number, default: 0 },
     rank: { type: Number, default: 0 }
   },
+  recentMatches: [{
+    date: { type: Date, default: Date.now },
+    teamAScore: { type: Number, default: 0 },
+    teamBScore: { type: Number, default: 0 },
+    teamAWickets: { type: Number, default: 0 },
+    teamBWickets: { type: Number, default: 0 },
+    winner: { type: String, default: null }, // 'A', 'B', or null for tie
+    overs: { type: Number, default: 5 }
+  }],
   settings: {
     avatar: { type: String, default: '🏏' },
     theme: { type: String, default: 'dark' },
