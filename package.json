@@ -7,7 +7,12 @@
     "start": "node server/server.js",
     "dev": "nodemon server/server.js"
   },
-  "keywords": ["finger-cricket", "multiplayer", "socket.io", "game"],
+  "keywords": [
+    "finger-cricket",
+    "multiplayer",
+    "socket.io",
+    "game"
+  ],
   "author": "",
   "license": "MIT",
   "dependencies": {
@@ -15,6 +20,7 @@
     "socket.io": "^4.6.1",
     "mongoose": "^7.0.0",
     "express-session": "^1.17.3",
+    "connect-mongo": "^5.1.0",
     "passport": "^0.6.0",
     "passport-google-oauth20": "^2.0.0"
   },
