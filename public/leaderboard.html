@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2973774540058274"
-     crossorigin="anonymous"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CPL - Leaderboard</title>
@@ -350,12 +348,34 @@
         max-width: 300px;
       }
 
+      /* Make table scrollable on mobile */
+      .leaderboard-table {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+
       table {
-        font-size: 14px;
+        font-size: 12px;
+        min-width: 600px; /* Ensures table doesn't squish too much */
       }
 
       thead th, tbody td {
-        padding: 12px 8px;
+        padding: 10px 6px;
+        font-size: 12px;
+      }
+      
+      /* Hide less important columns on very small screens */
+      @media (max-width: 480px) {
+        thead th:nth-child(3),
+        tbody td:nth-child(3),
+        thead th:nth-child(6),
+        tbody td:nth-child(6) {
+          display: none; /* Hide Matches and Score columns on tiny screens */
+        }
+        
+        table {
+          min-width: 400px;
+        }
       }
 
       .rank-card {
@@ -364,6 +384,16 @@
 
       .rank-info {
         text-align: center;
+      }
+      
+      /* Fix "Your Ranking" section on mobile */
+      .your-rank {
+        margin-top: 30px;
+        padding: 20px;
+      }
+      
+      .rank-number {
+        font-size: 56px;
       }
     }
   </style>
