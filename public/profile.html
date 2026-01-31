@@ -626,21 +626,32 @@
       const history = document.getElementById('matchHistory');
       history.innerHTML = '';
       
-      if (matches.length === 0) {
-        history.innerHTML = '<p style="text-align: center; color: #8BA3C7;">No matches played yet. Start playing to see your history!</p>';
+      if (!matches || matches.length === 0) {
+        history.innerHTML = '<p style="text-align: center; color: #8BA3C7; padding: 20px;">No matches played yet. Start playing to see your history!</p>';
         return;
       }
       
-      matches.forEach(match => {
+      matches.forEach((match, index) => {
+        // Determine if user won (this would need to be determined by team)
+        // For now, show the match result
+        const teamAWon = match.teamAScore > match.teamBScore;
+        const teamBWon = match.teamBScore > match.teamAScore;
+        const tie = match.teamAScore === match.teamBScore;
+        
         const div = document.createElement('div');
-        div.className = `match-item ${match.won ? 'won' : 'lost'}`;
+        div.className = `match-item`;
+        
+        const resultText = tie ? 'TIE' : (match.winner === 'A' ? 'Team A Won' : 'Team B Won');
+        const resultClass = tie ? '' : (match.winner === 'A' ? 'won' : 'lost');
+        
         div.innerHTML = `
-          <div class="match-result">${match.won ? 'WON' : 'LOST'}</div>
+          <div class="match-result ${resultClass}">${resultText}</div>
           <div class="match-details">
-            <div>vs ${match.opponent}</div>
-            <div class="match-score">${match.score} vs ${match.opponentScore}</div>
+            <div>Team A: ${match.teamAScore}/${match.teamAWickets}</div>
+            <div class="match-score">vs</div>
+            <div>Team B: ${match.teamBScore}/${match.teamBWickets}</div>
           </div>
-          <div class="match-date">${match.date}</div>
+          <div class="match-date">${new Date(match.date).toLocaleDateString()}</div>
         `;
         history.appendChild(div);
       });
