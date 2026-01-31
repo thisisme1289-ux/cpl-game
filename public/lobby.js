@@ -644,9 +644,8 @@ function showMatchSummary(data) {
   const summaryMargin = document.getElementById('summaryMargin');
   summaryMargin.textContent = data.reason || 'Match Complete';
   
-  // Update stats
+  // Update stats (removed sixes as game doesn't have them)
   document.getElementById('statBoundaries').textContent = gameStats.boundaries || 0;
-  document.getElementById('statSixes').textContent = gameStats.sixes || 0;
   document.getElementById('statOvers').textContent = `${data.innings2Overs || 0}.0`;
   
   // Show summary
