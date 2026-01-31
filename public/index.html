@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2973774540058274"
-     crossorigin="anonymous"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CPL - Class Premier League</title>
+  
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2973774540058274"
+     crossorigin="anonymous"></script>
+  
   <style>
     * {
       margin: 0;
@@ -480,6 +483,22 @@
         <div style="font-size: 12px; color: #8BA3C7; margin-top: 8px;">Min: 1, Max: 20</div>
       </div>
 
+      <div class="input-group">
+        <label class="input-label">Choose Your Team</label>
+        <div style="display: flex; gap: 12px; margin-top: 10px;">
+          <button class="team-choice-btn" id="teamABtn" onclick="selectTeam('A')" style="flex: 1; padding: 12px; background: rgba(76, 175, 80, 0.2); border: 2px solid rgba(76, 175, 80, 0.5); border-radius: 12px; color: white; cursor: pointer; transition: all 0.3s;">
+            🟢 Team A
+          </button>
+          <button class="team-choice-btn" id="teamBBtn" onclick="selectTeam('B')" style="flex: 1; padding: 12px; background: rgba(33, 150, 243, 0.2); border: 2px solid rgba(33, 150, 243, 0.5); border-radius: 12px; color: white; cursor: pointer; transition: all 0.3s;">
+            🔵 Team B
+          </button>
+          <button class="team-choice-btn active" id="teamRandomBtn" onclick="selectTeam('random')" style="flex: 1; padding: 12px; background: rgba(255, 193, 7, 0.2); border: 2px solid rgba(255, 193, 7, 0.5); border-radius: 12px; color: white; cursor: pointer; transition: all 0.3s;">
+            🎲 Random
+          </button>
+        </div>
+        <div style="font-size: 12px; color: #8BA3C7; margin-top: 8px;">Select which team you want to play in</div>
+      </div>
+
       <div class="error-msg" id="customError"></div>
 
       <div class="btn-group">
@@ -552,6 +571,30 @@
     const nameModal = document.getElementById('nameModal');
     const customModal = document.getElementById('customModal');
     const joinModal = document.getElementById('joinModal');
+
+    // Team selection for custom room
+    let selectedTeam = 'random'; // default
+
+    function selectTeam(team) {
+      selectedTeam = team;
+      
+      // Update button styles
+      document.querySelectorAll('.team-choice-btn').forEach(btn => {
+        btn.classList.remove('active');
+        btn.style.transform = 'scale(1)';
+        btn.style.boxShadow = 'none';
+      });
+      
+      const selectedBtn = document.getElementById(`team${team === 'random' ? 'Random' : team}Btn`);
+      if (selectedBtn) {
+        selectedBtn.classList.add('active');
+        selectedBtn.style.transform = 'scale(1.05)';
+        selectedBtn.style.boxShadow = '0 4px 15px rgba(26, 188, 254, 0.4)';
+      }
+    }
+
+    // Make selectTeam global
+    window.selectTeam = selectTeam;
 
     // Show play modal
     document.getElementById('playGameBtn').addEventListener('click', () => {
@@ -639,7 +682,7 @@
         return;
       }
 
-      socket.emit('create-custom-room', { playerName, overs });
+      socket.emit('create-custom-room', { playerName, overs, preferredTeam: selectedTeam });
     });
 
     document.getElementById('cancelCustomBtn').addEventListener('click', () => {
