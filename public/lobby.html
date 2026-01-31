@@ -822,6 +822,7 @@
     }
 
     /* Chat */
+     /* Chat */
     .chat-container {
       position: fixed;
       right: 30px;
@@ -834,8 +835,9 @@
       border-radius: 20px;
       display: flex;
       flex-direction: column;
-      z-index: 50;
+      z-index: 200; /* Raised so header buttons (close) are clickable above other floating controls */
       transition: all 0.3s ease;
+      pointer-events: auto;
     }
 
     .chat-container.hidden {
