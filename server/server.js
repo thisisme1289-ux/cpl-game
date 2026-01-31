@@ -34,6 +34,22 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIO(server);
 
+// MongoDB connection (optional)
+const mongoose = require('mongoose');
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/cpl';
+mongoose.connect(MONGODB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+}).then(() => {
+  console.log('✅ Connected to MongoDB');
+}).catch(err => {
+  console.warn('⚠️ MongoDB connection failed:', err.message || err);
+});
+
+// Require User model for API endpoints
+let User;
+try { User = require('./models/user'); } catch (err) { /* optional */ }
+
 // Initialize Bot Manager
 const botManager = new BotManager();
 
