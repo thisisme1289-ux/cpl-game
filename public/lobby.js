@@ -117,6 +117,14 @@ function init() {
   playerName = localStorage.getItem('cpl-playerName');
   myTeam = localStorage.getItem('cpl-team');
   roomType = localStorage.getItem('cpl-roomType') || 'random';
+// Apply saved theme (dark/light/auto)
+  try {
+    const settings = JSON.parse(localStorage.getItem('cpl-settings') || '{}');
+    if (settings.theme) applyTheme(settings.theme);
+    else applyTheme('dark');
+  } catch (err) {
+    // ignore malformed settings
+  }
 
   if (!roomId || !playerName) {
     window.location.href = '/';
@@ -721,7 +729,42 @@ function updateSoundToggle() {
   soundToggle.textContent = soundEnabled ? '🔊' : '🔇';
   soundToggle.title = soundEnabled ? 'Mute' : 'Unmute';
 }
+// Apply theme to lobby UI. Accepts 'dark', 'light', or 'auto'.
+function applyTheme(theme) {
+  const body = document.body;
 
+  // Resolve 'auto' to system preference
+  if (theme === 'auto') {
+    theme = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+  }
+
+  if (theme === 'light') {
+    body.style.background = 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)';
+    body.style.color = '#222';
+    // Lighter panels
+    document.querySelectorAll('.score-section, .team-card, .waiting-indicator, .selection-modal .modal-content, .match-summary .summary-content, .chat-container').forEach(el => {
+      if (!el) return;
+      el.style.background = 'rgba(255,255,255,0.95)';
+      el.style.color = '#222';
+      el.style.borderColor = 'rgba(0,0,0,0.08)';
+    });
+    // Adjust score display color for visibility
+    const scoreDisplayEl = document.getElementById('scoreDisplay');
+    if (scoreDisplayEl) scoreDisplayEl.style.color = '#0b6b9b';
+  } else {
+    // dark (default)
+    body.style.background = 'linear-gradient(135deg, #0a1628 0%, #1a2642 100%)';
+    body.style.color = 'white';
+    document.querySelectorAll('.score-section, .team-card, .waiting-indicator, .selection-modal .modal-content, .match-summary .summary-content, .chat-container').forEach(el => {
+      if (!el) return;
+      el.style.background = '';
+      el.style.color = '';
+      el.style.borderColor = '';
+    });
+    const scoreDisplayEl = document.getElementById('scoreDisplay');
+    if (scoreDisplayEl) scoreDisplayEl.style.color = '';
+  }
+}
 function escapeHtml(text) {
   const div = document.createElement('div');
   div.textContent = text;
