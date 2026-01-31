@@ -733,5 +733,34 @@ window.addEventListener('beforeunload', () => {
   localStorage.setItem('cpl-playerName', playerName);
   localStorage.setItem('cpl-team', myTeam);
 });
+// Defensive chat toggle handlers: attach here as well so clicks/touches reliably toggle chat
+// (The page also has inline handlers in `lobby.html` — these duplicates are harmless and improve reliability)
+try {
+  const chatContainerEl = document.getElementById('chatContainer');
+  const chatCloseBtn = document.getElementById('chatClose');
+  const chatShowBtnEl = document.getElementById('chatShowBtn');
 
+  if (chatContainerEl && chatCloseBtn && chatShowBtnEl) {
+    const hideChat = (e) => {
+      if (e && e.preventDefault) e.preventDefault();
+      chatContainerEl.classList.add('hidden');
+      chatShowBtnEl.classList.add('visible');
+      localStorage.setItem('cpl-chatHidden', 'true');
+    };
+
+    const showChat = (e) => {
+      if (e && e.preventDefault) e.preventDefault();
+      chatContainerEl.classList.remove('hidden');
+      chatShowBtnEl.classList.remove('visible');
+      localStorage.setItem('cpl-chatHidden', 'false');
+    };
+
+    chatCloseBtn.addEventListener('click', hideChat);
+    chatCloseBtn.addEventListener('touchstart', hideChat, { passive: false });
+    chatShowBtnEl.addEventListener('click', showChat);
+    chatShowBtnEl.addEventListener('touchstart', showChat, { passive: false });
+  }
+} catch (err) {
+  console.warn('Chat toggle init failed:', err);
+}
 init();
