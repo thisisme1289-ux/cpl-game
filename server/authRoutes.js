@@ -20,7 +20,7 @@ router.get('/google/callback',
   (req, res) => {
    // Send user data to frontend and persist to DB (upsert)
     const userData = {
-      googleId: req.user.id,
+       googleId: req.user.googleId || req.user.id,
       displayName: req.user.displayName,
       email: req.user.email,
       photoURL: req.user.photoURL
