@@ -240,7 +240,7 @@ io.on('connection', (socket) => {
               roomId: targetRoom,
               teamA: currentRoom.teamA.map(sid => currentRoom.playerNames[sid]),
               teamB: currentRoom.teamB.map(sid => currentRoom.playerNames[sid]),
-              players: currentRoom.players.map(p => currentRoom.playerNames[p.id]),
+              players: currentRoom.players.map(sid => currentRoom.playerNames[sid]),
               leaderA: currentRoom.leaderA ? currentRoom.playerNames[currentRoom.leaderA] : null,
               leaderB: currentRoom.leaderB ? currentRoom.playerNames[currentRoom.leaderB] : null
             });
@@ -331,7 +331,7 @@ io.on('connection', (socket) => {
               roomId: roomId,
               teamA: currentRoom.teamA.map(sid => currentRoom.playerNames[sid]),
               teamB: currentRoom.teamB.map(sid => currentRoom.playerNames[sid]),
-              players: currentRoom.players.map(p => currentRoom.playerNames[p.id]),
+              players: currentRoom.players.map(sid => currentRoom.playerNames[sid]),
               leaderA: currentRoom.leaderA ? currentRoom.playerNames[currentRoom.leaderA] : null,
               leaderB: currentRoom.leaderB ? currentRoom.playerNames[currentRoom.leaderB] : null
             });
