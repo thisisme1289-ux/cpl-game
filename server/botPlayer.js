@@ -90,41 +90,37 @@ class BotManager {
 
   // Check if bot should be added to room
   shouldAddBot(room) {
-    // Add bot if only 1 human player and game not started
-    const humanPlayers = room.players.filter(p => !p.isBot);
-    return humanPlayers.length === 1 && room.game.state === 'LOBBY';
+    // Add bot if only 1 player total and game not started
+    const totalPlayers = room.players.length;
+    const hasBot = room.players.some(p => p.isBot);
+    return totalPlayers === 1 && !hasBot && room.game.state === 'LOBBY';
   }
 
   // Add bot to room
   addBot(roomId, io, room) {
     if (this.activeBots.has(roomId)) {
-      return; // Bot already exists
+      console.log('⚠️ Bot already exists in room');
+      return null; // Bot already exists
     }
 
     const bot = new BotPlayer(roomId);
     this.activeBots.set(roomId, bot);
 
-    // Add bot to room
-    room.players.push({
-      id: bot.socketId,
-      name: bot.name,
-      isBot: true
-    });
+    // Add bot socket ID to players array (consistent with human players)
+    room.players.push(bot.socketId);
 
-    // Assign to team
-    const teamA = room.players.filter(p => p.team === 'A').length;
-    const teamB = room.players.filter(p => p.team === 'B').length;
-    
-    const botPlayer = room.players.find(p => p.id === bot.socketId);
-    botPlayer.team = teamA <= teamB ? 'A' : 'B';
+    // Add bot name to playerNames
+    room.playerNames[bot.socketId] = bot.name;
 
-    console.log(`🤖 Bot "${bot.name}" joined room ${roomId}`);
-
-    // Emit to all players
-    io.to(roomId).emit('player-joined', {
-      playerName: bot.name,
-      players: room.players
-    });
+    // Assign to team opposite of first player
+    // If first player is in teamA, bot goes to teamB
+    if (room.teamA.length > 0) {
+      room.teamB.push(bot.socketId);
+      console.log(`🤖 Bot "${bot.name}" added to Team B in ${roomId}`);
+    } else {
+      room.teamA.push(bot.socketId);
+      console.log(`🤖 Bot "${bot.name}" added to Team A in ${roomId}`);
+    }
 
     return bot;
   }
@@ -134,8 +130,15 @@ class BotManager {
     const bot = this.activeBots.get(roomId);
     if (!bot) return;
 
-    // Remove from room
+    // Remove from players array
     room.players = room.players.filter(p => p.id !== bot.socketId);
+    
+    // Remove from team arrays
+    room.teamA = room.teamA.filter(id => id !== bot.socketId);
+    room.teamB = room.teamB.filter(id => id !== bot.socketId);
+    
+    // Remove from playerNames
+    delete room.playerNames[bot.socketId];
 
     // Clear any timers
     if (this.botTimers.has(roomId)) {
@@ -145,7 +148,7 @@ class BotManager {
 
     this.activeBots.delete(roomId);
 
-    console.log(`🤖 Bot removed from room ${roomId}`);
+    console.log(`🤖 Bot "${bot.name}" removed from room ${roomId}`);
 
     // Emit to all players
     io.to(roomId).emit('player-left', {
@@ -156,15 +159,23 @@ class BotManager {
   // Bot makes a move
   makeBotMove(roomId, io, room, gameLogic) {
     const bot = this.activeBots.get(roomId);
-    if (!bot) return;
+    if (!bot) {
+      console.log('⚠️ Bot not found for room:', roomId);
+      return;
+    }
 
     const game = room.game;
 
-    // Determine if bot is batting or bowling (by name comparison)
-    const isBotBatter = game.currentBatter && room.playerNames[game.currentBatter] === bot.name;
-    const isBotBowler = game.currentBowler && room.playerNames[game.currentBowler] === bot.name;
+    // Determine if bot is batting or bowling (by socket ID comparison)
+    const isBotBatter = game.currentBatter === bot.socketId;
+    const isBotBowler = game.currentBowler === bot.socketId;
 
-    if (!isBotBatter && !isBotBowler) return;
+    if (!isBotBatter && !isBotBowler) {
+      console.log('⚠️ Not bot\'s turn');
+      return;
+    }
+
+    const role = isBotBatter ? 'batter' : 'bowler';
 
     // Bot makes decision
     const fingers = bot.chooseFingers({
@@ -174,29 +185,53 @@ class BotManager {
       wickets: game.wickets || 0
     });
 
+    console.log(`🤖 Bot ${bot.name} (${role}) choosing: ${fingers}`);
+
     // Delay to simulate thinking
     const delay = bot.getThinkingDelay();
 
     const timer = setTimeout(() => {
-      // Record bot's input using socket ID (not name)
-      gameLogic.recordPlayerInput(roomId, bot.socketId, fingers);
+      console.log(`🤖 Bot ${bot.name} playing ${fingers} as ${role}`);
+      
+      // Record bot's input using socket ID
+      const result = gameLogic.recordPlayerInput(roomId, bot.socketId, fingers);
+      
+      if (!result.success) {
+        console.error('❌ Bot input failed:', result.message);
+        return;
+      }
 
-      // Emit bot's choice
-      io.to(roomId).emit('bot-selected', {
+      // Emit bot's choice to all players
+      io.to(roomId).emit('bot-action', {
         botName: bot.name,
-        role,
-        fingers
+        role: role,
+        fingers: fingers
       });
 
-      // Check if both inputs received
+      console.log(`✅ Bot input recorded, checking if both received...`);
+
+      // Check if both inputs received and process if ready
       if (gameLogic.areBothInputsReceived(roomId)) {
-        // Process the round
-        const result = gameLogic.processRound(roomId);
-        if (result.success) {
-          io.to(roomId).emit('round-result', result);
+        console.log('✅ Both inputs received, processing round...');
+        const roundResult = gameLogic.processRound(roomId);
+        if (roundResult.success) {
+          io.to(roomId).emit('round-result', {
+            batterFingers: roundResult.batterFingers,
+            bowlerFingers: roundResult.bowlerFingers,
+            runs: roundResult.runs,
+            isOut: roundResult.isOut,
+            isOverComplete: roundResult.isOverComplete,
+            batter: room.playerNames[game.currentBatter],
+            bowler: room.playerNames[game.currentBowler],
+            score: roundResult.score,
+            wickets: roundResult.wickets
+          });
         }
       }
     }, delay);
+
+    this.botTimers.set(roomId, timer);
+  }
 
     this.botTimers.set(roomId, timer);
   }
@@ -211,9 +246,9 @@ class BotManager {
     // Only act during PLAYING state
     if (game.state !== 'PLAYING') return;
 
-    // Check if it's bot's turn (compare by name, not socket ID)
-    const isBotBatter = game.currentBatter && room.playerNames[game.currentBatter] === bot.name;
-    const isBotBowler = game.currentBowler && room.playerNames[game.currentBowler] === bot.name;
+    // Check if it's bot's turn (compare by socket ID)
+    const isBotBatter = game.currentBatter === bot.socketId;
+    const isBotBowler = game.currentBowler === bot.socketId;
     const isBotTurn = isBotBatter || isBotBowler;
 
     if (isBotTurn) {
