@@ -37,18 +37,9 @@ const io = socketIO(server);
 // MongoDB connection (optional)
 const mongoose = require('mongoose');
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/cpl';
-
-// Configure mongoose for better connection handling
-mongoose.set('strictQuery', false);
-
 mongoose.connect(MONGODB_URI, {
   useNewUrlParser: true,
-  useUnifiedTopology: true,
-  serverSelectionTimeoutMS: 30000, // Increase timeout to 30 seconds
-  socketTimeoutMS: 45000, // Socket timeout
-  maxPoolSize: 10, // Connection pool size
-  retryWrites: true,
-  retryReads: true
+  useUnifiedTopology: true
 }).then(() => {
   console.log('✅ Connected to MongoDB');
 }).catch(err => {
@@ -236,6 +227,34 @@ io.on('connection', (socket) => {
       });
 
       console.log(`${name} joined ${targetRoom} (${room.type}) in Team ${result.team}`);
+      
+      // 🤖 START BOT TIMER: Add bot after 30 seconds if alone
+      setTimeout(() => {
+        const currentRoom = getRoom(targetRoom);
+        if (currentRoom && botManager.shouldAddBot(currentRoom)) {
+          console.log(`⏰ 30 seconds passed - checking if bot needed in ${targetRoom}`);
+          const bot = botManager.addBot(targetRoom, io, currentRoom);
+          if (bot) {
+            // Update room display
+            io.to(targetRoom).emit('room-update', {
+              roomId: targetRoom,
+              teamA: currentRoom.teamA.map(sid => currentRoom.playerNames[sid]),
+              teamB: currentRoom.teamB.map(sid => currentRoom.playerNames[sid]),
+              players: currentRoom.players.map(p => currentRoom.playerNames[p.id]),
+              leaderA: currentRoom.leaderA ? currentRoom.playerNames[currentRoom.leaderA] : null,
+              leaderB: currentRoom.leaderB ? currentRoom.playerNames[currentRoom.leaderB] : null
+            });
+            
+            io.to(targetRoom).emit('chat-message', {
+              type: 'system',
+              message: `🤖 ${bot.name} joined to help you play!`
+            });
+            
+            console.log(`✅ Bot ${bot.name} joined ${targetRoom}`);
+          }
+        }
+      }, 30000); // 30 seconds
+      
     } else {
       socket.emit('error', { message: result.message });
     }
@@ -299,6 +318,34 @@ io.on('connection', (socket) => {
       });
 
       console.log(`${name} created custom room ${roomId} with ${overs} overs`);
+      
+      // 🤖 START BOT TIMER: Add bot after 30 seconds if alone
+      setTimeout(() => {
+        const currentRoom = getRoom(roomId);
+        if (currentRoom && botManager.shouldAddBot(currentRoom)) {
+          console.log(`⏰ 30 seconds passed - checking if bot needed in ${roomId}`);
+          const bot = botManager.addBot(roomId, io, currentRoom);
+          if (bot) {
+            // Update room display
+            io.to(roomId).emit('room-update', {
+              roomId: roomId,
+              teamA: currentRoom.teamA.map(sid => currentRoom.playerNames[sid]),
+              teamB: currentRoom.teamB.map(sid => currentRoom.playerNames[sid]),
+              players: currentRoom.players.map(p => currentRoom.playerNames[p.id]),
+              leaderA: currentRoom.leaderA ? currentRoom.playerNames[currentRoom.leaderA] : null,
+              leaderB: currentRoom.leaderB ? currentRoom.playerNames[currentRoom.leaderB] : null
+            });
+            
+            io.to(roomId).emit('chat-message', {
+              type: 'system',
+              message: `🤖 ${bot.name} joined to help you play!`
+            });
+            
+            console.log(`✅ Bot ${bot.name} joined ${roomId}`);
+          }
+        }
+      }, 30000); // 30 seconds
+      
     } else {
       socket.emit('error', { message: result.message });
     }
