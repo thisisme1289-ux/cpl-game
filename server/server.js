@@ -37,9 +37,18 @@ const io = socketIO(server);
 // MongoDB connection (optional)
 const mongoose = require('mongoose');
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/cpl';
+
+// Configure mongoose for better connection handling
+mongoose.set('strictQuery', false);
+
 mongoose.connect(MONGODB_URI, {
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
+  serverSelectionTimeoutMS: 30000, // Increase timeout to 30 seconds
+  socketTimeoutMS: 45000, // Socket timeout
+  maxPoolSize: 10, // Connection pool size
+  retryWrites: true,
+  retryReads: true
 }).then(() => {
   console.log('✅ Connected to MongoDB');
 }).catch(err => {
@@ -52,6 +61,16 @@ try { User = require('./models/user'); } catch (err) { /* optional */ }
 
 // Initialize Bot Manager
 const botManager = new BotManager();
+
+// 🤖 HELPER FUNCTION: Trigger bot selection when bot is leader
+function triggerBotSelection(roomId, delay = 1500) {
+  setTimeout(() => {
+    const room = getRoom(roomId);
+    if (room) {
+      botManager.handleLeaderSelection(roomId, io, room);
+    }
+  }, delay);
+}
 
 // Session middleware
 app.use(session({
@@ -227,34 +246,6 @@ io.on('connection', (socket) => {
       });
 
       console.log(`${name} joined ${targetRoom} (${room.type}) in Team ${result.team}`);
-      
-      // 🤖 START BOT TIMER: Add bot after 30 seconds if alone
-      setTimeout(() => {
-        const currentRoom = getRoom(targetRoom);
-        if (currentRoom && botManager.shouldAddBot(currentRoom)) {
-          console.log(`⏰ 30 seconds passed - checking if bot needed in ${targetRoom}`);
-          const bot = botManager.addBot(targetRoom, io, currentRoom);
-          if (bot) {
-            // Update room display
-            io.to(targetRoom).emit('room-update', {
-              roomId: targetRoom,
-              teamA: currentRoom.teamA.map(sid => currentRoom.playerNames[sid]),
-              teamB: currentRoom.teamB.map(sid => currentRoom.playerNames[sid]),
-              players: currentRoom.players.map(sid => currentRoom.playerNames[sid]),
-              leaderA: currentRoom.leaderA ? currentRoom.playerNames[currentRoom.leaderA] : null,
-              leaderB: currentRoom.leaderB ? currentRoom.playerNames[currentRoom.leaderB] : null
-            });
-            
-            io.to(targetRoom).emit('chat-message', {
-              type: 'system',
-              message: `🤖 ${bot.name} joined to help you play!`
-            });
-            
-            console.log(`✅ Bot ${bot.name} joined ${targetRoom}`);
-          }
-        }
-      }, 30000); // 30 seconds
-      
     } else {
       socket.emit('error', { message: result.message });
     }
@@ -318,34 +309,6 @@ io.on('connection', (socket) => {
       });
 
       console.log(`${name} created custom room ${roomId} with ${overs} overs`);
-      
-      // 🤖 START BOT TIMER: Add bot after 30 seconds if alone
-      setTimeout(() => {
-        const currentRoom = getRoom(roomId);
-        if (currentRoom && botManager.shouldAddBot(currentRoom)) {
-          console.log(`⏰ 30 seconds passed - checking if bot needed in ${roomId}`);
-          const bot = botManager.addBot(roomId, io, currentRoom);
-          if (bot) {
-            // Update room display
-            io.to(roomId).emit('room-update', {
-              roomId: roomId,
-              teamA: currentRoom.teamA.map(sid => currentRoom.playerNames[sid]),
-              teamB: currentRoom.teamB.map(sid => currentRoom.playerNames[sid]),
-              players: currentRoom.players.map(sid => currentRoom.playerNames[sid]),
-              leaderA: currentRoom.leaderA ? currentRoom.playerNames[currentRoom.leaderA] : null,
-              leaderB: currentRoom.leaderB ? currentRoom.playerNames[currentRoom.leaderB] : null
-            });
-            
-            io.to(roomId).emit('chat-message', {
-              type: 'system',
-              message: `🤖 ${bot.name} joined to help you play!`
-            });
-            
-            console.log(`✅ Bot ${bot.name} joined ${roomId}`);
-          }
-        }
-      }, 30000); // 30 seconds
-      
     } else {
       socket.emit('error', { message: result.message });
     }
@@ -635,6 +598,10 @@ io.on('connection', (socket) => {
       });
 
       console.log(`[PLAYERS SELECTED] ${roomId}: ${batterName} (batter) vs ${bowlerName} (bowler)`);
+      
+      // 🤖 CHECK IF BOT NEEDS TO ACT
+      botManager.checkBotAction(roomId, io, room, recordPlayerInput);
+      
     } else {
       socket.emit('error', { message: result.message });
     }
@@ -702,6 +669,10 @@ io.on('connection', (socket) => {
       });
 
       console.log(`[GAME START] ${roomId}: Requesting player selections`);
+      
+      // 🤖 TRIGGER BOT AUTO-SELECTION IF BOT IS LEADER
+      triggerBotSelection(roomId, 1500);
+      
     } else {
       socket.emit('error', { message: result.message });
     }
@@ -801,6 +772,10 @@ io.on('connection', (socket) => {
                 availablePlayers: bowlingTeamPlayers.map(sid => room.playerNames[sid]),
                 reason: 'innings2'
               });
+              
+              // 🤖 TRIGGER BOT AUTO-SELECTION FOR INNINGS 2
+              triggerBotSelection(roomId, 1500);
+              
             }, 5000); // 5 second innings break
             
             return; // Don't continue with normal flow
@@ -863,6 +838,10 @@ io.on('connection', (socket) => {
                 });
                 
                 console.log(`[OUT] ${roomId}: Keeping bowler ${currentBowlerName}, requesting new batter`);
+                
+                // 🤖 TRIGGER BOT AUTO-SELECTION IF BOT IS BATTING LEADER
+                triggerBotSelection(roomId, 1000);
+                
               } else {
                 // All out
                 io.to(roomId).emit('game-over', {
@@ -1032,9 +1011,23 @@ server.listen(PORT, () => {
   console.log(`Ready for multiplayer finger cricket!`);
   
   // Start keep-alive system (only in production)
-  if (process.env.NODE_ENV === 'production' && process.env.CLIENT_URL) {
-    const keepAlive = new KeepAlive(process.env.CLIENT_URL + '/health', 14);
+  if (process.env.NODE_ENV === 'production') {
+    // Build keep-alive URL with fallback
+    let keepAliveUrl;
+    
+    if (process.env.CLIENT_URL) {
+      // Add https:// if not present
+      const clientUrl = process.env.CLIENT_URL.startsWith('http') 
+        ? process.env.CLIENT_URL 
+        : 'https://' + process.env.CLIENT_URL;
+      keepAliveUrl = clientUrl + '/health';
+    } else {
+      // Fallback to your domain
+      keepAliveUrl = 'https://www.cpleague.in/health';
+    }
+    
+    const keepAlive = new KeepAlive(keepAliveUrl, 14);
     keepAlive.start();
-    console.log(`⏰ Keep-alive system started`);
+    console.log(`⏰ Keep-alive pinging: ${keepAliveUrl}`);
   }
 });
