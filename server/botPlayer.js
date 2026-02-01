@@ -1,30 +1,27 @@
-// Bot Player System for CPL Cricket Game
-
+// Bot Player - Enhanced with Leader Selection
 class BotPlayer {
   constructor(roomId) {
     this.roomId = roomId;
-    this.name = this.generateBotName();
-    this.socketId = `bot_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
-    this.isBot = true;
-    this.difficulty = 'medium'; // easy, medium, hard
+    this.socketId = `bot-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+    this.name = this.generateName();
+    this.difficulty = 'medium';
   }
 
-  generateBotName() {
+  generateName() {
     const names = [
       'Cricket Bot 🤖',
-      'AI Bowler ⚡',
-      'Robo Batsman 🏏',
       'Thunder Bot ⚡',
+      'AI Bowler 🎯',
+      'Robo Batsman 🏏',
       'Smart Player 🧠',
-      'Quick Bot 🚀',
-      'Master AI 👑',
-      'Pro Bot 💪',
-      'Spin Bot 🌀',
-      'Fast Bot 🎯'
+      'Fast Bot 🚀',
+      'Power Bot 💪',
+      'Spin Master 🌀'
     ];
     return names[Math.floor(Math.random() * names.length)];
   }
 
+  // Bot chooses fingers based on game state
   chooseFingers(gameState) {
     const { isBatting, currentScore, target, wickets } = gameState;
 
@@ -33,35 +30,37 @@ class BotPlayer {
     }
 
     if (this.difficulty === 'medium') {
-      if (isBatting) {
-        const random = Math.random() * 9;
-        if (random < 1) return 1;
-        if (random < 3) return 2;
-        if (random < 6) return 3;
-        if (random < 8) return 4;
-        return 5;
-      } else {
-        return Math.floor(Math.random() * 5) + 1;
+      const weights = [10, 20, 30, 25, 15];
+      const rand = Math.random() * 100;
+      let cumulative = 0;
+      for (let i = 0; i < weights.length; i++) {
+        cumulative += weights[i];
+        if (rand < cumulative) return i + 1;
       }
+      return 3;
     }
 
-    if (this.difficulty === 'hard') {
-      if (isBatting) {
-        if (target && currentScore < target - 20) {
-          return Math.random() < 0.6 ? (Math.random() < 0.5 ? 4 : 5) : 3;
-        }
-        if (wickets >= 7) {
-          return Math.floor(Math.random() * 3) + 1;
-        }
-        return Math.floor(Math.random() * 5) + 1;
+    // Hard difficulty
+    if (isBatting) {
+      if (target && currentScore < target - 10) {
+        return Math.random() < 0.6 ? 4 : 5;
       } else {
-        return Math.random() < 0.5
-          ? Math.floor(Math.random() * 2) + 1
-          : Math.floor(Math.random() * 2) + 4;
+        return Math.floor(Math.random() * 3) + 2;
+      }
+    } else {
+      if (wickets > 7) {
+        return Math.floor(Math.random() * 2) + 4;
+      } else {
+        return Math.floor(Math.random() * 4) + 1;
       }
     }
+  }
 
-    return Math.floor(Math.random() * 5) + 1;
+  // Bot selects players when it's leader
+  selectPlayers(availableBatters, availableBowlers) {
+    const batter = availableBatters[Math.floor(Math.random() * availableBatters.length)];
+    const bowler = availableBowlers[Math.floor(Math.random() * availableBowlers.length)];
+    return { batter, bowler };
   }
 
   getThinkingDelay() {
@@ -69,6 +68,7 @@ class BotPlayer {
   }
 }
 
+// Bot Manager
 class BotManager {
   constructor() {
     this.activeBots = new Map();
@@ -77,12 +77,15 @@ class BotManager {
 
   shouldAddBot(room) {
     const totalPlayers = room.players.length;
-    const hasBot = room.players.some(p => p.isBot);
+    const hasBot = room.players.some(sid => this.activeBots.has(room.roomId));
     return totalPlayers === 1 && !hasBot && room.game.state === 'LOBBY';
   }
 
   addBot(roomId, io, room) {
-    if (this.activeBots.has(roomId)) return null;
+    if (this.activeBots.has(roomId)) {
+      console.log('⚠️ Bot already exists');
+      return null;
+    }
 
     const bot = new BotPlayer(roomId);
     this.activeBots.set(roomId, bot);
@@ -92,48 +95,138 @@ class BotManager {
 
     if (room.teamA.length > 0) {
       room.teamB.push(bot.socketId);
+      console.log(`🤖 Bot "${bot.name}" added to Team B`);
     } else {
       room.teamA.push(bot.socketId);
+      console.log(`🤖 Bot "${bot.name}" added to Team A`);
     }
 
     return bot;
   }
 
-  removeBot(roomId, io, room) {
-    const bot = this.activeBots.get(roomId);
-    if (!bot) return;
-
-    // FIX: players array contains socketIds, not objects
-    room.players = room.players.filter(id => id !== bot.socketId);
-    room.teamA = room.teamA.filter(id => id !== bot.socketId);
-    room.teamB = room.teamB.filter(id => id !== bot.socketId);
-
-    delete room.playerNames[bot.socketId];
-
-    if (this.botTimers.has(roomId)) {
-      clearTimeout(this.botTimers.get(roomId));
-      this.botTimers.delete(roomId);
+  removeBot(roomId) {
+    if (this.activeBots.has(roomId)) {
+      this.activeBots.delete(roomId);
+      this.clearBotTimer(roomId);
+      console.log(`🤖 Bot removed from ${roomId}`);
     }
-
-    this.activeBots.delete(roomId);
-
-    io.to(roomId).emit('player-left', {
-      playerName: bot.name
-    });
   }
 
-  makeBotMove(roomId, io, room, gameLogic) {
+  clearBotTimer(roomId) {
+    const timer = this.botTimers.get(roomId);
+    if (timer) {
+      clearTimeout(timer);
+      this.botTimers.delete(roomId);
+    }
+  }
+
+  // 🆕 AUTO-SELECT WHEN BOT IS LEADER
+  handleLeaderSelection(roomId, io, room) {
+    const bot = this.activeBots.get(roomId);
+    if (!bot) return false;
+
+    const isLeaderA = room.leaderA === bot.socketId;
+    const isLeaderB = room.leaderB === bot.socketId;
+
+    if (!isLeaderA && !isLeaderB) return false;
+
+    console.log(`🤖 Bot "${bot.name}" is leader, selecting ITSELF...`);
+
+    setTimeout(() => {
+      const { getAvailableBatters, getAvailableBowlers, selectPlayers } = require('./gameLogic');
+      
+      const availableBatters = getAvailableBatters(roomId);
+      const availableBowlers = getAvailableBowlers(roomId);
+
+      if (availableBatters.length === 0 || availableBowlers.length === 0) {
+        console.log('⚠️ No available players');
+        return;
+      }
+
+      // 🆕 BOT ALWAYS SELECTS ITSELF
+      let selectedBatter = bot.name;
+      let selectedBowler = bot.name;
+
+      // Check if bot is available for each role
+      const botNameInBatters = availableBatters.map(sid => room.playerNames[sid]).includes(bot.name);
+      const botNameInBowlers = availableBowlers.map(sid => room.playerNames[sid]).includes(bot.name);
+
+      // If bot not available, select random teammate
+      if (!botNameInBatters) {
+        const teammates = isLeaderA ? room.teamA : room.teamB;
+        const availableTeammates = teammates
+          .filter(sid => availableBatters.includes(sid))
+          .map(sid => room.playerNames[sid]);
+        selectedBatter = availableTeammates[Math.floor(Math.random() * availableTeammates.length)] || availableBatters.map(sid => room.playerNames[sid])[0];
+      }
+
+      if (!botNameInBowlers) {
+        const teammates = isLeaderA ? room.teamA : room.teamB;
+        const availableTeammates = teammates
+          .filter(sid => availableBowlers.includes(sid))
+          .map(sid => room.playerNames[sid]);
+        selectedBowler = availableTeammates[Math.floor(Math.random() * availableTeammates.length)] || availableBowlers.map(sid => room.playerNames[sid])[0];
+      }
+
+      console.log(`🤖 Bot selected: Batter=${selectedBatter}, Bowler=${selectedBowler}`);
+
+      // Set pending selections
+      if (!room.game.pendingBatter) room.game.pendingBatter = selectedBatter;
+      if (!room.game.pendingBowler) room.game.pendingBowler = selectedBowler;
+
+      io.to(roomId).emit('chat-message', {
+        type: 'system',
+        message: `🤖 ${bot.name} selected players`
+      });
+
+      // If both selected, start game
+      if (room.game.pendingBatter && room.game.pendingBowler) {
+        const result = selectPlayers(roomId, room.game.pendingBatter, room.game.pendingBowler);
+        
+        if (result.success) {
+          room.game.pendingBatter = null;
+          room.game.pendingBowler = null;
+
+          io.to(roomId).emit('players-selected', {
+            batter: room.playerNames[room.game.currentBatter],
+            bowler: room.playerNames[room.game.currentBowler]
+          });
+
+          io.to(roomId).emit('game-state', {
+            state: room.game.state,
+            score: room.game.score || 0,
+            wickets: room.game.wickets || 0,
+            overs: room.game.overs || 0,
+            balls: room.game.balls || 0,
+            totalOvers: room.totalOvers,
+            currentBatter: room.playerNames[room.game.currentBatter],
+            currentBowler: room.playerNames[room.game.currentBowler],
+            battingTeam: room.game.battingTeam,
+            bowlingTeam: room.game.bowlingTeam
+          });
+
+          console.log(`✅ Game started - Bot playing as ${selectedBatter === bot.name ? 'batter' : ''} ${selectedBowler === bot.name ? 'bowler' : ''}`);
+          
+          // 🆕 Trigger bot action if it's the bot's turn
+          this.checkBotAction(roomId, io, room, require('./gameLogic').recordPlayerInput);
+        }
+      }
+    }, bot.getThinkingDelay());
+
+    return true;
+  }
+
+  makeBotMove(roomId, io, room, recordPlayerInput) {
     const bot = this.activeBots.get(roomId);
     if (!bot) return;
 
     const game = room.game;
-
-    const isBotBatter = game.currentBatter === bot.socketId;
-    const isBotBowler = game.currentBowler === bot.socketId;
+    const isBotBatter = game.currentBatter && room.playerNames[game.currentBatter] === bot.name;
+    const isBotBowler = game.currentBowler && room.playerNames[game.currentBowler] === bot.name;
 
     if (!isBotBatter && !isBotBowler) return;
 
-    const role = isBotBatter ? 'batter' : 'bowler';
+    console.log(`🤖 ${bot.name} is ${isBotBatter ? 'batting' : 'bowling'}`);
 
     const fingers = bot.chooseFingers({
       isBatting: isBotBatter,
@@ -142,51 +235,25 @@ class BotManager {
       wickets: game.wickets || 0
     });
 
-    const delay = bot.getThinkingDelay();
-
     const timer = setTimeout(() => {
-      const result = gameLogic.recordPlayerInput(roomId, bot.socketId, fingers);
-      if (!result.success) return;
-
-      io.to(roomId).emit('bot-action', {
-        botName: bot.name,
-        role,
-        fingers
-      });
-
-      if (gameLogic.areBothInputsReceived(roomId)) {
-        const roundResult = gameLogic.processRound(roomId);
-        if (roundResult.success) {
-          io.to(roomId).emit('round-result', {
-            batterFingers: roundResult.batterFingers,
-            bowlerFingers: roundResult.bowlerFingers,
-            runs: roundResult.runs,
-            isOut: roundResult.isOut,
-            isOverComplete: roundResult.isOverComplete,
-            batter: room.playerNames[game.currentBatter],
-            bowler: room.playerNames[game.currentBowler],
-            score: roundResult.score,
-            wickets: roundResult.wickets
-          });
-        }
-      }
-    }, delay);
+      recordPlayerInput(roomId, bot.socketId, fingers);
+      console.log(`🤖 Bot chose: ${fingers}`);
+    }, bot.getThinkingDelay());
 
     this.botTimers.set(roomId, timer);
   }
 
-  checkBotAction(roomId, io, room, gameLogic) {
+  checkBotAction(roomId, io, room, recordPlayerInput) {
     const bot = this.activeBots.get(roomId);
     if (!bot) return;
 
-    const game = room.game;
-    if (game.state !== 'PLAYING') return;
+    if (room.game.state !== 'PLAYING') return;
 
-    const isBotBatter = game.currentBatter === bot.socketId;
-    const isBotBowler = game.currentBowler === bot.socketId;
+    const isBotBatter = room.game.currentBatter && room.playerNames[room.game.currentBatter] === bot.name;
+    const isBotBowler = room.game.currentBowler && room.playerNames[room.game.currentBowler] === bot.name;
 
     if (isBotBatter || isBotBowler) {
-      this.makeBotMove(roomId, io, room, gameLogic);
+      this.makeBotMove(roomId, io, room, recordPlayerInput);
     }
   }
 
