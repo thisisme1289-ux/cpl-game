@@ -42,13 +42,21 @@ if (passport) {
         try {
           const user = await User.findOneAndUpdate(
             { googleId: userData.googleId },
-            { $set: { displayName: userData.displayName, email: userData.email, photoURL: userData.photoURL, updatedAt: new Date() }, $setOnInsert: { createdAt: new Date() } },
-            { upsert: true, new: true }
+            { 
+              $set: { 
+                displayName: userData.displayName, 
+                email: userData.email, 
+                photoURL: userData.photoURL, 
+                updatedAt: new Date() 
+              }, 
+              $setOnInsert: { createdAt: new Date() } 
+            },
+            { 
+              upsert: true, 
+              new: true,
+              maxTimeMS: 30000 // 30-second timeout
+            }
           );
-          
-          // Log success for easier debugging in deployed logs
-          console.log('User upserted:', user._id && user._id.toString ? user._id.toString() : user._id);
-
 
           req.session.user = { id: user._id.toString(), displayName: user.displayName, photoURL: user.photoURL };
           return res.redirect(`/?login=success&user=${encodeURIComponent(JSON.stringify(req.session.user))}`);
