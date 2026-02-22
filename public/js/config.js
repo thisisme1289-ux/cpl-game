@@ -8,7 +8,7 @@ const CONFIG = {
     
     // Google OAuth Client ID
     // IMPORTANT: Replace this with your actual Google Client ID
-    GOOGLE_CLIENT_ID: 'YOUR_GOOGLE_CLIENT_ID_HERE.apps.googleusercontent.com',
+    GOOGLE_CLIENT_ID: '790106772220-ai1r66t94b0dhjhgpb0rij5uvemt5jrh.apps.googleusercontent.com',
     
     // Socket.IO URL (same as API for simplicity)
     SOCKET_URL: window.location.origin,
