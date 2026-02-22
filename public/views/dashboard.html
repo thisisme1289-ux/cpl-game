@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - CPL</title>
+    <link rel="stylesheet" href="/css/dashboard.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Profile Header -->
+        <div class="profile-header">
+            <div class="profile-left">
+                <div class="profile-avatar" id="profileAvatar">T</div>
+                <div class="profile-info">
+                    <p class="welcome-text">Welcome back</p>
+                    <h2 class="player-name" id="playerName">Test Player</h2>
+                </div>
+            </div>
+            <div class="win-rate-badge" id="winRateBadge">
+                <span class="trophy-emoji">🏆</span>
+                <span id="winRateText">50%</span>
+            </div>
+        </div>
+
+        <!-- Stats Card -->
+        <div class="stats-card">
+            <div class="games-played">
+                <div class="big-number" id="gamesPlayed">0</div>
+                <div class="stat-label">PLAYED</div>
+            </div>
+            <div class="stats-details">
+                <div class="stat-row">
+                    <span class="stat-dot green"></span>
+                    <span class="stat-number" id="wins">0</span>
+                    <span class="stat-text">Wins</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-dot red"></span>
+                    <span class="stat-number" id="losses">0</span>
+                    <span class="stat-text">Losses</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-dot yellow"></span>
+                    <span class="stat-number" id="totalRuns">0</span>
+                    <span class="stat-text">Runs</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Match -->
+        <div class="quick-match-card" onclick="window.location.href='/game?mode=bot&difficulty=medium'">
+            <div class="quick-match-icon">⚡</div>
+            <div class="quick-match-content">
+                <h3>QUICK MATCH</h3>
+                <p>5 Overs vs Bot</p>
+            </div>
+            <div class="arrow-icon">→</div>
+        </div>
+
+        <!-- Multiplayer Section -->
+        <div class="section-header">MULTIPLAYER</div>
+        <div class="multiplayer-grid">
+            <div class="mode-card random" data-mode="random">
+                <div class="mode-icon">🔀</div>
+                <div class="mode-name">Random</div>
+                <div class="mode-desc">5 Overs</div>
+            </div>
+            <div class="mode-card create" data-mode="create">
+                <div class="mode-icon">➕</div>
+                <div class="mode-name">Create</div>
+                <div class="mode-desc">5-20 Overs</div>
+            </div>
+            <div class="mode-card join" data-mode="join">
+                <div class="mode-icon">🎯</div>
+                <div class="mode-name">Join</div>
+                <div class="mode-desc">Room Code</div>
+            </div>
+        </div>
+
+        <!-- Recent Matches -->
+        <div class="section-header">RECENT MATCHES</div>
+        <div class="recent-matches" id="recentMatches">
+            <div class="no-matches">
+                <div class="globe-icon">🌐</div>
+                <p class="no-matches-title">No matches yet</p>
+                <p class="no-matches-subtitle">Play your first match to see results here</p>
+            </div>
+        </div>
+
+        <!-- Bottom Navigation -->
+        <div class="bottom-nav">
+            <div class="nav-item active">
+                <div class="nav-icon">🏠</div>
+                <div class="nav-label">Home</div>
+            </div>
+            <div class="nav-item" onclick="window.location.href='/leaderboard'">
+                <div class="nav-icon">🏆</div>
+                <div class="nav-label">Rankings</div>
+            </div>
+            <div class="nav-item" id="profileNavBtn">
+                <div class="nav-icon">👤</div>
+                <div class="nav-label">Profile</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals (Keep existing modals) -->
+    <div class="modal-overlay" id="joinModal" style="display: none;">
+        <div class="modal">
+            <h3>Enter Room Code</h3>
+            <input type="text" class="room-code-input" id="roomCodeInput" placeholder="ABC123" maxlength="6">
+            <div class="modal-buttons">
+                <button class="btn-secondary" id="cancelJoin">Cancel</button>
+                <button class="btn-primary" id="confirmJoin">Join</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="botModal" style="display: none;">
+        <div class="modal">
+            <h3>Select Bot Difficulty</h3>
+            <p style="color: #64748b; margin-bottom: 1.5rem; font-size: 0.9rem;">Choose your opponent's skill level</p>
+            <div class="difficulty-grid">
+                <button class="difficulty-btn easy" data-difficulty="easy">
+                    <div class="difficulty-icon">😊</div>
+                    <div class="difficulty-name">Easy</div>
+                    <div class="difficulty-desc">For beginners</div>
+                </button>
+                <button class="difficulty-btn medium" data-difficulty="medium">
+                    <div class="difficulty-icon">😐</div>
+                    <div class="difficulty-name">Medium</div>
+                    <div class="difficulty-desc">Balanced</div>
+                </button>
+                <button class="difficulty-btn hard" data-difficulty="hard">
+                    <div class="difficulty-icon">😤</div>
+                    <div class="difficulty-name">Hard</div>
+                    <div class="difficulty-desc">For experts</div>
+                </button>
+            </div>
+            <button class="btn-secondary" id="cancelBot" style="margin-top: 1rem; width: 100%;">Cancel</button>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="createModal" style="display: none;">
+        <div class="modal">
+            <h3>Create Custom Room</h3>
+            <div class="form-group">
+                <label>Room Name</label>
+                <input type="text" class="form-input" id="roomName" placeholder="My Cricket Room" maxlength="30">
+            </div>
+            <div class="form-group">
+                <label>Max Players (2-12)</label>
+                <input type="number" class="form-input" id="maxPlayers" min="2" max="12" value="12">
+            </div>
+            <div class="form-group">
+                <label>Overs</label>
+                <input type="number" class="form-input" id="overs" min="1" max="20" value="5">
+            </div>
+            <div class="modal-buttons">
+                <button class="btn-secondary" id="cancelCreate">Cancel</button>
+                <button class="btn-primary" id="confirmCreate">Create Room</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="profileModal" style="display: none;">
+        <div class="modal">
+            <h3>Profile</h3>
+            <div class="profile-modal-content">
+                <img src="" alt="" class="profile-modal-avatar" id="profileModalAvatar">
+                <h4 id="profileModalName">Test Player</h4>
+                <p id="profileModalEmail"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="fe9b939f9792be9b869f938e929bd09d9193">[email&#160;protected]</a></p>
+            </div>
+            <button class="btn-danger" id="logoutBtn" style="width: 100%; margin-top: 1rem;">Logout</button>
+            <button class="btn-secondary" id="closeProfile" style="width: 100%; margin-top: 0.5rem;">Close</button>
+        </

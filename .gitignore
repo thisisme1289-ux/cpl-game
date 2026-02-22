@@ -1,0 +1,42 @@
+# === DEPENDENCIES ===
+node_modules/
+package-lock.json
+yarn.lock
+
+# === ENVIRONMENT VARIABLES (CRITICAL - NEVER COMMIT!) ===
+.env
+.env.local
+.env.production
+
+# === LOGS ===
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# === SYSTEM FILES ===
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# === IDE/EDITOR FILES ===
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# === BUILD FILES ===
+dist/
+build/
+.cache/
+
+# === TEST COVERAGE ===
+coverage/
+.nyc_output/
+
+# === TEMPORARY FILES ===
+tmp/
+temp/

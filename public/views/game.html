@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game - CPL</title>
+    <link rel="stylesheet" href="/css/game.css">
+</head>
+<body>
+    <div class="game-container">
+        <!-- Top Bar -->
+        <div class="top-bar">
+            <button class="exit-btn" onclick="window.location.href='/dashboard'">✕</button>
+            <div class="game-logo">
+                <div class="logo-icon">🏏</div>
+                <div class="logo-text">CPL</div>
+            </div>
+            <div class="room-code" id="roomCode">ABC123</div>
+        </div>
+
+        <!-- Players Section -->
+        <div class="players-section">
+            <!-- Left Player -->
+            <div class="player left">
+                <div class="player-avatar red" id="leftAvatar">A</div>
+                <div class="player-info">
+                    <div class="player-name" id="leftName">Player 1</div>
+                    <div class="player-score"><span id="leftScore">0</span> runs</div>
+                </div>
+            </div>
+
+            <!-- Center Icons -->
+            <div class="center-icons">
+                <div class="cricket-ball">🏏</div>
+                <div class="bat">🏏</div>
+            </div>
+
+            <!-- Right Player -->
+            <div class="player right">
+                <div class="player-info">
+                    <div class="player-name" id="rightName">Player 2</div>
+                    <div class="player-score"><span id="rightScore">0</span> runs</div>
+                </div>
+                <div class="player-avatar blue" id="rightAvatar">B</div>
+            </div>
+        </div>
+
+        <!-- Wickets Indicators -->
+        <div class="wickets-section">
+            <div class="wickets left" id="leftWickets">
+                <span class="wicket-dot"></span>
+                <span class="wicket-dot"></span>
+                <span class="wicket-dot"></span>
+                <span class="wicket-dot"></span>
+                <span class="wicket-dot"></span>
+                <span class="wicket-dot"></span>
+            </div>
+            <div class="wickets right" id="rightWickets">
+                <span class="wicket-dot"></span>
+                <span class="wicket-dot"></span>
+                <span class="wicket-dot"></span>
+                <span class="wicket-dot"></span>
+                <span class="wicket-dot"></span>
+                <span class="wicket-dot last">5</span>
+            </div>
+        </div>
+
+        <!-- Sky Area (Main Display) -->
+        <div class="sky-area">
+            <div class="clouds"></div>
+            
+            <!-- Main Number Display -->
+            <div class="number-display" id="numberDisplay">
+                <div class="big-number" id="bigNumber">5</div>
+                <div class="number-word" id="numberWord">FIVE</div>
+            </div>
+
+            <!-- Status Message -->
+            <div class="status-message" id="statusMessage" style="display: none;">
+                Waiting for opponent...
+            </div>
+        </div>
+
+        <!-- Field Area (Bottom) -->
+        <div class="field-area">
+            <!-- Stadium Fence -->
+            <div class="stadium-fence"></div>
+
+            <!-- Hands Display -->
+            <div class="hands-display">
+                <div class="hand left-hand" id="leftHand">
+                    <div class="hand-icon red">✊</div>
+                </div>
+                <div class="hand right-hand" id="rightHand">
+                    <div class="hand-icon blue">✋</div>
+                </div>
+            </div>
+
+            <!-- Timer/Slider -->
+            <div class="timer-container">
+                <div class="timer-line"></div>
+                <div class="timer-circle" id="timerCircle">
+                    <span id="timerCount">30</span>
+                </div>
+            </div>
+
+            <!-- Result Message -->
+            <div class="result-message" id="resultMessage">
+                Wooohoo!
+            </div>
+
+            <!-- Number Buttons -->
+            <div class="number-buttons">
+                <button class="num-btn" data-number="1">1</button>
+                <button class="num-btn" data-number="2">2</button>
+                <button class="num-btn" data-number="3">3</button>
+                <button class="num-btn" data-number="4">4</button>
+                <button class="num-btn" data-number="5">5</button>
+                <button class="num-btn" data-number="6">6</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Match Result Modal -->
+    <div class="modal-overlay" id="resultModal" style="display: none;">
+        <div class="modal">
+            <h2 id="resultTitle">Match Complete!</h2>
+            <div class="result-scores">
+                <div class="score-row">
+                    <span class="team-name" id="team1Name">Team A</span>
+                    <span class="team-score" id="team1Score">120/5</span>
+                </div>
+                <div class="score-row">
+                    <span class="team-name" id="team2Name">Team B</span>
+                    <span class="team-score" id="team2Score">105/10</span>
+                </div>
+            </div>
+            <p class="result-text" id="resultText">Team A won by 15 runs</p>
+            <button class="btn-primary" onclick="window.location.href='/dashboard'">Back to Dashboard</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.socket.io/4.6.0/socket.io.min.js"></script>
+    <script src="/js/config.js"></script>
+    <script src="/js/game.js"></script>
+</body>
+</html>

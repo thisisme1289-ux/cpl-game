@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaderboard - CPL</title>
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/css/leaderboard.css">
+</head>
+<body>
+    <!-- Stadium Background -->
+    <div class="stadium-bg"></div>
+    <div class="floodlight-glow"></div>
+
+    <!-- Container -->
+    <div class="leaderboard-container">
+        <!-- Header -->
+        <div class="header">
+            <h1 class="title neon-text">Leaderboard</h1>
+            <p class="subtitle">Top Players of CPL</p>
+            <button class="back-btn" onclick="window.location.href='/dashboard'">
+                ← Back to Dashboard
+            </button>
+        </div>
+
+        <!-- Podium (Top 3) -->
+        <div class="podium">
+            <!-- 2nd Place -->
+            <div class="podium-place second glass-card" id="rank2">
+                <div class="medal">🥈</div>
+                <div class="podium-avatar">
+                    <img src="" alt="" id="avatar2">
+                </div>
+                <h3 class="podium-name" id="name2">-</h3>
+                <div class="podium-stats">
+                    <div class="podium-stat">
+                        <span class="stat-value" id="points2">0</span>
+                        <span class="stat-label">Points</span>
+                    </div>
+                    <div class="podium-stat">
+                        <span class="stat-value" id="wins2">0</span>
+                        <span class="stat-label">Wins</span>
+                    </div>
+                </div>
+                <div class="rank-badge">2</div>
+            </div>
+
+            <!-- 1st Place -->
+            <div class="podium-place first glass-card" id="rank1">
+                <div class="crown">👑</div>
+                <div class="medal">🥇</div>
+                <div class="podium-avatar champion">
+                    <img src="" alt="" id="avatar1">
+                </div>
+                <h3 class="podium-name" id="name1">-</h3>
+                <div class="podium-stats">
+                    <div class="podium-stat">
+                        <span class="stat-value gold" id="points1">0</span>
+                        <span class="stat-label">Points</span>
+                    </div>
+                    <div class="podium-stat">
+                        <span class="stat-value gold" id="wins1">0</span>
+                        <span class="stat-label">Wins</span>
+                    </div>
+                </div>
+                <div class="rank-badge gold">1</div>
+            </div>
+
+            <!-- 3rd Place -->
+            <div class="podium-place third glass-card" id="rank3">
+                <div class="medal">🥉</div>
+                <div class="podium-avatar">
+                    <img src="" alt="" id="avatar3">
+                </div>
+                <h3 class="podium-name" id="name3">-</h3>
+                <div class="podium-stats">
+                    <div class="podium-stat">
+                        <span class="stat-value" id="points3">0</span>
+                        <span class="stat-label">Points</span>
+                    </div>
+                    <div class="podium-stat">
+                        <span class="stat-value" id="wins3">0</span>
+                        <span class="stat-label">Wins</span>
+                    </div>
+                </div>
+                <div class="rank-badge">3</div>
+            </div>
+        </div>
+
+        <!-- Rankings Table -->
+        <div class="rankings-table glass-card">
+            <div class="table-header">
+                <div class="col-rank">Rank</div>
+                <div class="col-player">Player</div>
+                <div class="col-stat">Points</div>
+                <div class="col-stat">Games</div>
+                <div class="col-stat">Wins</div>
+                <div class="col-stat">Win%</div>
+            </div>
+            <div class="table-body" id="rankingsBody">
+                <!-- Rows will be added here -->
+                <div class="loading-spinner">
+                    <div class="spinner"></div>
+                    <p>Loading rankings...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stats Summary -->
+        <div class="stats-summary glass-card">
+            <div class="summary-item">
+                <div class="summary-icon">👥</div>
+                <div class="summary-info">
+                    <span class="summary-number" id="totalPlayers">0</span>
+                    <span class="summary-label">Total Players</span>
+                </div>
+            </div>
+            <div class="summary-item">
+                <div class="summary-icon">🎮</div>
+                <div class="summary-info">
+                    <span class="summary-number" id="totalGames">0</span>
+                    <span class="summary-label">Games Played</span>
+                </div>
+            </div>
+            <div class="summary-item">
+                <div class="summary-icon">⭐</div>
+                <div class="summary-info">
+                    <span class="summary-number" id="yourRank">-</span>
+                    <span class="summary-label">Your Rank</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/config.js"></script>
+    <script src="/js/leaderboard.js"></script>
+</body>
+</html>
