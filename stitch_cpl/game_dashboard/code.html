@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GameDash - Player Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "primary": "#2bee2b",
+                "background-light": "#f6f8f6",
+                "background-dark": "#102210",
+              },
+              fontFamily: {
+                "display": ["Space Grotesk"]
+              },
+              borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+            },
+          },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+<header class="flex items-center justify-between border-b border-primary/10 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md px-6 md:px-10 py-4 sticky top-0 z-50">
+<div class="flex items-center gap-4">
+<div class="md:hidden cursor-pointer p-2 hover:bg-primary/10 rounded-lg">
+<span class="material-symbols-outlined text-slate-900 dark:text-slate-100">menu</span>
+</div>
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-3xl font-bold">sports_esports</span>
+<h2 class="text-slate-900 dark:text-slate-100 text-xl font-bold tracking-tight">GameDash</h2>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden md:flex flex-col items-end mr-2">
+<span class="text-xs font-medium text-slate-500 uppercase tracking-wider">Pro Player</span>
+<span class="text-sm font-bold text-slate-900 dark:text-slate-100">Welcome, AlexVance</span>
+</div>
+<div class="relative group">
+<div class="size-10 rounded-full border-2 border-primary bg-cover bg-center cursor-pointer" data-alt="User profile avatar with green border" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBm8tfikGawnc3_eaFP7eA0z16rS4F7DOmetBPIHMQXvxlw9maBsD4DAokcjTejTohsEMmBLoH4inSc_FvrTbZkVELuSNPmZoiyxGn29eJdiIr2oLb6IRgLdsXNVfvpLTNYtU2L1C_YNb1pW5SPhxjMUxbL00cU1lNHoOHuR2kqodhRaBCA9KV7xWtRZ2sUWQlFbMsl-6nH_vEC9-TW1SSlYnxDaiwMD6O_Qj-O3aH0t6eqlilnet_AKC_t3uF6fU9q4hPZeYSmzDBo');">
+</div>
+<div class="absolute right-0 top-full mt-2 w-48 bg-white dark:bg-slate-900 shadow-xl rounded-xl border border-primary/10 hidden group-hover:block py-2">
+<a class="flex items-center gap-3 px-4 py-2 hover:bg-primary/10 transition-colors" href="#">
+<span class="material-symbols-outlined text-sm">person</span>
+<span class="text-sm font-medium">Profile</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 hover:bg-primary/10 transition-colors" href="#">
+<span class="material-symbols-outlined text-sm">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<hr class="my-2 border-primary/10"/>
+<button class="w-full flex items-center gap-3 px-4 py-2 hover:bg-red-50 text-red-600 transition-colors">
+<span class="material-symbols-outlined text-sm">logout</span>
+<span class="text-sm font-medium">Logout</span>
+</button>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-1 flex flex-col md:flex-row max-w-[1440px] mx-auto w-full">
+<aside class="hidden md:flex w-64 flex-col border-r border-primary/10 p-6 gap-6 sticky top-20 h-[calc(100vh-80px)]">
+<nav class="flex flex-col gap-2">
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl bg-primary text-slate-900 font-bold shadow-lg shadow-primary/20" href="#">
+<span class="material-symbols-outlined">grid_view</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-primary/10 transition-all text-slate-600 dark:text-slate-400" href="#">
+<span class="material-symbols-outlined">person</span>
+<span>Profile</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-primary/10 transition-all text-slate-600 dark:text-slate-400" href="#">
+<span class="material-symbols-outlined">leaderboard</span>
+<span>Leaderboard</span>
+</a>
+</nav>
+<div class="mt-auto">
+<button class="flex items-center gap-3 px-4 py-3 rounded-xl w-full text-slate-400 hover:text-red-500 hover:bg-red-50 transition-all">
+<span class="material-symbols-outlined">logout</span>
+<span>Logout</span>
+</button>
+</div>
+</aside>
+<section class="flex-1 p-6 md:p-10 space-y-10">
+<div class="space-y-4">
+<h2 class="text-xl font-bold flex items-center gap-2">
+<span class="size-2 bg-primary rounded-full"></span>
+                        Quick Stats
+                    </h2>
+<div class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+<div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-primary/10 shadow-sm hover:shadow-md transition-shadow">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium uppercase tracking-tighter">Matches</p>
+<p class="text-3xl font-bold mt-2">1,284</p>
+</div>
+<div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-primary/10 shadow-sm hover:shadow-md transition-shadow">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium uppercase tracking-tighter text-primary">Wins</p>
+<p class="text-3xl font-bold mt-2">842</p>
+</div>
+<div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-primary/10 shadow-sm hover:shadow-md transition-shadow">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium uppercase tracking-tighter text-red-400">Losses</p>
+<p class="text-3xl font-bold mt-2">442</p>
+</div>
+<div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-primary/10 shadow-sm hover:shadow-md transition-shadow">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium uppercase tracking-tighter">Win Rate</p>
+<div class="flex items-baseline gap-1 mt-2">
+<p class="text-3xl font-bold">65.6</p>
+<p class="text-lg font-bold text-primary">%</p>
+</div>
+</div>
+</div>
+</div>
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<h2 class="text-xl font-bold flex items-center gap-2">
+<span class="size-2 bg-primary rounded-full"></span>
+                            Game Modes
+                        </h2>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 md:gap-6">
+<div class="group relative overflow-hidden bg-white dark:bg-slate-900 p-8 rounded-2xl border border-primary/10 cursor-pointer hover:border-primary transition-all">
+<div class="absolute -right-4 -top-4 size-24 bg-primary/5 rounded-full group-hover:bg-primary/20 transition-colors"></div>
+<span class="material-symbols-outlined text-4xl text-primary mb-4 block">shuffle</span>
+<h3 class="font-bold text-lg">Random Match</h3>
+<p class="text-sm text-slate-500 mt-1">Join the next available queue</p>
+</div>
+<div class="group relative overflow-hidden bg-white dark:bg-slate-900 p-8 rounded-2xl border border-primary/10 cursor-pointer hover:border-primary transition-all">
+<div class="absolute -right-4 -top-4 size-24 bg-primary/5 rounded-full group-hover:bg-primary/20 transition-colors"></div>
+<span class="material-symbols-outlined text-4xl text-primary mb-4 block">add_circle</span>
+<h3 class="font-bold text-lg">Create Room</h3>
+<p class="text-sm text-slate-500 mt-1">Host your own custom session</p>
+</div>
+<div class="group relative overflow-hidden bg-white dark:bg-slate-900 p-8 rounded-2xl border border-primary/10 cursor-pointer hover:border-primary transition-all">
+<div class="absolute -right-4 -top-4 size-24 bg-primary/5 rounded-full group-hover:bg-primary/20 transition-colors"></div>
+<span class="material-symbols-outlined text-4xl text-primary mb-4 block">group</span>
+<h3 class="font-bold text-lg">Join Room</h3>
+<p class="text-sm text-slate-500 mt-1">Enter a private room code</p>
+</div>
+<div class="group relative overflow-hidden bg-white dark:bg-slate-900 p-8 rounded-2xl border border-primary/10 cursor-pointer hover:border-primary transition-all">
+<div class="absolute -right-4 -top-4 size-24 bg-primary/5 rounded-full group-hover:bg-primary/20 transition-colors"></div>
+<span class="material-symbols-outlined text-4xl text-primary mb-4 block">smart_toy</span>
+<h3 class="font-bold text-lg">Bot Play</h3>
+<p class="text-sm text-slate-500 mt-1">Practice against advanced AI</p>
+</div>
+</div>
+</div>
+<div class="pt-6">
+<button class="w-full py-8 bg-slate-900 dark:bg-primary text-white dark:text-slate-900 rounded-2xl flex flex-col items-center justify-center gap-2 group transition-all hover:scale-[1.01] active:scale-[0.99] shadow-2xl shadow-primary/10">
+<span class="material-symbols-outlined text-5xl group-hover:rotate-12 transition-transform">emoji_events</span>
+<span class="text-2xl font-bold tracking-tight">Access Global Leaderboard</span>
+<span class="text-sm opacity-60">View top players and seasonal rankings</span>
+</button>
+</div>
+</section>
+</main>
+<nav class="md:hidden fixed bottom-0 left-0 right-0 bg-white dark:bg-background-dark border-t border-primary/10 px-8 py-3 flex justify-between items-center z-50">
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Profile</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined text-3xl">leaderboard</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Ranking</span>
+</a>
+<button class="flex flex-col items-center gap-1 text-slate-400">
+<span class="material-symbols-outlined">logout</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Logout</span>
+</button>
+</nav>
+<div class="hidden fixed inset-0 z-[100] flex items-center justify-center p-4">
+<div class="absolute inset-0 bg-slate-950/60 backdrop-blur-sm"></div>
+<div class="relative bg-white dark:bg-slate-900 w-full max-w-sm rounded-3xl p-8 text-center space-y-6 shadow-2xl">
+<div class="size-20 bg-red-50 dark:bg-red-900/20 text-red-500 rounded-full flex items-center justify-center mx-auto">
+<span class="material-symbols-outlined text-4xl">logout</span>
+</div>
+<div class="space-y-2">
+<h3 class="text-2xl font-bold">End Session?</h3>
+<p class="text-slate-500 dark:text-slate-400">You will be required to login again to access your dashboard.</p>
+</div>
+<div class="flex flex-col gap-3">
+<button class="w-full py-4 bg-red-500 text-white font-bold rounded-xl hover:bg-red-600 transition-colors">Yes, Log Me Out</button>
+<button class="w-full py-4 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-bold rounded-xl hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Cancel</button>
+</div>
+</div>
+</div>
+</div>
+</body></html>

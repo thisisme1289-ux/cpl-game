@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2bee2b",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102210",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: "Space Grotesk", sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<div class="lg:px-40 flex flex-1 justify-center py-5">
+<div class="layout-content-container flex flex-col max-w-[1200px] flex-1">
+<!-- Header Component -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-primary/20 px-4 lg:px-10 py-4 bg-white/50 dark:bg-background-dark/50 backdrop-blur-md sticky top-0 z-50">
+<div class="flex items-center gap-4">
+<div class="size-8 bg-primary rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-background-dark">sports_esports</span>
+</div>
+<h2 class="text-slate-900 dark:text-slate-100 text-xl font-bold leading-tight tracking-tight">Strike Force Lobby</h2>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center justify-center rounded-lg h-10 bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-slate-100 px-3 hover:bg-slate-300 transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<button class="flex items-center justify-center rounded-lg h-10 bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 px-3 hover:bg-red-200 transition-colors">
+<span class="material-symbols-outlined">logout</span>
+</button>
+</div>
+</header>
+<main class="p-4 lg:p-6 space-y-6">
+<!-- Room Info -->
+<div class="flex flex-wrap justify-between items-end gap-4 p-6 bg-white dark:bg-slate-900/50 rounded-xl border border-primary/10 shadow-sm">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 bg-primary/20 text-primary text-xs font-bold rounded uppercase tracking-widest">Public Lobby</span>
+<span class="text-slate-500 dark:text-slate-400 text-sm font-medium">Map: Desert Storm</span>
+</div>
+<p class="text-slate-900 dark:text-slate-100 text-4xl font-bold leading-tight tracking-tight">Room ID: <span class="text-primary">CR-8821</span></p>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-normal">Game Mode: 12v12 Team Deathmatch</p>
+</div>
+<div class="flex gap-3">
+<button class="px-8 py-3 bg-primary text-background-dark font-bold rounded-lg hover:brightness-110 transition-all flex items-center gap-2 shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined">play_arrow</span>
+                                START GAME
+                            </button>
+</div>
+</div>
+<!-- Teams Container -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+<!-- Alpha Team -->
+<div class="space-y-4">
+<div class="flex items-center justify-between border-b-2 border-primary px-2 pb-2">
+<h3 class="text-xl font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">shield</span>
+                                    ALPHA TEAM
+                                </h3>
+<span class="text-sm font-medium text-slate-500">4 / 12 Players</span>
+</div>
+<div class="grid grid-cols-3 sm:grid-cols-4 gap-3">
+<!-- Player 1 -->
+<div class="bg-white dark:bg-slate-900 p-2 rounded-lg border border-slate-200 dark:border-slate-800 flex flex-col items-center text-center">
+<div class="w-full aspect-square bg-slate-100 dark:bg-slate-800 rounded-md mb-2 bg-cover bg-center" data-alt="Cyberpunk style male character portrait" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAzQ8oqyyw3hdIK7pVrw5Ywtm39Pq-sUF5rPIxY7khxJpeWmbw7NWd-9ueEao9n4xryxn0YnVujjrXk1-mbys4uJEhye2ABV-b7_MvTldJ6VzNjyJvd7po6V1d9trYaZnWP3pswAsAPXbcBzs3_ILm_-K--C4D2v3jkYSr4GsJfULbVdSXjmi3EgBpxEXQbkGUx3C6jQ9qYwgYf3e7lU5pjZb_fQ9nvLW7eFwbAK78WCKcd7A-QBhOwVyjj6go--3LziHVHyIgZrlSD')"></div>
+<p class="text-sm font-bold truncate w-full">ShadowReaper</p>
+<p class="text-xs text-primary font-medium">LVL 85</p>
+</div>
+<!-- Player 2 -->
+<div class="bg-white dark:bg-slate-900 p-2 rounded-lg border border-slate-200 dark:border-slate-800 flex flex-col items-center text-center">
+<div class="w-full aspect-square bg-slate-100 dark:bg-slate-800 rounded-md mb-2 bg-cover bg-center" data-alt="Tactical soldier female character portrait" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAowwIbLZyshVJRn2OIq6rkkNmhj42tci82iYzy4bMu8spkefPrctacHNBTTEcKB8UN2Lg0fL9F450OxnNcaSLKnR3vPncOnxhj3IDUelW5MPi7sFVhSfERB6455RSvROKyiOAJ9lTWap__HHbfg4tJt7r4FxgV5H67SWRkdVWaY9HiBAIet6SXY3WMqjIIzwLqL866cQoR_RMEMrb819wsKGaSQVC24mK5_2PgprX91aom_KWF1akeKdiGWfVCX7hgBIrTFle7GBnU')"></div>
+<p class="text-sm font-bold truncate w-full">ViperQueen</p>
+<p class="text-xs text-primary font-medium">LVL 42</p>
+</div>
+<!-- Player 3 -->
+<div class="bg-white dark:bg-slate-900 p-2 rounded-lg border border-slate-200 dark:border-slate-800 flex flex-col items-center text-center">
+<div class="w-full aspect-square bg-slate-100 dark:bg-slate-800 rounded-md mb-2 bg-cover bg-center" data-alt="High tech warrior male portrait" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCjJOHQxqrVlvcobaHOT9eu6vkOPxj_fy1Lt7Ub0UAs1CbwxeR9nH18gOc6rUNyqXmE34w120bb2dRmBxf4J-YE0eQY8a1aSJBwrj_7el6_2mrviqk68VovNnMmv3qCLX_tqMdu04-aAtaH2J5TP9H1Ym69rjXIrSrKJB-I8kscYeOYmW6ZTyGhdAvVNYR21IIklSx9EBFl-Vet9VcQ4-mN1XrTNZgJpx6PfxuMgmmkxItIavcbXwRDi1wRfiXHu-pcPUuBxD15L1Uo')"></div>
+<p class="text-sm font-bold truncate w-full">Ghost_Ops</p>
+<p class="text-xs text-primary font-medium">LVL 12</p>
+</div>
+<!-- Player 4 -->
+<div class="bg-white dark:bg-slate-900 p-2 rounded-lg border border-slate-200 dark:border-slate-800 flex flex-col items-center text-center border-primary/50 ring-1 ring-primary/30">
+<div class="w-full aspect-square bg-slate-100 dark:bg-slate-800 rounded-md mb-2 bg-cover bg-center" data-alt="Generic gaming avatar character portrait" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCJnCbKKREOej0Mkj_meV_QF8hr79F8VKvplTim380NCcHn4TGzvWDIRCm4lnoOC_Y2AwMclxNOi9p7VF2kiYp8hz6z78VT3rO444mifRv2IUK5oVO_MBzdPh03FwfqqBLs_xUDLaYpr4RucSUK0lGFKUWXxz1MZ5PJHuyPfQ-Hj3k_DI8ihe8umCGX04QGXeuqWzmSHeNwxp3Vso5sF1xXuAkoghQqN-QVSfK5MoC_ZUryHnfYlp1z-HVZbuy1SdXK8Mh_C_2uIjzE')"></div>
+<p class="text-sm font-bold truncate w-full">You (Host)</p>
+<p class="text-xs text-primary font-medium">LVL 50</p>
+</div>
+<!-- Empty Slots -->
+<div class="bg-slate-100/50 dark:bg-slate-800/50 p-2 rounded-lg border border-dashed border-slate-300 dark:border-slate-700 flex flex-col items-center justify-center text-center opacity-60 aspect-[4/5]">
+<span class="material-symbols-outlined text-slate-400">person_add</span>
+<p class="text-[10px] uppercase font-bold text-slate-400 mt-1 tracking-tighter">Waiting</p>
+</div>
+<div class="bg-slate-100/50 dark:bg-slate-800/50 p-2 rounded-lg border border-dashed border-slate-300 dark:border-slate-700 flex flex-col items-center justify-center text-center opacity-60 aspect-[4/5]">
+<span class="material-symbols-outlined text-slate-400">person_add</span>
+<p class="text-[10px] uppercase font-bold text-slate-400 mt-1 tracking-tighter">Waiting</p>
+</div>
+<div class="bg-slate-100/50 dark:bg-slate-800/50 p-2 rounded-lg border border-dashed border-slate-300 dark:border-slate-700 flex flex-col items-center justify-center text-center opacity-60 aspect-[4/5]">
+<span class="material-symbols-outlined text-slate-400">person_add</span>
+<p class="text-[10px] uppercase font-bold text-slate-400 mt-1 tracking-tighter">Waiting</p>
+</div>
+<div class="bg-slate-100/50 dark:bg-slate-800/50 p-2 rounded-lg border border-dashed border-slate-300 dark:border-slate-700 flex flex-col items-center justify-center text-center opacity-60 aspect-[4/5]">
+<span class="material-symbols-outlined text-slate-400">person_add</span>
+<p class="text-[10px] uppercase font-bold text-slate-400 mt-1 tracking-tighter">Waiting</p>
+</div>
+<div class="bg-slate-100/50 dark:bg-slate-800/50 p-2 rounded-lg border border-dashed border-slate-300 dark:border-slate-700 flex flex-col items-center justify-center text-center opacity-60 aspect-[4/5]">
+<span class="material-symbols-outlined text-slate-400">person_add</span>
+<p class="text-[10px] uppercase font-bold text-slate-400 mt-1 tracking-tighter">Waiting</p>
+</div>
+<div class="bg-slate-100/50 dark:bg-slate-800/50 p-2 rounded-lg border border-dashed border-slate-300 dark:border-slate-700 flex flex-col items-center justify-center text-center opacity-60 aspect-[4/5]">
+<span class="material-symbols-outlined text-slate-400">person_add</span>
+<p class="text-[10px] uppercase font-bold text-slate-400 mt-1 tracking-tighter">Waiting</p>
+</div>
+<div class="bg-slate-100/50 dark:bg-slate-800/50 p-2 rounded-lg border border-dashed border-slate-300 dark:border-slate-700 flex flex-col items-center justify-center text-center opacity-60 aspect-[4/5]">
+<span class="material-symbols-outlined text-slate-400">person_add</span>
+<p class="text-[10px] uppercase font-bold text-slate-400 mt-1 tracking-tighter">Waiting</p>
+</div>
+<div class="bg-slate-100/50 dark:bg-slate-800/50 p-2 rounded-lg border border-dashed border-slate-300 dark:border-slate-700 flex flex-col items-center justify-center text-center opacity-60 aspect-[4/5]">
+<span class="material-symbols-outlined text-slate-400">person_add</span>
+<p class="text-[10px] uppercase font-bold text-slate-400 mt-1 tracking-tighter">Waiting</p>
+</div>
+</div>
+</div>
+<!-- Omega Team -->
+<div class="space-y-4">
+<div class="flex items-center justify-between border-b-2 border-slate-300 dark:border-slate-700 px-2 pb-2">
+<h3 class="text-xl font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-slate-400">swords</span>
+                                    OMEGA TEAM
+                                </h3>
+<span class="text-sm font-medium text-slate-500">0 / 12 Players</span>
+</div>
+<div class="grid grid-cols-3 sm:grid-cols-4 gap-3">
+<!-- Empty Slots Loop -->
+<div class="bg-slate-100/30 dark:bg-slate-800/30 p-2 rounded-lg border border-dashed border-slate-300 dark:border-slate-700 flex flex-col items-center justify-center text-center opacity-60 aspect-[4/5]">
+<span class="material-symbols-outlined text-slate-400">person_add</span>
+<p class="text-[10px] uppercase font-bold text-slate-400 mt-1 tracking-tighter">Waiting</p>
+</div>
+<div class="bg-slate-100/30 dark:bg-slate-800/30 p-2 rounded-lg border border-dashed border-slate-300 dark:border-slate-700 flex flex-col items-center justify-center text-center opacity-60 aspect-[4/5]">
+<span class="material-symbols-outlined text-slate-400">person_add</span>
+<p class="text-[10px] uppercase font-bold text-slate-400 mt-1 tracking-tighter">Waiting</p>
+</div>
+<div class="bg-slate-100/30 dark:bg-slate-800/30 p-2 rounded-lg border border-dashed border-slate-300 dark:border-slate-700 flex flex-col items-center justify-center text-center opacity-60 aspect-[4/5]">
+<span class="material-symbols-outlined text-slate-400">person_add</span>
+<p class="text-[10px] uppercase font-bold text-slate-400 mt-1 tracking-tighter">Waiting</p>
+</div>
+<div class="bg-slate-100/30 dark:bg-slate-800/30 p-2 rounded-lg border border-dashed border-slate-300 dark:border-slate-700 flex flex-col items-center justify-center text-center opacity-60 aspect-[4/5]">
+<span class="material-symbols-outlined text-slate-400">person_add</span>
+<p class="text-[10px] uppercase font-bold text-slate-400 mt-1 tracking-tighter">Waiting</p>
+</div>
+<div class="bg-slate-100/30 dark:bg-slate-800/30 p-2 rounded-lg border border-dashed border-slate-300 dark:border-slate-700 flex flex-col items-center justify-center text-center opacity-60 aspect-[4/5]">
+<span class="material-symbols-outlined text-slate-400">person_add</span>
+<p class="text-[10px] uppercase font-bold text-slate-400 mt-1 tracking-tighter">Waiting</p>
+</div>
+<div class="bg-slate-100/30 dark:bg-slate-800/30 p-2 rounded-lg border border-dashed border-slate-300 dark:border-slate-700 flex flex-col items-center justify-center text-center opacity-60 aspect-[4/5]">
+<span class="material-symbols-outlined text-slate-400">person_add</span>
+<p class="text-[10px] uppercase font-bold text-slate-400 mt-1 tracking-tighter">Waiting</p>
+</div>
+<div class="bg-slate-100/30 dark:bg-slate-800/30 p-2 rounded-lg border border-dashed border-slate-300 dark:border-slate-700 flex flex-col items-center justify-center text-center opacity-60 aspect-[4/5]">
+<span class="material-symbols-outlined text-slate-400">person_add</span>
+<p class="text-[10px] uppercase font-bold text-slate-400 mt-1 tracking-tighter">Waiting</p>
+</div>
+<div class="bg-slate-100/30 dark:bg-slate-800/30 p-2 rounded-lg border border-dashed border-slate-300 dark:border-slate-700 flex flex-col items-center justify-center text-center opacity-60 aspect-[4/5]">
+<span class="material-symbols-outlined text-slate-400">person_add</span>
+<p class="text-[10px] uppercase font-bold text-slate-400 mt-1 tracking-tighter">Waiting</p>
+</div>
+<div class="bg-slate-100/30 dark:bg-slate-800/30 p-2 rounded-lg border border-dashed border-slate-300 dark:border-slate-700 flex flex-col items-center justify-center text-center opacity-60 aspect-[4/5]">
+<span class="material-symbols-outlined text-slate-400">person_add</span>
+<p class="text-[10px] uppercase font-bold text-slate-400 mt-1 tracking-tighter">Waiting</p>
+</div>
+<div class="bg-slate-100/30 dark:bg-slate-800/30 p-2 rounded-lg border border-dashed border-slate-300 dark:border-slate-700 flex flex-col items-center justify-center text-center opacity-60 aspect-[4/5]">
+<span class="material-symbols-outlined text-slate-400">person_add</span>
+<p class="text-[10px] uppercase font-bold text-slate-400 mt-1 tracking-tighter">Waiting</p>
+</div>
+<div class="bg-slate-100/30 dark:bg-slate-800/30 p-2 rounded-lg border border-dashed border-slate-300 dark:border-slate-700 flex flex-col items-center justify-center text-center opacity-60 aspect-[4/5]">
+<span class="material-symbols-outlined text-slate-400">person_add</span>
+<p class="text-[10px] uppercase font-bold text-slate-400 mt-1 tracking-tighter">Waiting</p>
+</div>
+<div class="bg-slate-100/30 dark:bg-slate-800/30 p-2 rounded-lg border border-dashed border-slate-300 dark:border-slate-700 flex flex-col items-center justify-center text-center opacity-60 aspect-[4/5]">
+<span class="material-symbols-outlined text-slate-400">person_add</span>
+<p class="text-[10px] uppercase font-bold text-slate-400 mt-1 tracking-tighter">Waiting</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Lobby Chat & Footer -->
+<div class="grid grid-cols-1 gap-6 pt-4">
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden shadow-sm flex flex-col h-64">
+<div class="bg-slate-50 dark:bg-slate-800/50 px-4 py-2 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+<h3 class="text-sm font-bold tracking-tight">Lobby Chat</h3>
+<span class="text-[10px] text-slate-500 uppercase font-bold">4 Players Connected</span>
+</div>
+<div class="flex-1 p-4 overflow-y-auto space-y-3 font-normal text-sm">
+<div class="flex gap-2">
+<span class="text-primary font-bold">ShadowReaper:</span>
+<span class="text-slate-600 dark:text-slate-300">Anyone ready to go?</span>
+</div>
+<div class="flex gap-2">
+<span class="text-primary font-bold">ViperQueen:</span>
+<span class="text-slate-600 dark:text-slate-300">Waiting for a full lobby or starting soon?</span>
+</div>
+<div class="flex gap-2">
+<span class="text-slate-400 italic">SYSTEM: Ghost_Ops has joined the lobby.</span>
+</div>
+<div class="flex gap-2">
+<span class="text-primary font-bold">Ghost_Ops:</span>
+<span class="text-slate-600 dark:text-slate-300">Ready!</span>
+</div>
+<div class="flex gap-2">
+<span class="text-primary font-bold font-display">You:</span>
+<span class="text-slate-600 dark:text-slate-300">Starting in 2 minutes if no one else joins.</span>
+</div>
+</div>
+<div class="p-3 border-t border-slate-200 dark:border-slate-800 flex gap-2">
+<input class="flex-1 bg-slate-100 dark:bg-slate-800 border-none rounded-lg px-4 py-2 text-sm focus:ring-1 focus:ring-primary outline-none" placeholder="Type a message..." type="text"/>
+<button class="bg-primary text-background-dark p-2 rounded-lg flex items-center justify-center px-4 font-bold text-xs">
+                                    SEND
+                                </button>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Stats Bar -->
+<footer class="mt-auto px-4 lg:px-10 py-4 flex items-center justify-between border-t border-primary/10 text-slate-500 text-xs">
+<div class="flex gap-6">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">bolt</span>
+                            Latency: 24ms
+                        </div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">public</span>
+                            Region: US-East
+                        </div>
+</div>
+<div>
+                        Ver 1.0.42-STABLE
+                    </div>
+</footer>
+</div>
+</div>
+</div>
+</div>
+</body></html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Cricket Live - Play vs Bot</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2bee2b",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102210",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+<header class="w-full border-b border-primary/20 bg-white dark:bg-background-dark/50 sticky top-0 z-50">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between h-16">
+<div class="flex items-center gap-3">
+<div class="bg-primary p-2 rounded-lg text-background-dark">
+<span class="material-symbols-outlined block">sports_cricket</span>
+</div>
+<span class="text-xl font-bold tracking-tight">CRICKET <span class="text-primary">PRO</span></span>
+</div>
+<div class="hidden md:flex items-center gap-8 bg-primary/5 px-6 py-2 rounded-full border border-primary/10">
+<div class="flex flex-col items-center">
+<span class="text-[10px] uppercase font-bold text-slate-500">Score</span>
+<span class="text-sm font-bold">45/2</span>
+</div>
+<div class="w-px h-6 bg-primary/20"></div>
+<div class="flex flex-col items-center">
+<span class="text-[10px] uppercase font-bold text-slate-500">Overs</span>
+<span class="text-sm font-bold">3.4</span>
+</div>
+<div class="w-px h-6 bg-primary/20"></div>
+<div class="flex flex-col items-center">
+<span class="text-[10px] uppercase font-bold text-slate-500">Target</span>
+<span class="text-sm font-bold">120</span>
+</div>
+<div class="w-px h-6 bg-primary/20"></div>
+<div class="flex flex-col items-center">
+<span class="text-[10px] uppercase font-bold text-slate-500">CRR</span>
+<span class="text-sm font-bold">12.2</span>
+</div>
+<div class="w-px h-6 bg-primary/20"></div>
+<div class="flex flex-col items-center">
+<span class="text-[10px] uppercase font-bold text-slate-500">RRR</span>
+<span class="text-sm font-bold">14.5</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 rounded-full hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<button class="p-2 rounded-full hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined">pause_circle</span>
+</button>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-grow flex flex-col items-center justify-center px-4 py-8">
+<div class="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
+<div class="flex flex-col items-center gap-4 order-2 lg:order-1">
+<div class="relative group">
+<div class="absolute -inset-1 bg-gradient-to-r from-primary to-emerald-400 rounded-full blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
+<div class="relative bg-white dark:bg-slate-800 p-1 rounded-full border-4 border-primary">
+<div class="w-32 h-32 lg:w-48 lg:h-48 rounded-full overflow-hidden bg-slate-200">
+<img alt="Player Portrait" class="w-full h-full object-cover" data-alt="Portrait of a young male professional athlete" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOLpXmlTuU8MyELfoR_Ej4NAJ8rVl5IMDSEwFXrgtLK16nTv7zf8vc2SOR-5T4iCEux2zsx3GZFXwIRV2gfNgnjB7cwRwYPTGEhi1B6OeuNRXocN0koB-SrPv5ooSSoVYjWNa42T5nDIrT8ajkQywj0RR5shpkV51irv4C6n9YdWhoGfWmedHcQmM5jZVB4jK_dHCSoOEU9ai1TJVsaZwNSOF56sM099FBFb7v3g-M11bZqDS-dkjfmBU8_9iprwCdW0k0cHoZFhs4"/>
+</div>
+</div>
+<div class="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-primary text-background-dark px-4 py-1 rounded-full text-xs font-bold uppercase shadow-lg">
+                        You
+                    </div>
+</div>
+<div class="text-center">
+<h3 class="text-2xl font-bold">Alex Johnson</h3>
+<p class="text-primary font-medium">Star Batsman</p>
+</div>
+</div>
+<div class="flex flex-col items-center justify-center order-1 lg:order-2 py-12 lg:py-0">
+<div class="bg-white/80 dark:bg-background-dark/80 backdrop-blur-md rounded-3xl p-8 border border-primary/20 shadow-2xl w-full text-center relative overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary to-transparent"></div>
+<span class="material-symbols-outlined text-primary text-6xl mb-4 animate-bounce">trending_up</span>
+<h2 class="text-5xl font-extrabold tracking-tighter mb-2">6 RUNS</h2>
+<p class="text-lg text-slate-500 uppercase tracking-widest font-semibold">Maximum Effort!</p>
+<div class="mt-8 flex justify-center gap-2">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+<div class="w-2 h-2 rounded-full bg-primary/40"></div>
+<div class="w-2 h-2 rounded-full bg-primary/20"></div>
+</div>
+</div>
+<div class="mt-8 bg-background-light dark:bg-slate-800 px-6 py-3 rounded-xl border border-primary/10 shadow-sm flex items-center gap-4">
+<span class="text-xs font-bold text-slate-400 uppercase">Recent</span>
+<div class="flex gap-2">
+<span class="w-8 h-8 flex items-center justify-center rounded-lg bg-slate-200 dark:bg-slate-700 font-bold text-sm">4</span>
+<span class="w-8 h-8 flex items-center justify-center rounded-lg bg-slate-200 dark:bg-slate-700 font-bold text-sm">1</span>
+<span class="w-8 h-8 flex items-center justify-center rounded-lg bg-slate-200 dark:bg-slate-700 font-bold text-sm">.</span>
+<span class="w-8 h-8 flex items-center justify-center rounded-lg bg-primary text-background-dark font-bold text-sm italic">6</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-center gap-4 order-3">
+<div class="relative group">
+<div class="absolute -inset-1 bg-gradient-to-r from-red-400 to-orange-400 rounded-full blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
+<div class="relative bg-white dark:bg-slate-800 p-1 rounded-full border-4 border-slate-300 dark:border-slate-700">
+<div class="w-32 h-32 lg:w-48 lg:h-48 rounded-full overflow-hidden bg-slate-200">
+<img alt="AI Bot Avatar" class="w-full h-full object-cover" data-alt="Modern sleek humanoid robot head illustration" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbdOJXwbMCEmuWAhA489gBhj68t-hFyfVbY_H9_nyR6rRx7e0LP8_lXUxSswgdw8hxEcovHw92PYaL39Ok_s4DxSufq_TagdAQV33RExfu6dPd-zyF-fvDs2doNJ6BRVOgrAVx0DKi1NkEoVCus9RMB9k7iPTPHm20-lHVJr01nPS-IUxgUfSeIX_Oy21jMY54h3c2ziWu7tkvT9HWj4mZIzcyr7AWd3D73RTR8VTRj7PI9fbBy1B3ZXteYR3Rw00psbYMhi4RJRGg"/>
+</div>
+</div>
+<div class="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-slate-800 text-white px-4 py-1 rounded-full text-xs font-bold uppercase shadow-lg">
+                        CPU
+                    </div>
+</div>
+<div class="text-center">
+<h3 class="text-2xl font-bold">CricketBot v2</h3>
+<p class="text-slate-500 font-medium">Difficulty: Professional</p>
+</div>
+</div>
+</div>
+</main>
+<footer class="w-full bg-white dark:bg-background-dark/80 border-t border-primary/10 p-6">
+<div class="max-w-4xl mx-auto">
+<div class="mb-4 flex items-center justify-between px-2">
+<span class="text-sm font-bold uppercase text-slate-500 tracking-wider">Select Your Move</span>
+<span class="text-xs text-primary bg-primary/10 px-2 py-1 rounded">Next Ball Ready</span>
+</div>
+<div class="grid grid-cols-6 gap-3 sm:gap-4">
+<button class="aspect-square flex flex-col items-center justify-center bg-white dark:bg-slate-800 border-2 border-slate-200 dark:border-slate-700 rounded-xl hover:border-primary hover:bg-primary/5 transition-all group shadow-sm">
+<span class="text-2xl font-black group-hover:text-primary">1</span>
+<span class="text-[10px] font-bold text-slate-400 uppercase mt-1">Single</span>
+</button>
+<button class="aspect-square flex flex-col items-center justify-center bg-white dark:bg-slate-800 border-2 border-slate-200 dark:border-slate-700 rounded-xl hover:border-primary hover:bg-primary/5 transition-all group shadow-sm">
+<span class="text-2xl font-black group-hover:text-primary">2</span>
+<span class="text-[10px] font-bold text-slate-400 uppercase mt-1">Double</span>
+</button>
+<button class="aspect-square flex flex-col items-center justify-center bg-white dark:bg-slate-800 border-2 border-slate-200 dark:border-slate-700 rounded-xl hover:border-primary hover:bg-primary/5 transition-all group shadow-sm">
+<span class="text-2xl font-black group-hover:text-primary">3</span>
+<span class="text-[10px] font-bold text-slate-400 uppercase mt-1">Triple</span>
+</button>
+<button class="aspect-square flex flex-col items-center justify-center bg-white dark:bg-slate-800 border-2 border-primary/40 rounded-xl hover:border-primary hover:bg-primary/5 transition-all group shadow-md">
+<span class="text-2xl font-black text-primary">4</span>
+<span class="text-[10px] font-bold text-primary/60 uppercase mt-1">Boundary</span>
+</button>
+<button class="aspect-square flex flex-col items-center justify-center bg-white dark:bg-slate-800 border-2 border-slate-200 dark:border-slate-700 rounded-xl hover:border-primary hover:bg-primary/5 transition-all group shadow-sm">
+<span class="text-2xl font-black group-hover:text-primary">5</span>
+<span class="text-[10px] font-bold text-slate-400 uppercase mt-1">Overthrow</span>
+</button>
+<button class="aspect-square flex flex-col items-center justify-center bg-primary text-background-dark border-2 border-primary rounded-xl hover:scale-105 active:scale-95 transition-all shadow-lg shadow-primary/20">
+<span class="text-3xl font-black">6</span>
+<span class="text-[10px] font-black uppercase mt-1">Maximum</span>
+</button>
+</div>
+</div>
+</footer>
+</body></html>

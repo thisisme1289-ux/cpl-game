@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2bee2b",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102210",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<title>Match Summary - Cricket League</title>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<header class="flex items-center justify-between border-b border-primary/20 bg-background-light/80 backdrop-blur-md px-6 py-4 sticky top-0 z-50">
+<div class="flex items-center gap-3">
+<div class="size-8 bg-primary rounded-lg flex items-center justify-center text-background-dark">
+<span class="material-symbols-outlined font-bold">sports_cricket</span>
+</div>
+<h2 class="text-xl font-bold tracking-tight">Cricket League</h2>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-primary/10 text-slate-700 hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-primary/10 text-slate-700 hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined">share</span>
+</button>
+</div>
+</header>
+<main class="flex-1 max-w-4xl mx-auto w-full px-4 py-8">
+<section class="mb-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
+<div class="flex flex-col gap-2 mb-6">
+<h1 class="text-5xl font-black tracking-tighter text-slate-900 leading-none">Better Luck <span class="text-primary">Next Time</span></h1>
+<div class="flex items-center gap-2 text-slate-500 font-medium uppercase tracking-widest text-xs">
+<span class="material-symbols-outlined text-sm">event_available</span>
+                            Match Completed • T20 Series • 20 Overs
+                        </div>
+</div>
+<div class="relative overflow-hidden rounded-xl bg-slate-900 aspect-[21/9] shadow-2xl group">
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10"></div>
+<img class="absolute inset-0 w-full h-full object-cover grayscale-[20%] group-hover:scale-105 transition-transform duration-700" data-alt="Cinematic shot of a cricket stadium at night" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjzWJfhh0IzAPL8XBEvG7NGCPjNqZA2UiqV3RiPYq9Did3zZ-aAhAc0nCWReS3l9Djjwf8ptFctJ8qJ_-ybdxkChfYGzCSoDQ3CB8sD-bO9MZKtFBSl6wl9YkF2cpuyMKMxTBKz8PCyHedqtwj_Is7bLBXvnfGagVsZbsUaUmdR5j-CbJj70irx27LB6HvwvddafCNHZSwQi2qt5ieJptUUicJZ_b7ENKUlpR3lKKmpwSuQwGCjmTVLZCZvVq99-40K9C8yNuPQPl4"/>
+<div class="absolute bottom-0 left-0 w-full p-8 z-20 flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div class="space-y-2">
+<p class="text-primary font-bold text-sm tracking-widest uppercase">Final Score</p>
+<div class="flex items-baseline gap-4">
+<div class="flex flex-col">
+<span class="text-white text-3xl font-black">Team Alpha</span>
+<span class="text-primary text-xl font-bold">152/4 (20.0)</span>
+</div>
+<span class="text-white/40 text-xl font-light italic">vs</span>
+<div class="flex flex-col">
+<span class="text-white/70 text-3xl font-black">Team Omega</span>
+<span class="text-white/70 text-xl font-bold">148/10 (19.4)</span>
+</div>
+</div>
+</div>
+<div class="bg-primary/90 text-background-dark px-4 py-2 rounded font-bold text-sm backdrop-blur-sm">
+                                Team Alpha won by 4 runs
+                            </div>
+</div>
+</div>
+</section>
+<section class="mb-10">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-primary">person</span>
+<h2 class="text-xl font-bold">Your Performance</h2>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+<div class="group bg-white border border-primary/20 p-6 rounded-xl hover:border-primary transition-all shadow-sm">
+<p class="text-slate-500 text-sm font-medium mb-1">Runs Scored</p>
+<div class="flex items-baseline gap-2">
+<p class="text-3xl font-black text-slate-900">42</p>
+<p class="text-slate-400 font-medium">from 28 balls</p>
+</div>
+<div class="mt-4 h-1 w-full bg-slate-100 rounded-full overflow-hidden">
+<div class="h-full bg-primary" style="width: 65%"></div>
+</div>
+</div>
+<div class="group bg-white border border-primary/20 p-6 rounded-xl hover:border-primary transition-all shadow-sm">
+<p class="text-slate-500 text-sm font-medium mb-1">Bowling Stats</p>
+<div class="flex items-baseline gap-2">
+<p class="text-3xl font-black text-slate-900">2/18</p>
+<p class="text-slate-400 font-medium">in 4.0 overs</p>
+</div>
+<div class="mt-4 flex gap-1">
+<span class="size-2 rounded-full bg-primary"></span>
+<span class="size-2 rounded-full bg-primary"></span>
+<span class="size-2 rounded-full bg-slate-200"></span>
+</div>
+</div>
+<div class="group bg-white border border-primary/20 p-6 rounded-xl hover:border-primary transition-all shadow-sm">
+<p class="text-slate-500 text-sm font-medium mb-1">Fielding</p>
+<div class="flex items-baseline gap-2">
+<p class="text-3xl font-black text-slate-900">1</p>
+<p class="text-slate-400 font-medium">Catch taken</p>
+</div>
+<div class="mt-4 text-xs font-bold text-primary uppercase">Clean Sheet</div>
+</div>
+</div>
+</section>
+<section class="mb-10">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-primary">groups</span>
+<h2 class="text-xl font-bold">Team Breakdown</h2>
+</div>
+<div class="bg-white border border-primary/10 rounded-xl overflow-hidden shadow-sm">
+<table class="w-full text-left">
+<thead>
+<tr class="bg-primary/5 text-slate-500 text-xs uppercase tracking-widest">
+<th class="px-6 py-4 font-bold">Player</th>
+<th class="px-6 py-4 font-bold">Role</th>
+<th class="px-6 py-4 font-bold text-center">R</th>
+<th class="px-6 py-4 font-bold text-center">B</th>
+<th class="px-6 py-4 font-bold text-right">SR</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-primary/5">
+<tr class="hover:bg-primary/5 transition-colors">
+<td class="px-6 py-4 font-bold text-slate-900">You (Captain)</td>
+<td class="px-6 py-4 text-slate-500 text-sm italic">All-rounder</td>
+<td class="px-6 py-4 text-center font-bold">42</td>
+<td class="px-6 py-4 text-center text-slate-500">28</td>
+<td class="px-6 py-4 text-right font-medium text-primary">150.0</td>
+</tr>
+<tr class="hover:bg-primary/5 transition-colors">
+<td class="px-6 py-4 font-bold text-slate-900">S. Miller</td>
+<td class="px-6 py-4 text-slate-500 text-sm italic">Batsman</td>
+<td class="px-6 py-4 text-center font-bold">35</td>
+<td class="px-6 py-4 text-center text-slate-500">30</td>
+<td class="px-6 py-4 text-right font-medium">116.7</td>
+</tr>
+<tr class="hover:bg-primary/5 transition-colors">
+<td class="px-6 py-4 font-bold text-slate-900">J. Doe</td>
+<td class="px-6 py-4 text-slate-500 text-sm italic">Wicketkeeper</td>
+<td class="px-6 py-4 text-center font-bold">12</td>
+<td class="px-6 py-4 text-center text-slate-500">8</td>
+<td class="px-6 py-4 text-right font-medium">150.0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<div class="flex flex-col sm:flex-row gap-4 pt-6 border-t border-primary/10">
+<button class="flex-1 flex items-center justify-center gap-2 bg-slate-900 text-white rounded-xl h-14 font-bold hover:bg-slate-800 transition-all shadow-lg active:scale-95">
+<span class="material-symbols-outlined">refresh</span>
+                        REMATCH
+                    </button>
+<button class="flex-1 flex items-center justify-center gap-2 bg-white border-2 border-slate-900 text-slate-900 rounded-xl h-14 font-bold hover:bg-slate-50 transition-all active:scale-95">
+<span class="material-symbols-outlined">home</span>
+                        BACK TO LOBBY
+                    </button>
+</div>
+</main>
+<footer class="mt-auto py-10 px-6 border-t border-primary/10 bg-white">
+<div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+<div class="flex items-center gap-2 opacity-50 grayscale">
+<span class="material-symbols-outlined">verified</span>
+<span class="text-xs font-bold uppercase tracking-widest">Official League Match System v2.4</span>
+</div>
+<div class="flex gap-6">
+<a class="text-slate-400 hover:text-primary transition-colors text-sm font-medium" href="#">Terms</a>
+<a class="text-slate-400 hover:text-primary transition-colors text-sm font-medium" href="#">Leaderboard</a>
+<a class="text-slate-400 hover:text-primary transition-colors text-sm font-medium" href="#">Support</a>
+</div>
+</div>
+</footer>
+</div>
+</div>
+</body></html>

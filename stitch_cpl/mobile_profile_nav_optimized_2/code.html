@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Gaming Pro - User Profile</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2bee2b",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102210",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100"><div class="fixed inset-0 bg-background-dark/50 backdrop-blur-sm z-40 hidden transition-opacity duration-300" id="mobile-menu-backdrop"></div>
+<button class="md:hidden fixed top-6 right-6 z-50 bg-primary p-2 rounded-lg text-background-dark shadow-lg" id="menu-toggle">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="flex min-h-screen">
+<!-- Side Navigation -->
+<aside class="w-64 border-r border-primary/10 bg-white dark:bg-background-dark flex flex-col p-6 sticky top-0 h-screen fixed md:sticky left-0 top-0 z-50 transform -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out">
+<div class="flex items-center gap-3 mb-10">
+<div class="h-10 w-10 bg-primary rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-background-dark">sports_esports</span>
+</div>
+<span class="font-bold text-xl tracking-tight">Nexus Gaming</span>
+</div>
+<nav class="flex-1 space-y-2">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-primary/10 transition-colors nav-link" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg bg-primary text-background-dark font-bold shadow-sm nav-link" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-medium">Profile</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-primary/10 transition-colors nav-link" href="#">
+<span class="material-symbols-outlined">leaderboard</span>
+<span class="font-medium">Leaderboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-primary/10 transition-colors nav-link" href="#">
+<span class="material-symbols-outlined">groups</span>
+<span class="font-medium">Friends</span>
+</a>
+<a class="nav-link flex items-center gap-3 px-4 py-3 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-primary/10 transition-colors" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-medium">Logout</span>
+</a></nav>
+<div class="mt-auto border-t border-primary/10 pt-6">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-full bg-cover bg-center" data-alt="Gaming Pro user profile circular avatar" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuArioohTSbYaSMwUcceDfld10YsGEbSIz83ktxcyWKE0yhE6ShpQzyyqbwTtCICWo2-UL-0NzjaGr_FHG0NjT-jdHN0kG6vqc2ZM1fB-3jCqJJmsbFDwB3bozu4DJfBhuLaXa6tGfuzMMT02q5NpH66yVD-fodZHAJ3UF6C70E134ZeGQAyJaPQgScSnchkMnKWgp50U263_I-g8ruVy5m5B6VumQgEudAH-pErGUgpnzqR9YdpgK_pNUwvh900TMcmxjbxDJhWYAlt')"></div>
+<div class="flex flex-col">
+<span class="text-sm font-bold">Gaming Pro</span>
+<span class="text-xs text-primary">Elite Tier</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 overflow-y-auto">
+<!-- Header Section -->
+<header class="bg-white dark:bg-background-dark border-b border-primary/10 p-8">
+<div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-8">
+<div class="relative">
+<div class="h-32 w-32 rounded-full border-4 border-primary p-1">
+<div class="h-full w-full rounded-full bg-cover bg-center" data-alt="Large profile photo of professional gamer" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAzzqXrRbdtZC34UYB9wQ2ZUO8yok7e_EBuTaG36XsFJBGvDFept7s6UdkwCFilDQfSRF9GURNwxeTP5wSaowVsl237KAbaqZEmF2uqJe80bn5AqnEELf_VWKjUbxDywSdnZeZ11aENIHiyCsE67uCy3L-aAJ_iAXlwktNWK8RqowqzNepivio9Bfwa94nZzCY5ALH3WLFr-im7TruhFmEvEg5CG1Vw2naetzmh-f6vs4CFpRZP6aBqieekqgWs-HMbnoG_Eyk3ueqR')"></div>
+</div>
+<div class="absolute bottom-1 right-1 bg-primary text-background-dark rounded-full p-1.5 flex items-center justify-center border-2 border-white">
+<span class="material-symbols-outlined text-sm font-bold">verified</span>
+</div>
+</div>
+<div class="flex-1 text-center md:text-left">
+<div class="flex flex-col md:flex-row md:items-center gap-3 mb-2">
+<h1 class="text-3xl font-bold">Gaming Pro</h1>
+<span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-primary/20 text-primary border border-primary/30 uppercase tracking-widest">Elite Tier Member</span>
+</div>
+<p class="text-slate-500 dark:text-slate-400 max-w-lg">Competitive FPS specialist and strategic advisor. Ranked top 1% in Global Offensive and Tactical Ops. Join my clan for weekend tournaments.</p>
+</div>
+<div class="flex gap-3">
+<button class="bg-primary hover:bg-primary/90 text-background-dark font-bold px-6 py-2.5 rounded-lg transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">edit</span>
+                            Edit Profile
+                        </button>
+<button class="bg-primary/10 hover:bg-primary/20 text-slate-900 dark:text-slate-100 font-bold px-4 py-2.5 rounded-lg transition-all">
+<span class="material-symbols-outlined">share</span>
+</button>
+</div>
+</div>
+<!-- Stats Bar -->
+<div class="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4 mt-10">
+<div class="bg-background-light dark:bg-slate-900/50 p-4 rounded-xl border border-primary/5">
+<p class="text-xs text-slate-500 uppercase font-bold tracking-wider mb-1">Matches Played</p>
+<p class="text-2xl font-bold text-primary">1,240</p>
+</div>
+<div class="bg-background-light dark:bg-slate-900/50 p-4 rounded-xl border border-primary/5">
+<p class="text-xs text-slate-500 uppercase font-bold tracking-wider mb-1">Win Rate</p>
+<p class="text-2xl font-bold text-primary">85%</p>
+</div>
+<div class="bg-background-light dark:bg-slate-900/50 p-4 rounded-xl border border-primary/5">
+<p class="text-xs text-slate-500 uppercase font-bold tracking-wider mb-1">Achievements</p>
+<p class="text-2xl font-bold text-primary">42</p>
+</div>
+<div class="bg-background-light dark:bg-slate-900/50 p-4 rounded-xl border border-primary/5">
+<p class="text-xs text-slate-500 uppercase font-bold tracking-wider mb-1">Global Rank</p>
+<p class="text-2xl font-bold text-primary">#482</p>
+</div>
+</div>
+</header>
+<!-- Tabs Section -->
+<div class="max-w-5xl mx-auto px-8">
+<div class="flex border-b border-primary/10 gap-8">
+<button class="border-b-2 border-primary text-slate-900 dark:text-slate-100 py-4 font-bold text-sm tracking-wide">Recent Matches</button>
+<button class="border-b-2 border-transparent text-slate-500 hover:text-primary py-4 font-bold text-sm tracking-wide transition-colors">Achievements</button>
+<button class="border-b-2 border-transparent text-slate-500 hover:text-primary py-4 font-bold text-sm tracking-wide transition-colors">Account Settings</button>
+</div>
+<div class="py-10 grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Left Column: Recent Matches -->
+<div class="lg:col-span-2 space-y-4">
+<div class="flex items-center justify-between mb-4">
+<h2 class="text-xl font-bold">Recent Match History</h2>
+<button class="text-primary text-sm font-bold hover:underline">View All</button>
+</div>
+<!-- Match Card -->
+<div class="bg-white dark:bg-slate-900/40 p-5 rounded-xl border border-primary/10 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="h-12 w-12 rounded bg-primary/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">shield</span>
+</div>
+<div>
+<p class="font-bold">Victory in Urban Tactical</p>
+<p class="text-xs text-slate-500 font-medium">Ranked Solo Queue • 2 hours ago</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-primary font-bold">+24 LP</p>
+<p class="text-xs text-slate-500">K/D/A: 14/2/8</p>
+</div>
+</div>
+<!-- Match Card -->
+<div class="bg-white dark:bg-slate-900/40 p-5 rounded-xl border border-primary/10 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="h-12 w-12 rounded bg-slate-200 dark:bg-slate-800 flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-400">skull</span>
+</div>
+<div>
+<p class="font-bold">Defeat in Neon Warzone</p>
+<p class="text-xs text-slate-500 font-medium">Ranked Solo Queue • 5 hours ago</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-red-500 font-bold">-18 LP</p>
+<p class="text-xs text-slate-500">K/D/A: 8/10/4</p>
+</div>
+</div>
+<!-- Match Card -->
+<div class="bg-white dark:bg-slate-900/40 p-5 rounded-xl border border-primary/10 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="h-12 w-12 rounded bg-primary/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">military_tech</span>
+</div>
+<div>
+<p class="font-bold">Victory in Desert Ops</p>
+<p class="text-xs text-slate-500 font-medium">Tournament Match • 1 day ago</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-primary font-bold">+42 LP</p>
+<p class="text-xs text-slate-500">K/D/A: 21/4/12</p>
+</div>
+</div>
+</div>
+<!-- Right Column: Sidebar content -->
+<div class="space-y-8">
+<!-- Achievements Preview -->
+<section>
+<h2 class="text-xl font-bold mb-4">Top Achievements</h2>
+<div class="space-y-3">
+<div class="flex items-center gap-3 bg-white dark:bg-slate-900/40 p-3 rounded-lg border border-primary/10">
+<div class="text-primary">
+<span class="material-symbols-outlined text-3xl">emoji_events</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-bold">Unstoppable</p>
+<div class="w-full bg-slate-200 dark:bg-slate-800 h-1.5 rounded-full mt-1">
+<div class="bg-primary h-1.5 rounded-full" style="width: 100%"></div>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-3 bg-white dark:bg-slate-900/40 p-3 rounded-lg border border-primary/10">
+<div class="text-primary">
+<span class="material-symbols-outlined text-3xl">target</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-bold">Sharpshooter</p>
+<div class="w-full bg-slate-200 dark:bg-slate-800 h-1.5 rounded-full mt-1">
+<div class="bg-primary h-1.5 rounded-full" style="width: 75%"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Account Settings Preview -->
+<section>
+<h2 class="text-xl font-bold mb-4">Quick Settings</h2>
+<div class="bg-white dark:bg-slate-900/40 rounded-xl border border-primary/10 overflow-hidden">
+<button class="w-full flex items-center justify-between p-4 hover:bg-primary/5 transition-colors border-b border-primary/10">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-400">notifications</span>
+<span class="text-sm font-medium">Notification Settings</span>
+</div>
+<span class="material-symbols-outlined text-slate-400">chevron_right</span>
+</button>
+<button class="w-full flex items-center justify-between p-4 hover:bg-primary/5 transition-colors border-b border-primary/10">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-400">lock</span>
+<span class="text-sm font-medium">Privacy &amp; Security</span>
+</div>
+<span class="material-symbols-outlined text-slate-400">chevron_right</span>
+</button>
+<button class="w-full flex items-center justify-between p-4 hover:bg-primary/5 transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-400">payments</span>
+<span class="text-sm font-medium">Billing Details</span>
+</div>
+<span class="material-symbols-outlined text-slate-400">chevron_right</span>
+</button>
+</div>
+</section>
+</div>
+</div>
+</div>
+</main>
+</div>
+<script>
+    const menuToggle = document.getElementById('menu-toggle');
+    const sidebar = document.querySelector('aside');
+    const backdrop = document.getElementById('mobile-menu-backdrop');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    function toggleMenu() {
+        const isOpen = !sidebar.classList.contains('-translate-x-full');
+        if (isOpen) {
+            sidebar.classList.add('-translate-x-full');
+            backdrop.classList.add('hidden');
+            backdrop.classList.remove('opacity-100');
+            menuToggle.innerHTML = '<span class="material-symbols-outlined">menu</span>';
+        } else {
+            sidebar.classList.remove('-translate-x-full');
+            backdrop.classList.remove('hidden');
+            setTimeout(() => backdrop.classList.add('opacity-100'), 10);
+            menuToggle.innerHTML = '<span class="material-symbols-outlined">close</span>';
+        }
+    }
+
+    menuToggle.addEventListener('click', toggleMenu);
+    backdrop.addEventListener('click', toggleMenu);
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            // Only close if we are in mobile view
+            if (window.innerWidth < 768) {
+                toggleMenu();
+            }
+        });
+    });
+</script></body></html>

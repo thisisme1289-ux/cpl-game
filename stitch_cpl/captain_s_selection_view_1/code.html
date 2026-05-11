@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2bee2b",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102210",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<title>Captain's Dashboard</title>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<header class="flex items-center justify-between border-b border-primary/20 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md sticky top-0 z-50 px-6 py-4 lg:px-20">
+<div class="flex items-center gap-3">
+<div class="bg-primary p-2 rounded-lg">
+<span class="material-symbols-outlined text-background-dark">sports_cricket</span>
+</div>
+<h2 class="text-xl font-bold tracking-tight">Match Center</h2>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden md:flex flex-col items-end">
+<span class="text-xs font-semibold uppercase tracking-wider text-primary">Live Session</span>
+<span class="text-sm font-medium">Stadium Grounds A</span>
+</div>
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-primary/10 text-slate-900 dark:text-slate-100 hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+</header>
+<main class="flex-1 max-w-5xl mx-auto w-full px-4 py-8 lg:px-8">
+<section class="mb-8 flex flex-col md:flex-row items-center gap-6 p-6 rounded-xl bg-white dark:bg-slate-900 shadow-sm border border-primary/10">
+<div class="relative">
+<div class="size-24 rounded-full border-4 border-primary bg-slate-200 overflow-hidden" data-alt="Professional profile portrait of team captain" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAcVLebBeBVYG1byurPxh6_A40IzD-KKiQwlR06x_xFbsugadzgidHLwWtvhu59OUpHHgbS_QP6RXHGFyVatuJsQDdfpRX7vkIbdPZ0_CKSw7sCFN1qelRrBwC3cqDASJ-k3P6NAmaer-VPd2qA1vZJi-BZNoP7rEyzdfl_6YtSv_TI-QXcQvWesfp5LfmiQSWe0DAFc7ugAs0idnsy5gSxFmDNLC77-HmshGaj5TWL3Ra1uIPoFDuHtUtHYKiui9Pst6iCXSw4sw9v'); background-size: cover; background-position: center;">
+</div>
+<div class="absolute -bottom-2 -right-2 bg-primary text-background-dark px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest shadow-lg">
+                            Captain
+                        </div>
+</div>
+<div class="flex-1 text-center md:text-left">
+<h1 class="text-3xl font-bold">Rohit Sharma</h1>
+<p class="text-slate-500 dark:text-slate-400 font-medium">Elite Squad • 42 Matches Won</p>
+<div class="mt-3 flex flex-wrap justify-center md:justify-start gap-2">
+<span class="px-3 py-1 bg-primary/10 text-primary text-xs font-bold rounded-full border border-primary/20 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">verified</span>
+                                Verified Leader
+                            </span>
+<span class="px-3 py-1 bg-slate-100 dark:bg-slate-800 text-xs font-bold rounded-full border border-slate-200 dark:border-slate-700">
+                                Season Rank #1
+                            </span>
+</div>
+</div>
+</section>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<div class="lg:col-span-1 space-y-6">
+<div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-primary/10 shadow-sm">
+<h3 class="text-lg font-bold mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">toast</span>
+                                Match Decision
+                            </h3>
+<div class="flex flex-col gap-3">
+<label class="group relative flex cursor-pointer items-center justify-between rounded-lg border-2 border-slate-100 dark:border-slate-800 p-4 transition-all hover:border-primary/50 has-[:checked]:border-primary has-[:checked]:bg-primary/5">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-400 group-has-[:checked]:text-primary">sports_cricket</span>
+<span class="font-bold">Bat First</span>
+</div>
+<input checked="" class="h-4 w-4 border-slate-300 text-primary focus:ring-primary" name="decision" type="radio" value="bat"/>
+</label>
+<label class="group relative flex cursor-pointer items-center justify-between rounded-lg border-2 border-slate-100 dark:border-slate-800 p-4 transition-all hover:border-primary/50 has-[:checked]:border-primary has-[:checked]:bg-primary/5">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-400 group-has-[:checked]:text-primary">sports_baseball</span>
+<span class="font-bold">Bowl First</span>
+</div>
+<input class="h-4 w-4 border-slate-300 text-primary focus:ring-primary" name="decision" type="radio" value="bowl"/>
+</label>
+</div>
+</div>
+<div class="bg-primary p-6 rounded-xl shadow-lg shadow-primary/20 text-background-dark">
+<h3 class="text-lg font-bold mb-2">Strategy Tip</h3>
+<p class="text-sm font-medium opacity-80 leading-relaxed">
+                                The pitch looks dry today. Winning the toss and opting to bat first might give you a significant advantage in the second innings.
+                            </p>
+<button class="mt-4 w-full py-2 bg-background-dark text-primary rounded-lg font-bold text-sm hover:opacity-90 transition-opacity">
+                                View Analytics
+                            </button>
+</div>
+</div>
+<div class="lg:col-span-2 space-y-4">
+<div class="flex items-center justify-between px-2">
+<h3 class="text-lg font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">format_list_numbered</span>
+                                Lineup Selection
+                            </h3>
+<span class="text-sm font-medium text-slate-500">12 Players Total</span>
+</div>
+<div class="space-y-2">
+<div class="flex flex-col gap-2">
+<!-- Player Card Loop (12 Total) -->
+<div class="flex items-center gap-4 bg-white dark:bg-slate-900 p-3 rounded-lg border border-slate-100 dark:border-slate-800 hover:shadow-md transition-shadow group">
+<div class="flex-none text-slate-400 font-bold text-sm w-6">01</div>
+<div class="size-10 rounded-full bg-slate-200 flex-none" data-alt="Close up of athlete face" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCHQd9EyA1KuZcS_A5aJdNaXL35eqgffMCx1MdI6bcDsR_Qlry0QSR0E6xEg2EbPgQq29tADHA5OkrXueUBjKG_uLyM_2bMDSXMhukmVyE16n4IXpSFefNMzB-ncNvb5U4QeDoIH1tuP_8kzNGoH_lbQL5zcCMj0kd-kA6_4NYD9eASl1tmMS6DLKTWBd2lbsxVfVYzyJ07yJ40cPvz-Z62xISQYZAEk-VIjHz-GizZwjkuPQj2G5amXiMJwrfYOv86ZifgbFveOF7u'); background-size: cover;"></div>
+<div class="flex-1">
+<p class="font-bold text-sm">Virat Kohli</p>
+<p class="text-xs text-slate-500 font-medium uppercase tracking-tight">All-Rounder</p>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-1 hover:text-primary transition-colors text-slate-400">
+<span class="material-symbols-outlined text-lg">expand_less</span>
+</button>
+<button class="p-1 hover:text-primary transition-colors text-slate-400">
+<span class="material-symbols-outlined text-lg">expand_more</span>
+</button>
+<div class="h-6 w-px bg-slate-100 dark:bg-slate-800 mx-1"></div>
+<span class="material-symbols-outlined text-slate-300 cursor-move">drag_indicator</span>
+</div>
+</div>
+<div class="flex items-center gap-4 bg-white dark:bg-slate-900 p-3 rounded-lg border border-slate-100 dark:border-slate-800 hover:shadow-md transition-shadow group">
+<div class="flex-none text-slate-400 font-bold text-sm w-6">02</div>
+<div class="size-10 rounded-full bg-slate-200 flex-none" data-alt="Close up of athlete face" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDJnvHmsOxktEmATtdKGNVW7-9QnkCEB5yyUwhK9Vr9nOTD9sNabO1aP-3pqEyBGBjQqvu57l8X8VWyBIQywH7e88ht5dmdU3gOR6jOiDHxey7DjOPq13Cpw3waE3uVcW1X_fC-WerDp-vhEFJMme_x8YSXf4kno1jFgid2xBdHqw2IdccoGwO3gNx831s3wB0EI-feSpHbfZyCV_fBzXC6eH77KI-XTPd3EPUb0wUXq0L6BaHyOPTljBURm3FP_EaU4fvQsw8FqSk4'); background-size: cover;"></div>
+<div class="flex-1">
+<p class="font-bold text-sm">KL Rahul</p>
+<p class="text-xs text-slate-500 font-medium uppercase tracking-tight">Wicketkeeper</p>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-1 hover:text-primary transition-colors text-slate-400">
+<span class="material-symbols-outlined text-lg">expand_less</span>
+</button>
+<button class="p-1 hover:text-primary transition-colors text-slate-400">
+<span class="material-symbols-outlined text-lg">expand_more</span>
+</button>
+<div class="h-6 w-px bg-slate-100 dark:bg-slate-800 mx-1"></div>
+<span class="material-symbols-outlined text-slate-300 cursor-move">drag_indicator</span>
+</div>
+</div>
+<div class="flex items-center gap-4 bg-white dark:bg-slate-900 p-3 rounded-lg border border-slate-100 dark:border-slate-800 hover:shadow-md transition-shadow group">
+<div class="flex-none text-slate-400 font-bold text-sm w-6">03</div>
+<div class="size-10 rounded-full bg-slate-200 flex-none" data-alt="Close up of athlete face" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCE6ZBt5EOc7pOSCWThNYoZy7yklQNsw_2oFwiPkkvkIRg6kLOyFDnh73pInWgdj6ndQi2w7TSCFhKpeQfg_G3GW_PvR4Pbu9pHKNwDe2ztU1Oyd7NVBI-avG3g8gX1yfD-fWxbZ-e4Ogc_mbvVaZdhg-8nr2N9SL3heVcFRfw6r4I7TCM0fQm_gofmrcgcpxrceX6zQG7TQRWruv29GKbsFz3tnBeh7A2L152dckZ_VXdYOl7StO42dSU5y6jbdFOdI4RWyuiAhFzN'); background-size: cover;"></div>
+<div class="flex-1">
+<p class="font-bold text-sm">Shubman Gill</p>
+<p class="text-xs text-slate-500 font-medium uppercase tracking-tight">Opening Batsman</p>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-1 hover:text-primary transition-colors text-slate-400">
+<span class="material-symbols-outlined text-lg">expand_less</span>
+</button>
+<button class="p-1 hover:text-primary transition-colors text-slate-400">
+<span class="material-symbols-outlined text-lg">expand_more</span>
+</button>
+<div class="h-6 w-px bg-slate-100 dark:bg-slate-800 mx-1"></div>
+<span class="material-symbols-outlined text-slate-300 cursor-move">drag_indicator</span>
+</div>
+</div>
+<div class="flex items-center gap-4 bg-white dark:bg-slate-900 p-3 rounded-lg border border-slate-100 dark:border-slate-800 hover:shadow-md transition-shadow group">
+<div class="flex-none text-slate-400 font-bold text-sm w-6">04</div>
+<div class="size-10 rounded-full bg-slate-200 flex-none" data-alt="Close up of athlete face" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBIPOPCvfBcDQVFKqJaipjljfw8sMDJlbLT4oAyxNp0ftSocolpGvJJvmSi9TLN0W9sMU3ogPjh2rcNZ04A1LxHCgT25E5GSFlnZgRP4nHvbjU29D193eI36g3C6DfcS4q5EE4ymvdtwzvCCoYs_ZEzXZbBZZ7VH6cSm3LkI1hJlxcQ0S4Okxgm1lIcFV3g__ZD24xFqlUY4DfLf91YO6TOXywNI0X3LEL0nUCMvW6JGPoaUruXWJ3zwK2rV21Pq_lIkmRAzNL21Imr'); background-size: cover;"></div>
+<div class="flex-1">
+<p class="font-bold text-sm">Suryakumar Yadav</p>
+<p class="text-xs text-slate-500 font-medium uppercase tracking-tight">Batsman</p>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-1 hover:text-primary transition-colors text-slate-400">
+<span class="material-symbols-outlined text-lg">expand_less</span>
+</button>
+<button class="p-1 hover:text-primary transition-colors text-slate-400">
+<span class="material-symbols-outlined text-lg">expand_more</span>
+</button>
+<div class="h-6 w-px bg-slate-100 dark:bg-slate-800 mx-1"></div>
+<span class="material-symbols-outlined text-slate-300 cursor-move">drag_indicator</span>
+</div>
+</div>
+<div class="flex items-center gap-4 bg-white dark:bg-slate-900 p-3 rounded-lg border border-slate-100 dark:border-slate-800 hover:shadow-md transition-shadow group">
+<div class="flex-none text-slate-400 font-bold text-sm w-6">05</div>
+<div class="size-10 rounded-full bg-slate-200 flex-none" data-alt="Close up of athlete face" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC0TxhnSIIxHQV60fidlsHJpDFGIVxWB7CVm6pTVMNNKoAGsyZErn_MlxgDNOl_GAflNZLAs3HIoNjRhBJr5hZbBcYqYNLsbCZKncOPW5r8kSMtVFnr3weFZ8cyvEeiqx7Rq-BcUD2XhGsCyqnV0eenHHxAEIuOJAI2rj1M5sdZJ3vQjvqenRKO3moJpWilRUzRC_OJxugifXvQkqk2k648H4rPcoVh1O7sJuBWmx4nZsFTRYuWXYzeWfu8XWhMT-Xg73m_ygqtf5mB'); background-size: cover;"></div>
+<div class="flex-1">
+<p class="font-bold text-sm">Hardik Pandya</p>
+<p class="text-xs text-slate-500 font-medium uppercase tracking-tight">All-Rounder</p>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-1 hover:text-primary transition-colors text-slate-400">
+<span class="material-symbols-outlined text-lg">expand_less</span>
+</button>
+<button class="p-1 hover:text-primary transition-colors text-slate-400">
+<span class="material-symbols-outlined text-lg">expand_more</span>
+</button>
+<div class="h-6 w-px bg-slate-100 dark:bg-slate-800 mx-1"></div>
+<span class="material-symbols-outlined text-slate-300 cursor-move">drag_indicator</span>
+</div>
+</div>
+<div class="flex items-center gap-4 bg-white dark:bg-slate-900 p-3 rounded-lg border border-slate-100 dark:border-slate-800 hover:shadow-md transition-shadow group">
+<div class="flex-none text-slate-400 font-bold text-sm w-6">06</div>
+<div class="size-10 rounded-full bg-slate-200 flex-none" data-alt="Close up of athlete face" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCVvzDhMJz9GouFa34YI_EQp28zeuuRuFNdOae-bVi8Nt6CAJWnRPp8LQ-ewrsjs3Tjcey3tGfuA6oIgokLIRXtfuknQDRD0rgL1BrxOpwridlE8txJrio9Esugs7BGs9JjUTaq5ncBLKOqN1o17dF2oXk8XOnnTkI4QP73Z85JRmGbGe1ferp9D2V-3FwuK8oGAfyk4SwJq2C0EIVGdGNOdEtNvwF7m5YTRgaAdk78iclXv2p2_s-agh5IgXCF40ABaoMxzyidHKhj'); background-size: cover;"></div>
+<div class="flex-1">
+<p class="font-bold text-sm">Ravindra Jadeja</p>
+<p class="text-xs text-slate-500 font-medium uppercase tracking-tight">Spinner</p>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-1 hover:text-primary transition-colors text-slate-400">
+<span class="material-symbols-outlined text-lg">expand_less</span>
+</button>
+<button class="p-1 hover:text-primary transition-colors text-slate-400">
+<span class="material-symbols-outlined text-lg">expand_more</span>
+</button>
+<div class="h-6 w-px bg-slate-100 dark:bg-slate-800 mx-1"></div>
+<span class="material-symbols-outlined text-slate-300 cursor-move">drag_indicator</span>
+</div>
+</div>
+<div class="flex items-center gap-4 bg-white dark:bg-slate-900 p-3 rounded-lg border border-slate-100 dark:border-slate-800 hover:shadow-md transition-shadow group">
+<div class="flex-none text-slate-400 font-bold text-sm w-6">07</div>
+<div class="size-10 rounded-full bg-slate-200 flex-none" data-alt="Close up of athlete face" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC6v5OAJnt1pw6LJgHYPWeYRwPzwKP7pJCbpyZ0Mc6XajX49zXLThS5VPERHPI5OQq9Yk67KmhpfyTD1nmA2M0BeGZGdjOFx0dOV4pWdOsjs71MC14RYtufpKTCSgncj3ZwWV93Gh-l8Qpl5noGFvkxOAP5CzCEK1gJ51cLoE9q_8gz4xXE9at2pZ_pmYCT_-oxf_7zP6qGTZx_sTdeYEpV__4Juh50ZOpA9kPoNG2GBUkpfNB5DeOiwlwhPLY75eI0ahc2aN4USMAc'); background-size: cover;"></div>
+<div class="flex-1">
+<p class="font-bold text-sm">Axar Patel</p>
+<p class="text-xs text-slate-500 font-medium uppercase tracking-tight">Spinner</p>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-1 hover:text-primary transition-colors text-slate-400">
+<span class="material-symbols-outlined text-lg">expand_less</span>
+</button>
+<button class="p-1 hover:text-primary transition-colors text-slate-400">
+<span class="material-symbols-outlined text-lg">expand_more</span>
+</button>
+<div class="h-6 w-px bg-slate-100 dark:bg-slate-800 mx-1"></div>
+<span class="material-symbols-outlined text-slate-300 cursor-move">drag_indicator</span>
+</div>
+</div>
+<div class="flex items-center gap-4 bg-white dark:bg-slate-900 p-3 rounded-lg border border-slate-100 dark:border-slate-800 hover:shadow-md transition-shadow group">
+<div class="flex-none text-slate-400 font-bold text-sm w-6">08</div>
+<div class="size-10 rounded-full bg-slate-200 flex-none" data-alt="Close up of athlete face" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC6lBIPsYXo3wOXeuVXM4wc-eaXqSwGMHB5UOQsQD2iCq2rA7AEkbMRBixm-YzbQ1X8lpDj7gIEg6iYTQGqQ6a_bH2fYlRomhX_rQUXjtzWY2IwWFWWEF0HDuRAqpgEldUtIAP2V_DLlI-YK2_VeSslr4uVmVjj-Uie-ONjM7_vkmREObKfLFKclraZO-OefXoGU_oTjsAM329GSjeU1rLfuV5aBE5ziGSN0BuSczuJGtg6gGymUDwUnPQKJCjQIGiCf7yClPNgimzr'); background-size: cover;"></div>
+<div class="flex-1">
+<p class="font-bold text-sm">Mohammad Shami</p>
+<p class="text-xs text-slate-500 font-medium uppercase tracking-tight">Fast Bowler</p>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-1 hover:text-primary transition-colors text-slate-400">
+<span class="material-symbols-outlined text-lg">expand_less</span>
+</button>
+<button class="p-1 hover:text-primary transition-colors text-slate-400">
+<span class="material-symbols-outlined text-lg">expand_more</span>
+</button>
+<div class="h-6 w-px bg-slate-100 dark:bg-slate-800 mx-1"></div>
+<span class="material-symbols-outlined text-slate-300 cursor-move">drag_indicator</span>
+</div>
+</div>
+<div class="flex items-center gap-4 bg-white dark:bg-slate-900 p-3 rounded-lg border border-slate-100 dark:border-slate-800 hover:shadow-md transition-shadow group">
+<div class="flex-none text-slate-400 font-bold text-sm w-6">09</div>
+<div class="size-10 rounded-full bg-slate-200 flex-none" data-alt="Close up of athlete face" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDz9YUYV_RXDvRgAj963R3nZwFVGeT9Xy4tz3UNFDE9-KRckvgsT4ZtSZo5QRuop6gS7DW-6OV2kjc2yKZfE459GfgJN4BwrqAVzuaeO4mbirGxs5xvCK5SglMFtb08fSnQ-TJt9uI3WQfbY-mVhPhcduTjPsyDTKYflhk64iD02FIydd0mNZpnmfJoDY6XlOmjiH5Hx_PHcRT9y6kly2l0NzAwfqYUNsGhpdPAX5Rbv1kAQjiGgu2gizzlvHoMwcOw7FGcWI0_jMeU'); background-size: cover;"></div>
+<div class="flex-1">
+<p class="font-bold text-sm">Jasprit Bumrah</p>
+<p class="text-xs text-slate-500 font-medium uppercase tracking-tight">Fast Bowler</p>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-1 hover:text-primary transition-colors text-slate-400">
+<span class="material-symbols-outlined text-lg">expand_less</span>
+</button>
+<button class="p-1 hover:text-primary transition-colors text-slate-400">
+<span class="material-symbols-outlined text-lg">expand_more</span>
+</button>
+<div class="h-6 w-px bg-slate-100 dark:bg-slate-800 mx-1"></div>
+<span class="material-symbols-outlined text-slate-300 cursor-move">drag_indicator</span>
+</div>
+</div>
+<div class="flex items-center gap-4 bg-white dark:bg-slate-900 p-3 rounded-lg border border-slate-100 dark:border-slate-800 hover:shadow-md transition-shadow group">
+<div class="flex-none text-slate-400 font-bold text-sm w-6">10</div>
+<div class="size-10 rounded-full bg-slate-200 flex-none" data-alt="Close up of athlete face" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC7asB6fQiM1ZrPUi3hdGe1mRvAZ8EP4SK_k201gp8EcCyo9TG5YP_dpEzfqSMFQFJTgaF05PnHv6d3W1-eM46yWPczQz8lKF4hq0JDtuaXNb3fsVd8yImhnNyEEFRanywbCafG1xKY4dB62hEbhcKuqvKJ36_hznHgB9MfL_gOmh7-DdgB4luS_BLYUWH6HU3Hr0K5vBuzIY2l2gAmjfbz_Sq7XOcolN9l7wOqQBFhrZQeZzsz_S-Rg0sgWgRgFieibfgVVz9QGlI4'); background-size: cover;"></div>
+<div class="flex-1">
+<p class="font-bold text-sm">Kuldeep Yadav</p>
+<p class="text-xs text-slate-500 font-medium uppercase tracking-tight">Spinner</p>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-1 hover:text-primary transition-colors text-slate-400">
+<span class="material-symbols-outlined text-lg">expand_less</span>
+</button>
+<button class="p-1 hover:text-primary transition-colors text-slate-400">
+<span class="material-symbols-outlined text-lg">expand_more</span>
+</button>
+<div class="h-6 w-px bg-slate-100 dark:bg-slate-800 mx-1"></div>
+<span class="material-symbols-outlined text-slate-300 cursor-move">drag_indicator</span>
+</div>
+</div>
+<div class="flex items-center gap-4 bg-white dark:bg-slate-900 p-3 rounded-lg border border-slate-100 dark:border-slate-800 hover:shadow-md transition-shadow group opacity-60">
+<div class="flex-none text-slate-400 font-bold text-sm w-6">11</div>
+<div class="size-10 rounded-full bg-slate-200 flex-none" data-alt="Close up of athlete face" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBqahVllbKyQfeX7X1OCn19nNPjGGrF4BZ67G2mDvMQuRZmje8AlaKUYzftcoIj8W7Q4xOSqChrrHo06xGsLkcmNSp9_MxSwjxVyCLK5bQx-Ze8nsrmIMLFsSQN9Enx0JOKAUfonSgPRDpWotBJbJhIHuSvxV9lF749SUW7VUSNO1EzJ3UNxiwsNajn7ZT5uZHVbtf2eDkCB5nhN0QzNpTI7mYNWILirFdqW7qpXlRBK14s4ns-WKTuR9G7Q1wXLBCYT83BkEvj8VsM'); background-size: cover;"></div>
+<div class="flex-1">
+<p class="font-bold text-sm">Arshdeep Singh</p>
+<p class="text-xs text-slate-500 font-medium uppercase tracking-tight">Fast Bowler (Sub)</p>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-1 hover:text-primary transition-colors text-slate-400">
+<span class="material-symbols-outlined text-lg">expand_less</span>
+</button>
+<button class="p-1 hover:text-primary transition-colors text-slate-400">
+<span class="material-symbols-outlined text-lg">expand_more</span>
+</button>
+<div class="h-6 w-px bg-slate-100 dark:bg-slate-800 mx-1"></div>
+<span class="material-symbols-outlined text-slate-300 cursor-move">drag_indicator</span>
+</div>
+</div>
+<div class="flex items-center gap-4 bg-white dark:bg-slate-900 p-3 rounded-lg border border-slate-100 dark:border-slate-800 hover:shadow-md transition-shadow group opacity-60">
+<div class="flex-none text-slate-400 font-bold text-sm w-6">12</div>
+<div class="size-10 rounded-full bg-slate-200 flex-none" data-alt="Close up of athlete face" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAP1JvojKkTHwYxVz9GSw2332fs0onyzsMgDVrcNCD-8u2cisZgBRRFWcn1LHshXOrKemi69cVMaR4JVi9T_K6iDKcygtHGUiXEBTM18bOdlMJIQo8PRVZ_wV4s56msZkUjimP0dbhtaf5pLqXsNzbtGJNDANml5iW-ebfiNrDjGTA1KU4csrHqNAQQTpxPr_VtuGD9ygPW-3g5FuaP7ZRaQ8MwZp0siTXj5Hy3s8Q7i8TeZZtXmvTZmLdhTE9PwonRYDrUSqW6pOdk'); background-size: cover;"></div>
+<div class="flex-1">
+<p class="font-bold text-sm">Yashasvi Jaiswal</p>
+<p class="text-xs text-slate-500 font-medium uppercase tracking-tight">Batsman (Sub)</p>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-1 hover:text-primary transition-colors text-slate-400">
+<span class="material-symbols-outlined text-lg">expand_less</span>
+</button>
+<button class="p-1 hover:text-primary transition-colors text-slate-400">
+<span class="material-symbols-outlined text-lg">expand_more</span>
+</button>
+<div class="h-6 w-px bg-slate-100 dark:bg-slate-800 mx-1"></div>
+<span class="material-symbols-outlined text-slate-300 cursor-move">drag_indicator</span>
+</div>
+</div>
+</div>
+</div>
+<div class="pt-6 flex flex-col sm:flex-row gap-4">
+<button class="flex-1 py-4 bg-primary text-background-dark font-bold rounded-xl shadow-lg shadow-primary/30 hover:brightness-110 active:scale-95 transition-all flex items-center justify-center gap-2 uppercase tracking-widest text-sm">
+<span class="material-symbols-outlined">done_all</span>
+                                Confirm Final Lineup
+                            </button>
+<button class="flex-1 py-4 bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-slate-100 font-bold rounded-xl hover:bg-slate-300 dark:hover:bg-slate-700 transition-colors uppercase tracking-widest text-sm">
+                                Save as Preset
+                            </button>
+</div>
+</div>
+</div>
+</main>
+<footer class="mt-auto border-t border-primary/10 bg-white dark:bg-slate-900 px-6 py-8">
+<div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-slate-400 text-sm">
+<div class="flex items-center gap-6">
+<a class="hover:text-primary transition-colors" href="#">Rules</a>
+<a class="hover:text-primary transition-colors" href="#">Privacy</a>
+<a class="hover:text-primary transition-colors" href="#">Support</a>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary">security</span>
+<span>Official Match Coordinator Authorized Access</span>
+</div>
+</div>
+</footer>
+</div>
+</div>
+</body></html>

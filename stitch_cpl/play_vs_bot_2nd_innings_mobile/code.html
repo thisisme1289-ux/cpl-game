@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2bee2b",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102210",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<title>Cricket Battle - 2nd Innings</title>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+<!-- Header -->
+<header class="flex items-center bg-white dark:bg-slate-900/50 p-4 sticky top-0 z-10 border-b border-primary/10">
+<div class="flex size-10 shrink-0 items-center justify-center rounded-full hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined">arrow_back</span>
+</div>
+<h2 class="text-lg font-bold leading-tight flex-1 text-center">Play vs Bot - 2nd Innings</h2>
+<div class="flex size-10 items-center justify-center rounded-full hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined">info</span>
+</div>
+</header>
+<!-- Score Widgets -->
+<div class="flex gap-3 p-4">
+<div class="flex flex-1 flex-col gap-1 rounded-xl p-4 bg-white dark:bg-slate-800 shadow-sm border border-primary/5">
+<p class="text-slate-500 dark:text-slate-400 text-xs font-medium uppercase tracking-wider">Target</p>
+<p class="text-2xl font-bold leading-tight">145</p>
+</div>
+<div class="flex flex-1 flex-col gap-1 rounded-xl p-4 bg-primary/10 dark:bg-primary/20 border border-primary/20">
+<div class="flex justify-between items-start">
+<div>
+<p class="text-slate-600 dark:text-slate-300 text-xs font-medium uppercase tracking-wider">Score</p>
+<p class="text-2xl font-bold leading-tight">82/3 <span class="text-sm font-normal text-slate-500">(10.2)</span></p>
+</div>
+</div>
+<p class="text-primary font-bold text-xs mt-1">Need 63 from 58 balls</p>
+</div>
+</div>
+<!-- Gameplay Area -->
+<main class="flex-1 flex flex-col items-center justify-center px-4 py-2">
+<!-- Players Comparison -->
+<div class="w-full flex justify-between items-center mb-8 relative">
+<div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-primary/30 font-black text-4xl italic tracking-tighter">VS</div>
+<!-- User -->
+<div class="flex flex-col items-center gap-2 z-0">
+<div class="relative">
+<div class="size-20 rounded-full border-4 border-primary p-1 bg-white dark:bg-slate-800">
+<div class="w-full h-full rounded-full bg-cover bg-center" data-alt="Avatar of a cricket player smiling" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAP9me17fxaIDkHIqyTwJf0DBzbGdky3X_iuK3ixkwfW7Pni2vzRw5ZPz6WQRgGf-qZMFFkPNgCu6MhpzQBB2koCiNs3-mnpk41CT3tsH_Mt2fIGc-IV1fJ01OI0j7RqLR5KgjSQbVa9ONFEuUOSZ3pGUJQGFCsVNjtZnjHohHecw58XpwLPHYjq2Ye0NQ2E4u0S2pNGfSP733JTUvNVMhHAuLHamNoT69V2XKIlKdIrbQw4EkfQMIbz1bSjPimyrY6ONWPzSc81DGc')"></div>
+</div>
+<div class="absolute -bottom-1 -right-1 bg-primary text-slate-900 text-[10px] font-bold px-2 py-0.5 rounded-full border-2 border-white dark:border-slate-800">YOU</div>
+</div>
+<div class="text-center">
+<p class="font-bold text-sm">Player</p>
+<p class="text-primary text-xs font-semibold">42 (24)*</p>
+</div>
+</div>
+<!-- Bot -->
+<div class="flex flex-col items-center gap-2 z-0">
+<div class="relative">
+<div class="size-20 rounded-full border-4 border-slate-300 dark:border-slate-700 p-1 bg-white dark:bg-slate-800">
+<div class="w-full h-full rounded-full bg-cover bg-center" data-alt="Avatar of a futuristic robot profile" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCiaI_LzB4tWXMZvJwuXokU0IiKmA7GTdzAn__IljlnBr3PCpVFyobz07qH8BXUH6PuOqFM4BaVoKw10T5WasBCJGd1vRRf18bT5H-9f8qYprJgr0RGH8wMzEV08rUApqc2K-UQABQjdtGjvEb9LO_5SO9zp8K2eXh496KbUYT7EFnjrWDGPxNYbBsKzVbZrZSzFvL11517-k1f3jdC_Y70CQslJzA03wvyqS_PxOAbX_Bl5fD2V6xiQEaMrbLiya096McjuQ19IunM')"></div>
+</div>
+<div class="absolute -bottom-1 -right-1 bg-slate-400 text-white text-[10px] font-bold px-2 py-0.5 rounded-full border-2 border-white dark:border-slate-800">BOT</div>
+</div>
+<div class="text-center">
+<p class="font-bold text-sm">Alpha-Bot</p>
+<p class="text-slate-500 text-xs font-semibold">2.2-0-18-1</p>
+</div>
+</div>
+</div>
+<!-- Last Delivery Result -->
+<div class="w-full max-w-xs flex flex-col items-center py-8 rounded-3xl bg-gradient-to-b from-primary/5 to-transparent border border-primary/10 mb-8">
+<p class="text-slate-400 dark:text-slate-500 text-xs font-medium uppercase mb-4 tracking-widest">Last Delivery</p>
+<div class="size-24 rounded-full bg-primary flex items-center justify-center shadow-lg shadow-primary/20">
+<span class="text-white text-5xl font-black">4</span>
+</div>
+<p class="mt-6 font-medium text-slate-600 dark:text-slate-300 italic">Beautiful drive through extra cover!</p>
+</div>
+</main>
+<!-- Controls -->
+<footer class="p-4 pb-8 bg-white dark:bg-slate-900 rounded-t-3xl shadow-[0_-10px_40px_rgba(0,0,0,0.05)]">
+<p class="text-center text-xs font-bold text-slate-400 mb-4 uppercase tracking-widest">Choose your shot</p>
+<div class="grid grid-cols-3 gap-4">
+<button class="flex flex-col items-center justify-center p-4 rounded-2xl bg-primary/5 border border-primary/20 hover:bg-primary hover:text-white transition-all group">
+<span class="material-symbols-outlined text-3xl group-hover:scale-110 transition-transform">filter_1</span>
+<span class="text-[10px] mt-1 font-bold">SINGLE</span>
+</button>
+<button class="flex flex-col items-center justify-center p-4 rounded-2xl bg-primary/5 border border-primary/20 hover:bg-primary hover:text-white transition-all group">
+<span class="material-symbols-outlined text-3xl group-hover:scale-110 transition-transform">filter_2</span>
+<span class="text-[10px] mt-1 font-bold">DOUBLE</span>
+</button>
+<button class="flex flex-col items-center justify-center p-4 rounded-2xl bg-primary/5 border border-primary/20 hover:bg-primary hover:text-white transition-all group">
+<span class="material-symbols-outlined text-3xl group-hover:scale-110 transition-transform">filter_3</span>
+<span class="text-[10px] mt-1 font-bold">TRIPLE</span>
+</button>
+<button class="flex flex-col items-center justify-center p-4 rounded-2xl bg-primary shadow-sm border border-primary hover:bg-primary/90 transition-all group">
+<span class="material-symbols-outlined text-3xl text-white group-hover:scale-110 transition-transform">filter_4</span>
+<span class="text-[10px] mt-1 font-bold text-white">BOUNDARY</span>
+</button>
+<button class="flex flex-col items-center justify-center p-4 rounded-2xl bg-primary/5 border border-primary/20 hover:bg-primary hover:text-white transition-all group">
+<span class="material-symbols-outlined text-3xl group-hover:scale-110 transition-transform">filter_5</span>
+<span class="text-[10px] mt-1 font-bold">NUDGE</span>
+</button>
+<button class="flex flex-col items-center justify-center p-4 rounded-2xl bg-primary/10 border border-primary/30 hover:bg-primary hover:text-white transition-all group">
+<span class="material-symbols-outlined text-3xl group-hover:scale-110 transition-transform">filter_6</span>
+<span class="text-[10px] mt-1 font-bold">SIXER</span>
+</button>
+</div>
+</footer>
+<!-- Bottom Navigation Bar -->
+<div class="flex gap-2 border-t border-primary/10 bg-white dark:bg-slate-900 px-4 pb-3 pt-2">
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-primary" href="#">
+<div class="flex h-8 items-center justify-center">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">home</span>
+</div>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400 dark:text-slate-500" href="#">
+<div class="flex h-8 items-center justify-center">
+<span class="material-symbols-outlined">trophy</span>
+</div>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400 dark:text-slate-500" href="#">
+<div class="flex h-8 items-center justify-center">
+<span class="material-symbols-outlined">leaderboard</span>
+</div>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400 dark:text-slate-500" href="#">
+<div class="flex h-8 items-center justify-center">
+<span class="material-symbols-outlined">settings</span>
+</div>
+</a>
+</div>
+</body></html>

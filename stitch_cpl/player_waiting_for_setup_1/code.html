@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2bee2b",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102210",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<title>Player Waiting Screen - 2nd Innings</title>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<header class="flex items-center justify-between border-b border-primary/10 bg-white/50 dark:bg-background-dark/50 backdrop-blur-md px-6 py-4 lg:px-20">
+<div class="flex items-center gap-3">
+<div class="text-primary">
+<span class="material-symbols-outlined text-3xl">sports_cricket</span>
+</div>
+<h2 class="text-xl font-bold tracking-tight">2nd Innings</h2>
+</div>
+<div class="flex gap-3">
+<button class="flex size-10 items-center justify-center rounded-lg bg-primary/10 text-slate-900 dark:text-slate-100 hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="flex size-10 items-center justify-center rounded-lg bg-primary/10 text-slate-900 dark:text-slate-100 hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</header>
+<main class="flex flex-1 flex-col lg:flex-row">
+<aside class="hidden lg:flex w-72 flex-col border-r border-primary/10 p-6 gap-6">
+<div class="flex items-center gap-3">
+<div class="size-12 rounded-full bg-primary/20 border border-primary/30 overflow-hidden flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-2xl">person</span>
+</div>
+<div class="flex flex-col">
+<h3 class="text-sm font-bold">Player One</h3>
+<p class="text-xs text-primary font-medium uppercase tracking-wider">Ready to Play</p>
+</div>
+</div>
+<nav class="flex flex-col gap-2">
+<div class="flex items-center gap-3 px-4 py-3 rounded-lg bg-primary text-slate-900 font-bold">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-sm">Match</span>
+</div>
+<div class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-primary/10 transition-colors cursor-pointer">
+<span class="material-symbols-outlined">groups</span>
+<span class="text-sm font-medium">Lineup</span>
+</div>
+<div class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-primary/10 transition-colors cursor-pointer">
+<span class="material-symbols-outlined">bar_chart</span>
+<span class="text-sm font-medium">Stats</span>
+</div>
+<div class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-primary/10 transition-colors cursor-pointer">
+<span class="material-symbols-outlined">forum</span>
+<span class="text-sm font-medium">Chat</span>
+</div>
+</nav>
+</aside>
+<div class="flex-1 flex flex-col">
+<div class="p-4 lg:p-8 flex flex-col gap-6">
+<div class="bg-primary/5 border border-primary/20 rounded-xl p-6 flex flex-col gap-3">
+<div class="flex justify-between items-center">
+<span class="text-sm font-semibold text-slate-700 dark:text-slate-300">Captain is setting the lineup...</span>
+<span class="text-xs font-bold text-primary">85% COMPLETE</span>
+</div>
+<div class="h-3 w-full bg-primary/20 rounded-full overflow-hidden">
+<div class="h-full bg-primary" style="width: 85%;"></div>
+</div>
+<p class="text-xs text-slate-500 dark:text-slate-400">Please stay tuned. The second innings is about to commence.</p>
+</div>
+<div class="flex flex-col items-center justify-center py-12 text-center gap-6">
+<div class="relative">
+<div class="absolute inset-0 bg-primary/20 blur-3xl rounded-full"></div>
+<div class="relative size-48 rounded-full border-4 border-dashed border-primary/40 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-7xl">hourglass_empty</span>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<h1 class="text-4xl font-bold tracking-tight">Waiting for Captain</h1>
+<p class="text-slate-500 dark:text-slate-400">The next phase will begin as soon as the roster is finalized.</p>
+</div>
+<div class="flex gap-4 mt-4">
+<div class="flex flex-col items-center gap-2">
+<div class="flex h-20 w-24 items-center justify-center rounded-xl bg-white dark:bg-slate-800 shadow-sm border border-primary/20">
+<p class="text-4xl font-bold text-primary">01</p>
+</div>
+<p class="text-xs font-bold uppercase tracking-widest text-slate-500">Minute</p>
+</div>
+<div class="flex h-20 items-center">
+<span class="text-3xl font-bold text-primary">:</span>
+</div>
+<div class="flex flex-col items-center gap-2">
+<div class="flex h-20 w-24 items-center justify-center rounded-xl bg-white dark:bg-slate-800 shadow-sm border border-primary/20">
+<p class="text-4xl font-bold text-primary">00</p>
+</div>
+<p class="text-xs font-bold uppercase tracking-widest text-slate-500">Seconds</p>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="text-sm font-bold uppercase tracking-widest text-slate-400">Match Log: 1st Innings Highlights</h4>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<div class="p-4 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex flex-col gap-2">
+<span class="text-xs font-bold text-primary">OVER 12.4</span>
+<p class="text-sm font-medium">Incredible six hit towards long-off by the opening batsman.</p>
+</div>
+<div class="p-4 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex flex-col gap-2">
+<span class="text-xs font-bold text-primary">OVER 15.2</span>
+<p class="text-sm font-medium">Spectacular catch taken at slip. First wicket falls for 42 runs.</p>
+</div>
+<div class="p-4 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex flex-col gap-2">
+<span class="text-xs font-bold text-primary">OVER 20.0</span>
+<p class="text-sm font-medium">End of 1st Innings. Team A scores 158/4. Target set: 159.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+</body></html>

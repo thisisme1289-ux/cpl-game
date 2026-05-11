@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Thumb hand sign">
+  <defs>
+    <linearGradient id="skin" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffd95a"/>
+      <stop offset="1" stop-color="#f3b93f"/>
+    </linearGradient>
+  </defs>
+  <g fill="url(#skin)" stroke="#8e5f1e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M22 70c-9 0-16 7-16 16s7 16 16 16h14V70Z"/>
+    <path d="M34 44c0-9 7-16 16-16h26c9 0 16 7 16 16v40c0 10-8 18-18 18H52c-10 0-18-8-18-18Z"/>
+    <rect x="20" y="58" width="36" height="18" rx="9" transform="rotate(-20 38 67)"/>
+  </g>
+</svg>

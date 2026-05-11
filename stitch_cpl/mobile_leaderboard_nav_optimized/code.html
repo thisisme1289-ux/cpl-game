@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "primary": "#2bee2b",
+                "background-light": "#f6f8f6",
+                "background-dark": "#102210",
+              },
+              fontFamily: {
+                "display": ["Space Grotesk"]
+              },
+              borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+            },
+          },
+        }
+    </script>
+<title>Global Leaderboard | Gaming Pro</title>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="flex h-screen overflow-hidden">
+<!-- Sidebar -->
+<aside class="w-64 border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-background-dark flex flex-col justify-between p-6 fixed inset-y-0 left-0 z-50 transform -translate-x-full lg:translate-x-0 lg:static lg:inset-0 transition-transform duration-300 ease-in-out">
+<div class="space-y-8">
+<!-- User Profile Section -->
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full bg-primary/20 flex items-center justify-center overflow-hidden border border-primary/30">
+<img class="w-full h-full object-cover" data-alt="Gaming user avatar profile picture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuACpV2uKDuenHhHOi0Sw_6DU_AHfgrH26nUjp597Ww_fpDeoy2HNSczsfvbT34GD1Wv7pfcacTKraMpErWpGCC93Eu1NDuRetLnsN_mZkCKr5nC60rfRAe5M4BZc-A9EluBqZSbL_n6OBu-hSPR3EzOlmLM-Hxzq-vq8EtNOy_yjP22Udl_cYAiMf49OzoGDOJDn2yLeS61DMlkImu3-fnH_9PxhxR25AE1FTBrrDUnummxQ1yZSbNmp5W9eKzF1Bn9o8ntHQG7QtIQ"/>
+</div>
+<div class="flex flex-col">
+<span class="text-sm font-bold truncate">Gaming Pro</span>
+<span class="text-xs text-primary font-medium">Elite Tier</span>
+</div>
+</div>
+<!-- Navigation Links -->
+<nav class="flex flex-col gap-2">
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors transition-all duration-200" href="#" onclick="if(window.innerWidth &lt; 1024) { document.querySelector('aside').classList.add('-translate-x-full'); document.getElementById('sidebar-overlay').classList.add('hidden'); }">
+<span class="material-symbols-outlined text-[20px]">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors transition-all duration-200" href="#" onclick="if(window.innerWidth &lt; 1024) { document.querySelector('aside').classList.add('-translate-x-full'); document.getElementById('sidebar-overlay').classList.add('hidden'); }">
+<span class="material-symbols-outlined text-[20px]">person</span>
+<span class="text-sm font-medium">Profile</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 bg-primary/10 text-slate-900 dark:text-white rounded-lg border border-primary/20 transition-colors transition-all duration-200" href="#" onclick="if(window.innerWidth &lt; 1024) { document.querySelector('aside').classList.add('-translate-x-full'); document.getElementById('sidebar-overlay').classList.add('hidden'); }">
+<span class="material-symbols-outlined text-[20px] text-primary">emoji_events</span>
+<span class="text-sm font-semibold">Leaderboard</span>
+</a>
+</nav>
+</div>
+<!-- Bottom Nav -->
+<div class="pt-6 border-t border-slate-200 dark:border-slate-800">
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:text-red-500 transition-colors transition-all duration-200" href="#" onclick="if(window.innerWidth &lt; 1024) { document.querySelector('aside').classList.add('-translate-x-full'); document.getElementById('sidebar-overlay').classList.add('hidden'); }">
+<span class="material-symbols-outlined text-[20px]">logout</span>
+<span class="text-sm font-medium">Logout</span>
+</a>
+</div>
+</aside><div class="fixed inset-0 bg-black/50 z-40 lg:hidden hidden" id="sidebar-overlay" onclick="document.querySelector('aside').classList.add('-translate-x-full'); this.classList.add('hidden')"></div>
+<!-- Main Content Area -->
+<button class="lg:hidden fixed top-4 left-4 z-[60] bg-white dark:bg-slate-900 p-2 rounded-lg border border-slate-200 dark:border-slate-800 shadow-sm" id="mobile-menu-toggle" onclick="document.querySelector('aside').classList.toggle('-translate-x-full'); document.getElementById('sidebar-overlay').classList.toggle('hidden')">
+<span class="material-symbols-outlined">menu</span>
+</button><main class="flex-1 overflow-y-auto p-8 lg:p-12">
+<div class="max-w-5xl mx-auto space-y-8">
+<!-- Header -->
+<header class="flex flex-col gap-2">
+<h1 class="text-4xl font-bold tracking-tight">Global Leaderboard</h1>
+<p class="text-slate-500 dark:text-slate-400">Competing against the top 1% of players worldwide.</p>
+</header>
+<!-- Leaderboard Table -->
+<section class="bg-white dark:bg-slate-900/50 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-slate-50 dark:bg-slate-800/50 border-bottom border-slate-200 dark:border-slate-800">
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500">Rank</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500">Username</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500">Wins</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500">Score</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+<tr class="hover:bg-primary/5 transition-colors">
+<td class="px-6 py-4 font-bold text-primary">#1</td>
+<td class="px-6 py-4 font-medium flex items-center gap-2">
+                                        ShadowHunter
+                                        <span class="material-symbols-outlined text-primary text-sm">verified</span>
+</td>
+<td class="px-6 py-4 text-slate-600 dark:text-slate-400">450</td>
+<td class="px-6 py-4 font-bold">12,400</td>
+</tr>
+<tr class="hover:bg-primary/5 transition-colors">
+<td class="px-6 py-4 font-bold text-primary">#2</td>
+<td class="px-6 py-4 font-medium">CyberKnight</td>
+<td class="px-6 py-4 text-slate-600 dark:text-slate-400">412</td>
+<td class="px-6 py-4 font-bold">11,850</td>
+</tr>
+<tr class="hover:bg-primary/5 transition-colors">
+<td class="px-6 py-4 font-bold text-primary">#3</td>
+<td class="px-6 py-4 font-medium">PixelMage</td>
+<td class="px-6 py-4 text-slate-600 dark:text-slate-400">398</td>
+<td class="px-6 py-4 font-bold">11,200</td>
+</tr>
+<tr class="hover:bg-primary/5 transition-colors">
+<td class="px-6 py-4 font-bold text-slate-400">#4</td>
+<td class="px-6 py-4 font-medium">VoidWalker</td>
+<td class="px-6 py-4 text-slate-600 dark:text-slate-400">385</td>
+<td class="px-6 py-4 font-bold">10,900</td>
+</tr>
+<tr class="hover:bg-primary/5 transition-colors">
+<td class="px-6 py-4 font-bold text-slate-400">#5</td>
+<td class="px-6 py-4 font-medium">StormBringer</td>
+<td class="px-6 py-4 text-slate-600 dark:text-slate-400">370</td>
+<td class="px-6 py-4 font-bold">10,550</td>
+</tr>
+<tr class="hover:bg-primary/5 transition-colors">
+<td class="px-6 py-4 font-bold text-slate-400">#6</td>
+<td class="px-6 py-4 font-medium">IronGrip</td>
+<td class="px-6 py-4 text-slate-600 dark:text-slate-400">355</td>
+<td class="px-6 py-4 font-bold">10,100</td>
+</tr>
+<tr class="hover:bg-primary/5 transition-colors">
+<td class="px-6 py-4 font-bold text-slate-400">#7</td>
+<td class="px-6 py-4 font-medium">NeonPulse</td>
+<td class="px-6 py-4 text-slate-600 dark:text-slate-400">340</td>
+<td class="px-6 py-4 font-bold">9,800</td>
+</tr>
+<tr class="hover:bg-primary/5 transition-colors">
+<td class="px-6 py-4 font-bold text-slate-400">#8</td>
+<td class="px-6 py-4 font-medium">FrostByte</td>
+<td class="px-6 py-4 text-slate-600 dark:text-slate-400">325</td>
+<td class="px-6 py-4 font-bold">9,450</td>
+</tr>
+<tr class="hover:bg-primary/5 transition-colors">
+<td class="px-6 py-4 font-bold text-slate-400">#9</td>
+<td class="px-6 py-4 font-medium">AlphaOmega</td>
+<td class="px-6 py-4 text-slate-600 dark:text-slate-400">310</td>
+<td class="px-6 py-4 font-bold">9,100</td>
+</tr>
+<tr class="hover:bg-primary/5 transition-colors">
+<td class="px-6 py-4 font-bold text-slate-400">#10</td>
+<td class="px-6 py-4 font-medium">RogueWave</td>
+<td class="px-6 py-4 text-slate-600 dark:text-slate-400">295</td>
+<td class="px-6 py-4 font-bold">8,800</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- Personal Rank Section -->
+<section class="space-y-4">
+<h2 class="text-xl font-bold">Your Rank</h2>
+<div class="relative bg-white dark:bg-slate-900 border-2 border-primary/40 rounded-xl p-6 shadow-xl shadow-primary/5 overflow-hidden">
+<!-- Abstract Background Decoration -->
+<div class="absolute -right-12 -top-12 size-48 bg-primary/10 rounded-full blur-3xl"></div>
+<div class="absolute -left-12 -bottom-12 size-48 bg-primary/10 rounded-full blur-3xl"></div>
+<div class="relative flex flex-col md:flex-row items-center justify-between gap-8">
+<div class="flex items-center gap-6">
+<div class="size-20 bg-primary/10 rounded-xl flex flex-col items-center justify-center border border-primary/20">
+<span class="text-xs text-slate-500 font-bold uppercase">Rank</span>
+<span class="text-3xl font-black text-primary">#142</span>
+</div>
+<div class="space-y-1">
+<p class="text-2xl font-bold">Gaming Pro</p>
+<p class="text-slate-500 text-sm">Wins: 85 | Score: 2,450</p>
+<div class="flex items-center gap-2 pt-2">
+<span class="px-2 py-0.5 bg-slate-100 dark:bg-slate-800 text-[10px] font-bold uppercase rounded tracking-wider">Elite Tier</span>
+<span class="material-symbols-outlined text-sm text-slate-400">trending_up</span>
+</div>
+</div>
+</div>
+<div class="flex-1 max-w-sm w-full space-y-3">
+<div class="flex justify-between text-xs font-bold uppercase tracking-wider">
+<span class="text-slate-500">Progress to Master</span>
+<span class="text-primary">82%</span>
+</div>
+<div class="h-3 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden border border-slate-200 dark:border-slate-700">
+<div class="h-full bg-primary rounded-full shadow-[0_0_12px_rgba(43,238,43,0.5)]" style="width: 82%;"></div>
+</div>
+<p class="text-xs text-slate-500 italic">Only 150 points until Master Tier</p>
+</div>
+<div>
+<button class="bg-primary text-slate-900 px-6 py-3 rounded-lg font-bold hover:opacity-90 transition-opacity flex items-center gap-2">
+<span class="material-symbols-outlined">analytics</span>
+                                    View Progress
+                                </button>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+</div>
+</body></html>

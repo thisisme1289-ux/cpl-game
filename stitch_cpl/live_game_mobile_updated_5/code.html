@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Cricket Live Play</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2bee2b",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102210",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased">
+<div class="relative flex min-h-screen w-full flex-col max-w-md mx-auto overflow-x-hidden border-x border-primary/10 bg-background-light dark:bg-background-dark">
+<!-- Top Live Status Bar -->
+<div class="flex items-center bg-white dark:bg-slate-900/50 p-4 border-b border-primary/20 justify-between sticky top-0 z-10 shadow-sm">
+<div class="flex items-center gap-3">
+<div class="bg-primary/20 p-2 rounded-full text-slate-900 dark:text-slate-100">
+<span class="material-symbols-outlined block text-2xl">sports_cricket</span>
+</div>
+<div>
+<h2 class="text-xl font-bold leading-none tracking-tight">120/2</h2>
+<p class="text-xs font-medium text-slate-500 dark:text-slate-400">Overs: 14.2</p>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-primary text-slate-900 animate-pulse">
+                    LIVE
+                </span>
+<p class="text-xs mt-1 font-semibold text-slate-500">Target: 184</p>
+</div>
+</div>
+<!-- Vertical Stack: Players -->
+<div class="px-4 py-6 space-y-5">
+<!-- Batter Stats Card -->
+<div class="flex items-center gap-4 bg-white dark:bg-slate-900 border border-primary/10 rounded-xl p-3 shadow-sm">
+<div class="bg-primary/10 rounded-full p-1 border border-primary/30 shrink-0">
+<div class="h-12 w-12 rounded-full bg-cover bg-center shadow-inner" data-alt="Profile photo of a professional cricket batsman" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBCy9dsUPZ8ECTH9QqYoVBD2R_eEnX79YjVBv_I3_frer5Ip-2ZQ0G4wQgxoaFQnRdch19E1M1MH2tZuYyK1_Fa3jbzmfeQioXJ1WTpkesNE9CRXl5BDEyG65DTIrs2JHTLRaQ9HiEW9H4gU5BuqlNCZc6w3Ut4EZ6G1xvDOAw-WBNWt6Xgr6CY9igxsgiqXGhG-7uhRrefq4u4P9HvBQAuznee0tLrMhZQ0uEQfXIRgZTBNODENaXEagCYno7gnow5NOO77yBkgzTJ")'></div>
+</div>
+<div class="flex flex-1 flex-col">
+<div class="flex justify-between items-center">
+<p class="text-base font-bold flex items-center gap-1">V. Kohli <span class="text-primary text-xs material-symbols-outlined fill-1">star</span></p>
+<p class="text-lg font-bold text-slate-900 dark:text-slate-100">45<span class="text-xs font-medium text-slate-400 ml-1">(32)</span></p>
+</div>
+<div class="flex justify-between items-center mt-1">
+<p class="text-xs text-slate-500 font-medium">4s: 5 | 6s: 1</p>
+<p class="text-xs font-bold text-primary">S/R: 140.6</p>
+</div>
+</div>
+</div>
+<!-- Bowler Stats Card -->
+<div class="flex items-center gap-4 bg-white dark:bg-slate-900 border border-primary/10 rounded-xl p-3 shadow-sm">
+<div class="bg-slate-100 dark:bg-slate-800 rounded-full p-1 border border-slate-200 dark:border-slate-700 shrink-0">
+<div class="h-12 w-12 rounded-full bg-cover bg-center grayscale shadow-inner" data-alt="Profile photo of a professional cricket bowler" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAd5nxKkyfVbbpv6xg-0tdPsA3Rr_YO8qzOwR1_UOmdADlRXkJuMwQ9PTrYdyNlrk2jPIv3vu5VMDYQ1CLSDEZgC9kWIGLGe03sqQlaUUD39X-XYJOhxmzWQmLyHZd5Z8qXaRGTgJv9JHNF-02mQ0NUFA0DdNi4sdeqJs0LXVKnUpG-HA42QmQBW6UcAWvNYMcMnZeb2e7fy03b7e9ygXxnbH5Paa8p0VW1U57BGIsQ2vs7EuXTmAPHdlB8KN-dM8f7FSTabevK97au")'></div>
+</div>
+<div class="flex flex-1 flex-col">
+<div class="flex justify-between items-center">
+<p class="text-base font-bold">J. Bumrah</p>
+<p class="text-lg font-bold text-slate-900 dark:text-slate-100">1-24 <span class="text-xs font-medium text-slate-400 ml-1">(3.2)</span></p>
+</div>
+<div class="flex justify-between items-center mt-1">
+<p class="text-xs text-slate-500 font-medium">Dots: 8 | Extras: 2</p>
+<p class="text-xs font-bold text-slate-500">Econ: 7.2</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Center Action Area -->
+<div class="flex-1 flex flex-col items-center justify-center py-10">
+<div class="relative w-64 h-64 flex items-center justify-center">
+<!-- Outer Pulse Rings -->
+<div class="absolute inset-0 rounded-full border-4 border-primary/10 scale-110"></div>
+<div class="absolute inset-0 rounded-full border border-primary/20 scale-125"></div>
+<!-- Central Disc -->
+<div class="w-full h-full rounded-full bg-gradient-to-br from-white to-primary/10 dark:from-slate-800 dark:to-primary/20 shadow-xl flex flex-col items-center justify-center border-4 border-white dark:border-slate-700 relative z-10">
+<span class="text-slate-400 text-xs font-bold tracking-widest uppercase mb-1">Waiting for Bowler</span>
+<div class="text-6xl font-black text-slate-900 dark:text-white mb-2">?</div>
+<div class="flex gap-1">
+<span class="w-2 h-2 rounded-full bg-primary/40"></span>
+<span class="w-2 h-2 rounded-full bg-primary animate-bounce"></span>
+<span class="w-2 h-2 rounded-full bg-primary/40"></span>
+</div>
+</div>
+</div>
+<p class="mt-8 text-sm font-bold text-slate-500 dark:text-slate-400 bg-white dark:bg-slate-900 px-4 py-1.5 rounded-full border border-primary/10">SELECT YOUR NEXT MOVE</p>
+</div>
+<!-- Selection Grid -->
+<div class="bg-white dark:bg-slate-900 p-6 rounded-t-[2.5rem] shadow-[0_-10px_30px_-15px_rgba(0,0,0,0.1)] border-t border-primary/20">
+<!-- Numbers Grid -->
+<div class="grid grid-cols-6 gap-3 mb-6">
+<button class="aspect-square flex items-center justify-center rounded-xl bg-primary/10 hover:bg-primary border border-primary/20 text-slate-900 font-bold text-xl transition-all">1</button>
+<button class="aspect-square flex items-center justify-center rounded-xl bg-primary/10 hover:bg-primary border border-primary/20 text-slate-900 font-bold text-xl transition-all">2</button>
+<button class="aspect-square flex items-center justify-center rounded-xl bg-primary/10 hover:bg-primary border border-primary/20 text-slate-900 font-bold text-xl transition-all">3</button>
+<button class="aspect-square flex items-center justify-center rounded-xl bg-primary/10 hover:bg-primary border border-primary/20 text-slate-900 font-bold text-xl transition-all">4</button>
+<button class="aspect-square flex items-center justify-center rounded-xl bg-primary/10 hover:bg-primary border border-primary/20 text-slate-900 font-bold text-xl transition-all">5</button>
+<button class="aspect-square flex items-center justify-center rounded-xl bg-primary/10 hover:bg-primary border border-primary/20 text-slate-900 font-bold text-xl transition-all">6</button>
+</div>
+<!-- Hand Gestures Grid -->
+<div class="grid grid-cols-4 gap-4">
+<button class="flex flex-col items-center justify-center gap-2 py-4 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-primary transition-all">
+<span class="material-symbols-outlined text-3xl">front_hand</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter">Defend</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-2 py-4 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-primary transition-all">
+<span class="material-symbols-outlined text-3xl">pan_tool</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter">Drive</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-2 py-4 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-primary transition-all">
+<span class="material-symbols-outlined text-3xl">back_hand</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter">Pull</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-2 py-4 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-primary transition-all">
+<span class="material-symbols-outlined text-3xl">waving_hand</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter">Loft</span>
+</button>
+</div>
+</div>
+<!-- Bottom Navigation Bar -->
+<div class="flex gap-2 border-t border-primary/10 bg-white dark:bg-slate-900 px-4 pb-6 pt-3 mt-auto">
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-900 dark:text-slate-100" href="#">
+<span class="material-symbols-outlined fill-1 text-primary">sports_cricket</span>
+<p class="text-[10px] font-bold uppercase leading-none">Play</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">leaderboard</span>
+<p class="text-[10px] font-bold uppercase leading-none">Stats</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">military_tech</span>
+<p class="text-[10px] font-bold uppercase leading-none">Ranks</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">person</span>
+<p class="text-[10px] font-bold uppercase leading-none">Profile</p>
+</a>
+</div>
+</div>
+</body></html>

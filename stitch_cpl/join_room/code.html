@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Join Custom Room - Cricket Gaming</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2bee2b",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102210",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<!-- Top Navigation Bar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-primary/10 px-6 md:px-10 py-4 bg-white dark:bg-background-dark/50">
+<div class="flex items-center gap-4 text-slate-900 dark:text-slate-100">
+<div class="size-8 bg-primary rounded-lg flex items-center justify-center text-background-dark">
+<span class="material-symbols-outlined text-2xl font-bold">sports_cricket</span>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-tight">Cricket Gaming</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8 items-center">
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Dashboard</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Tournaments</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Profile</a>
+</nav>
+<button class="flex items-center justify-center rounded-full h-10 w-10 bg-primary/10 text-slate-900 dark:text-slate-100 hover:bg-primary/20 transition-all">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 flex items-center justify-center p-6 md:p-12">
+<div class="w-full max-w-[480px]">
+<!-- Central Card Container -->
+<div class="bg-white dark:bg-background-dark/80 border border-primary/10 shadow-xl shadow-primary/5 rounded-xl overflow-hidden p-8 md:p-10">
+<!-- Illustration/Icon placeholder -->
+<div class="flex justify-center mb-8">
+<div class="size-20 bg-primary/20 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-4xl text-slate-900">meeting_room</span>
+</div>
+</div>
+<!-- Header Text -->
+<div class="text-center mb-8">
+<h1 class="text-3xl font-bold tracking-tight mb-3">Join Custom Room</h1>
+<p class="text-slate-600 dark:text-slate-400 text-base leading-relaxed">
+                                Enter the unique Room ID to join your friends.
+                            </p>
+</div>
+<!-- Form Section -->
+<div class="space-y-6">
+<div class="flex flex-col gap-2">
+<label class="text-sm font-semibold text-slate-700 dark:text-slate-300 ml-1" for="room-id">Room ID</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">key</span>
+<input class="w-full h-14 pl-12 pr-4 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-background-dark/50 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-slate-400" id="room-id" name="room-id" placeholder="e.g. CR-8821" type="text"/>
+</div>
+</div>
+<button class="w-full h-14 bg-primary hover:bg-primary/90 text-background-dark font-bold rounded-lg transition-all shadow-lg shadow-primary/20 flex items-center justify-center gap-2 group">
+<span class="truncate">Join Room</span>
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+<!-- Footer Links -->
+<div class="mt-8 pt-6 border-t border-slate-100 dark:border-slate-800 text-center">
+<a class="inline-flex items-center gap-1 text-slate-500 hover:text-primary font-medium text-sm transition-colors" href="#">
+<span class="material-symbols-outlined text-sm">arrow_back</span>
+                                Back to Dashboard
+                            </a>
+</div>
+</div>
+<!-- Additional Context (Optional) -->
+<div class="mt-8 text-center">
+<p class="text-sm text-slate-500 dark:text-slate-400">
+                            Don't have a room? <a class="text-primary font-semibold hover:underline" href="#">Create a new one</a>
+</p>
+</div>
+</div>
+</main>
+<!-- Footer Area -->
+<footer class="p-6 text-center text-xs text-slate-400 uppercase tracking-widest">
+                © 2024 Cricket Gaming Platform. All Rights Reserved.
+            </footer>
+</div>
+</div>
+</body></html>

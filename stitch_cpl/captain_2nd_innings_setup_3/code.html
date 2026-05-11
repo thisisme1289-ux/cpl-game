@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2bee2b",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102210",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<title>Captain Selection - 2nd Innings</title>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
+<div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<!-- Top Navigation Bar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-primary/20 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md px-6 md:px-10 py-3 sticky top-0 z-50">
+<div class="flex items-center gap-4">
+<div class="size-6 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M24 0.757355L47.2426 24L24 47.2426L0.757355 24L24 0.757355ZM21 35.7574V12.2426L9.24264 24L21 35.7574Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+<h2 class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-tight">Captain Selection</h2>
+</div>
+<div class="flex flex-1 justify-end gap-4 md:gap-8 items-center">
+<nav class="hidden md:flex items-center gap-9">
+<a class="text-slate-600 dark:text-slate-400 hover:text-primary text-sm font-medium transition-colors" href="#">Match</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-primary text-sm font-medium transition-colors" href="#">Team</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-primary text-sm font-medium transition-colors" href="#">Strategy</a>
+</nav>
+<button class="flex size-10 cursor-pointer items-center justify-center rounded-lg bg-primary/10 text-primary hover:bg-primary/20 transition-all">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+</header>
+<main class="flex flex-1 justify-center py-5">
+<div class="layout-content-container flex flex-col w-full max-w-[960px] flex-1 px-4 md:px-10">
+<!-- Hero Header Section -->
+<div class="flex flex-col gap-6 mb-8">
+<h2 class="text-slate-900 dark:text-slate-100 text-3xl font-bold leading-tight tracking-tight">2nd Innings Lineup</h2>
+<div class="flex p-6 bg-white dark:bg-slate-900 rounded-xl shadow-sm border border-primary/10 items-center justify-between">
+<div class="flex gap-6 items-center">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-24 w-24 border-4 border-primary/20" data-alt="Close up portrait of team captain" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDmmrXJ8HhbXQpLOYSQIliIkrxTzvNvZu7jsv_pEBKUW1uPNX9mssIXDpZ_TnHVk-68D6vYcjMdpyGgzMdhDT6cd6jDR6zzgF7-gTr4q_-F9dGMEmUIdwC7FMS0HKH9i2SYyqGp_t24CnQlp1FBEx4sKALuGqPOtizjhXae7jJ_T466JqbgCA9P8fAnMAPXlGRE00SNYF5ei4cuEBo2ELcpyB_y9t1UI2JihD3F3M-Wa4qW9j5IM5W1K7kmHpYyMtxhOn4nJZrqZyHc");'></div>
+<div class="flex flex-col">
+<p class="text-slate-900 dark:text-slate-100 text-2xl font-bold leading-tight">Alex Johnson</p>
+<div class="flex items-center gap-2 mt-1">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-primary text-background-dark uppercase tracking-wider">
+<span class="material-symbols-outlined text-[14px] mr-1">stars</span>
+                                        Captain
+                                    </span>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Badge: Official Leader</p>
+</div>
+</div>
+</div>
+<div class="hidden sm:block">
+<div class="text-right">
+<p class="text-xs uppercase text-slate-400 font-bold tracking-widest">Team Status</p>
+<p class="text-primary font-bold">Ready for Field</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Tabs Section -->
+<div class="mb-6">
+<div class="flex border-b border-primary/10 justify-between bg-white/50 dark:bg-slate-900/50 rounded-t-xl overflow-hidden">
+<a class="flex flex-col items-center justify-center border-b-4 border-primary text-slate-900 dark:text-white pb-[13px] pt-4 flex-1 transition-all" href="#">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">groups</span>
+<p class="text-sm font-bold leading-normal tracking-wide">Batting Order</p>
+</div>
+</a>
+<a class="flex flex-col items-center justify-center border-b-4 border-transparent text-slate-500 dark:text-slate-400 hover:text-primary pb-[13px] pt-4 flex-1 transition-all" href="#">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">bolt</span>
+<p class="text-sm font-bold leading-normal tracking-wide">Bowling Strategy</p>
+</div>
+</a>
+</div>
+</div>
+<!-- Re-order Section -->
+<div class="flex items-center justify-between px-2 mb-4">
+<h3 class="text-slate-900 dark:text-slate-100 text-xl font-bold">Arrange Lineup</h3>
+<p class="text-xs text-slate-500 dark:text-slate-400 font-medium">Drag to reorder or use arrows</p>
+</div>
+<!-- Players List -->
+<div class="flex flex-col gap-2 mb-10">
+<!-- Player Item 1 (Captain) -->
+<div class="flex items-center gap-4 p-4 bg-white dark:bg-slate-900 rounded-lg border border-primary/20 shadow-sm">
+<div class="flex flex-col items-center gap-1 text-slate-400">
+<button class="hover:text-primary transition-colors"><span class="material-symbols-outlined text-xl">keyboard_arrow_up</span></button>
+<span class="material-symbols-outlined text-xl cursor-grab">drag_indicator</span>
+<button class="hover:text-primary transition-colors"><span class="material-symbols-outlined text-xl">keyboard_arrow_down</span></button>
+</div>
+<div class="flex items-center justify-center size-10 bg-primary/20 text-primary font-bold rounded-full">1</div>
+<div class="flex-1">
+<p class="text-slate-900 dark:text-slate-100 font-bold">Alex Johnson</p>
+<p class="text-xs text-slate-500">All-Rounder • Captain</p>
+</div>
+<div class="text-primary"><span class="material-symbols-outlined">stars</span></div>
+</div>
+<!-- Player Item 2 -->
+<div class="flex items-center gap-4 p-4 bg-white dark:bg-slate-900 rounded-lg border border-slate-100 dark:border-slate-800 shadow-sm">
+<div class="flex flex-col items-center gap-1 text-slate-400">
+<button class="hover:text-primary transition-colors"><span class="material-symbols-outlined text-xl">keyboard_arrow_up</span></button>
+<span class="material-symbols-outlined text-xl cursor-grab">drag_indicator</span>
+<button class="hover:text-primary transition-colors"><span class="material-symbols-outlined text-xl">keyboard_arrow_down</span></button>
+</div>
+<div class="flex items-center justify-center size-10 bg-slate-100 dark:bg-slate-800 text-slate-500 font-bold rounded-full">2</div>
+<div class="flex-1">
+<p class="text-slate-900 dark:text-slate-100 font-bold">Marcus Chen</p>
+<p class="text-xs text-slate-500">Wicket Keeper • Batsman</p>
+</div>
+</div>
+<!-- Player Item 3 -->
+<div class="flex items-center gap-4 p-4 bg-white dark:bg-slate-900 rounded-lg border border-slate-100 dark:border-slate-800 shadow-sm">
+<div class="flex flex-col items-center gap-1 text-slate-400">
+<button class="hover:text-primary transition-colors"><span class="material-symbols-outlined text-xl">keyboard_arrow_up</span></button>
+<span class="material-symbols-outlined text-xl cursor-grab">drag_indicator</span>
+<button class="hover:text-primary transition-colors"><span class="material-symbols-outlined text-xl">keyboard_arrow_down</span></button>
+</div>
+<div class="flex items-center justify-center size-10 bg-slate-100 dark:bg-slate-800 text-slate-500 font-bold rounded-full">3</div>
+<div class="flex-1">
+<p class="text-slate-900 dark:text-slate-100 font-bold">Sam Wilson</p>
+<p class="text-xs text-slate-500">Opening Batsman</p>
+</div>
+</div>
+<!-- Player Item 4 -->
+<div class="flex items-center gap-4 p-4 bg-white dark:bg-slate-900 rounded-lg border border-slate-100 dark:border-slate-800 shadow-sm">
+<div class="flex flex-col items-center gap-1 text-slate-400">
+<button class="hover:text-primary transition-colors"><span class="material-symbols-outlined text-xl">keyboard_arrow_up</span></button>
+<span class="material-symbols-outlined text-xl cursor-grab">drag_indicator</span>
+<button class="hover:text-primary transition-colors"><span class="material-symbols-outlined text-xl">keyboard_arrow_down</span></button>
+</div>
+<div class="flex items-center justify-center size-10 bg-slate-100 dark:bg-slate-800 text-slate-500 font-bold rounded-full">4</div>
+<div class="flex-1">
+<p class="text-slate-900 dark:text-slate-100 font-bold">Priya Patel</p>
+<p class="text-xs text-slate-500">Middle Order Batsman</p>
+</div>
+</div>
+<!-- Player Item 5 -->
+<div class="flex items-center gap-4 p-4 bg-white dark:bg-slate-900 rounded-lg border border-slate-100 dark:border-slate-800 shadow-sm">
+<div class="flex flex-col items-center gap-1 text-slate-400">
+<button class="hover:text-primary transition-colors"><span class="material-symbols-outlined text-xl">keyboard_arrow_up</span></button>
+<span class="material-symbols-outlined text-xl cursor-grab">drag_indicator</span>
+<button class="hover:text-primary transition-colors"><span class="material-symbols-outlined text-xl">keyboard_arrow_down</span></button>
+</div>
+<div class="flex items-center justify-center size-10 bg-slate-100 dark:bg-slate-800 text-slate-500 font-bold rounded-full">5</div>
+<div class="flex-1">
+<p class="text-slate-900 dark:text-slate-100 font-bold">David Miller</p>
+<p class="text-xs text-slate-500">Finisher</p>
+</div>
+</div>
+<!-- Player Item 6 -->
+<div class="flex items-center gap-4 p-4 bg-white dark:bg-slate-900 rounded-lg border border-slate-100 dark:border-slate-800 shadow-sm opacity-80">
+<div class="flex flex-col items-center gap-1 text-slate-400">
+<button class="hover:text-primary transition-colors"><span class="material-symbols-outlined text-xl">keyboard_arrow_up</span></button>
+<span class="material-symbols-outlined text-xl cursor-grab">drag_indicator</span>
+<button class="hover:text-primary transition-colors"><span class="material-symbols-outlined text-xl">keyboard_arrow_down</span></button>
+</div>
+<div class="flex items-center justify-center size-10 bg-slate-100 dark:bg-slate-800 text-slate-500 font-bold rounded-full">6</div>
+<div class="flex-1">
+<p class="text-slate-900 dark:text-slate-100 font-bold">Jordan Smith</p>
+<p class="text-xs text-slate-500">All-Rounder</p>
+</div>
+</div>
+<!-- Repeat for more players (simplified view) -->
+<div class="flex items-center gap-4 p-4 bg-white/40 dark:bg-slate-900/40 rounded-lg border border-dashed border-slate-200 dark:border-slate-800 justify-center text-slate-400 italic text-sm">
+                        6 More Players (7-12) below
+                    </div>
+</div>
+<!-- Action Button Footer -->
+<div class="sticky bottom-6 px-4 py-4 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-sm border border-primary/20 rounded-xl shadow-lg flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">Innings 2</span>
+<span class="text-sm font-bold">Lineup Status: Draft</span>
+</div>
+<button class="flex items-center justify-center gap-2 bg-primary text-background-dark px-8 h-12 rounded-lg font-bold text-lg hover:brightness-110 active:scale-[0.98] transition-all shadow-md">
+<span class="material-symbols-outlined">check_circle</span>
+                        Confirm Lineup
+                    </button>
+</div>
+<div class="h-10"></div> <!-- Spacer -->
+</div>
+</main>
+</div>
+</div>
+</body></html>

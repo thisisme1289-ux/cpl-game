@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2bee2b",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102210",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<title>Gaming Dashboard - AlexVance</title>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="relative flex min-h-screen flex-col overflow-x-hidden">
+<!-- Header -->
+<header class="sticky top-0 z-40 flex items-center justify-between border-b border-primary/10 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md px-6 py-4 md:px-10 lg:px-20">
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-primary/10 rounded-lg transition-colors">
+<span class="material-symbols-outlined text-slate-900 dark:text-slate-100">menu</span>
+</button>
+<div class="flex items-center gap-2">
+<div class="size-8 bg-primary rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-background-dark font-bold">sports_esports</span>
+</div>
+<h2 class="text-xl font-bold tracking-tight hidden sm:block">Gaming Dashboard</h2>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden md:flex flex-col items-end mr-2">
+<span class="text-sm font-bold">AlexVance</span>
+<span class="text-[10px] uppercase tracking-widest text-primary font-bold">Pro Gamer</span>
+</div>
+<button class="flex items-center gap-2 px-4 py-2 bg-primary text-background-dark rounded-lg font-bold text-sm hover:opacity-90 transition-opacity">
+<span class="hidden sm:inline">Welcome, AlexVance</span>
+<div class="size-8 rounded-full border-2 border-background-dark/20 bg-cover bg-center" data-alt="User profile avatar showing a stylized gamer character" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDIVLpGXv_nlaEwccL3KmXz6LV--Vxc0cI22xmrJdookysqiKYjmTRHbfDggGujUf4EL1d9CUwhsS0XwZlGCga-_mB8MJqiZV0kS9tjCQykxoSkn76q60z0fKYEjtX0kJmF8qoHh5GEVTLRvzi-n1FjEyT0CDrV4-gkpbI5SAMsigjVZHy-gVCTl-KZqEbJIF2XYlUm7FP-dCZnlC0T066Zj7aLPIESXUiUuqF9b8K9VL1c5SYELyXMLQzg1TJCaDwqHdSVzVespURg')"></div>
+</button>
+</div>
+</header>
+<main class="flex-1 px-6 py-8 md:px-10 lg:px-20 max-w-7xl mx-auto w-full">
+<!-- Quick Stats Section -->
+<section class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
+<div class="bg-white dark:bg-slate-900/50 p-6 rounded-xl border border-primary/10 shadow-sm hover:border-primary/40 transition-colors">
+<div class="flex items-center justify-between mb-2">
+<span class="text-slate-500 dark:text-slate-400 font-medium">Match</span>
+<span class="material-symbols-outlined text-primary">analytics</span>
+</div>
+<p class="text-3xl font-bold">100</p>
+</div>
+<div class="bg-white dark:bg-slate-900/50 p-6 rounded-xl border border-primary/10 shadow-sm hover:border-primary/40 transition-colors">
+<div class="flex items-center justify-between mb-2">
+<span class="text-slate-500 dark:text-slate-400 font-medium">Wins</span>
+<span class="material-symbols-outlined text-primary">emoji_events</span>
+</div>
+<p class="text-3xl font-bold">65</p>
+</div>
+<div class="bg-white dark:bg-slate-900/50 p-6 rounded-xl border border-primary/10 shadow-sm hover:border-primary/40 transition-colors">
+<div class="flex items-center justify-between mb-2">
+<span class="text-slate-500 dark:text-slate-400 font-medium">Losses</span>
+<span class="material-symbols-outlined text-primary">close</span>
+</div>
+<p class="text-3xl font-bold">35</p>
+</div>
+<div class="bg-white dark:bg-slate-900/50 p-6 rounded-xl border border-primary/10 shadow-sm hover:border-primary/40 transition-colors">
+<div class="flex items-center justify-between mb-2">
+<span class="text-slate-500 dark:text-slate-400 font-medium">Win Rate</span>
+<span class="material-symbols-outlined text-primary">trending_up</span>
+</div>
+<p class="text-3xl font-bold text-primary">65%</p>
+</div>
+</section>
+<!-- Game Modes -->
+<section class="mb-10">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-2xl font-bold">Game Modes</h3>
+<div class="h-px flex-1 bg-primary/20 mx-6 hidden sm:block"></div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Card 1 -->
+<button class="group relative aspect-video sm:aspect-square overflow-hidden rounded-xl bg-slate-800 border border-primary/20 hover:border-primary transition-all">
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10"></div>
+<div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&amp;fit=crop&amp;q=80&amp;w=600')] bg-cover bg-center group-hover:scale-110 transition-transform duration-500 opacity-60" data-alt="Abstract futuristic neon gaming background"></div>
+<div class="absolute inset-0 flex flex-col items-center justify-center z-20 text-white p-4">
+<span class="material-symbols-outlined text-4xl mb-3 text-primary">shuffle</span>
+<span class="text-lg font-bold">Random Match</span>
+</div>
+</button>
+<!-- Card 2 -->
+<button class="group relative aspect-video sm:aspect-square overflow-hidden rounded-xl bg-slate-800 border border-primary/20 hover:border-primary transition-all">
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10"></div>
+<div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&amp;fit=crop&amp;q=80&amp;w=600')] bg-cover bg-center group-hover:scale-110 transition-transform duration-500 opacity-60" data-alt="Close up of mechanical gaming keyboard with green backlight"></div>
+<div class="absolute inset-0 flex flex-col items-center justify-center z-20 text-white p-4">
+<span class="material-symbols-outlined text-4xl mb-3 text-primary">add_circle</span>
+<span class="text-lg font-bold">Create Room</span>
+</div>
+</button>
+<!-- Card 3 -->
+<button class="group relative aspect-video sm:aspect-square overflow-hidden rounded-xl bg-slate-800 border border-primary/20 hover:border-primary transition-all">
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10"></div>
+<div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1552820728-8b83bb6b773f?auto=format&amp;fit=crop&amp;q=80&amp;w=600')] bg-cover bg-center group-hover:scale-110 transition-transform duration-500 opacity-60" data-alt="Esports arena atmosphere with green lighting"></div>
+<div class="absolute inset-0 flex flex-col items-center justify-center z-20 text-white p-4">
+<span class="material-symbols-outlined text-4xl mb-3 text-primary">group_add</span>
+<span class="text-lg font-bold">Join Room</span>
+</div>
+</button>
+<!-- Card 4 -->
+<button class="group relative aspect-video sm:aspect-square overflow-hidden rounded-xl bg-slate-800 border border-primary/20 hover:border-primary transition-all">
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10"></div>
+<div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&amp;fit=crop&amp;q=80&amp;w=600')] bg-cover bg-center group-hover:scale-110 transition-transform duration-500 opacity-60" data-alt="Retro computer components and glowing green wires"></div>
+<div class="absolute inset-0 flex flex-col items-center justify-center z-20 text-white p-4">
+<span class="material-symbols-outlined text-4xl mb-3 text-primary">smart_toy</span>
+<span class="text-lg font-bold">Bot Play</span>
+</div>
+</button>
+</div>
+</section>
+<!-- Leaderboard Banner -->
+<section>
+<button class="group relative w-full overflow-hidden rounded-2xl bg-background-dark dark:bg-primary py-12 px-8 flex flex-col md:flex-row items-center justify-between transition-all hover:ring-4 hover:ring-primary/30">
+<div class="relative z-10 text-center md:text-left mb-6 md:mb-0">
+<h4 class="text-3xl md:text-4xl font-extrabold text-white dark:text-background-dark leading-tight uppercase tracking-tighter italic">
+                            Global Leaderboard
+                        </h4>
+<p class="text-primary dark:text-background-dark/80 font-medium mt-2">See how you stack up against the best in the world</p>
+</div>
+<div class="relative z-10 flex items-center gap-4">
+<div class="flex -space-x-3">
+<img class="size-10 rounded-full border-2 border-background-dark dark:border-primary" data-alt="Rank 1 player avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjA60asV-164scnh_CHk7pbfKd55ea8a_fKX_GE92G9HRbVmH0FvXEfY9hD_qYo6DvTnAcgyP8yWlZVnr0e0xRZLc_MMtWJnZj2KLbyavDyTAAAT-HBQUsRgtgC32krO8mVdasi8LEjmgjAqWcADRdLnnfJhBODq3yAanlmf4vYVCqM2b5RK7P9RzqvN9uGIrhbjRdvWSyMy988fy4LgLToCu4KakKqsYf9OsjZ2hcmgIy9LuAZ4ZIkRTlnBVyy99rrBinV7zgv4_w"/>
+<img class="size-10 rounded-full border-2 border-background-dark dark:border-primary" data-alt="Rank 2 player avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCiLYmUddAoq5omU9TrZlvXPCoKMhOvErLeqmyvRbStATZWmsig3rkmGXzAO60mzhgYS_-KCp9vzkTLjxzKTg_kE2wVoAli4vLHPb5ShYf1oPI9DMkNhDOJ1Bc1hLlOAg9i1ex3rGlt8qK5DmEyhj4rzEPn1ngxFiZWyaa7seW6GD6fkEY5-qCKf6HBhIyvNgjpy-ebkTn4hSa9bRNu9q5YvUXzSmrB80PIOj_UeUWFYd-BMAIT21FxPAgP6qOHCWi9GUWmOkmKtc2k"/>
+<img class="size-10 rounded-full border-2 border-background-dark dark:border-primary" data-alt="Rank 3 player avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCq1EVnz8MKDXgiuRLwM9rKbGdcfz447fQuOJXrFyrCyO0r4P5oeWrVelrQxDVt9_HbrDz0ub1FLX-8SiYPcMtvaQD2q1YKh6AEtz9UGOqlJ6c0TzJXoCr929m1mvpCIG8O0PW0rIHEN3PDSg7phtAJJBlpxC5N5qqUMvm8k3wUkNcADbUKNyQbC8GlVUOaNOy3nlxE9bmgJpniU4UCnJOpJf6b9UnsVcumv_6KJQvtrtr4fkSZKFqrVFtS5csTmjQP0CHOIMdHlG_r"/>
+</div>
+<span class="material-symbols-outlined text-4xl text-white dark:text-background-dark group-hover:translate-x-2 transition-transform">arrow_forward</span>
+</div>
+<!-- Background decoration -->
+<div class="absolute top-0 right-0 w-1/2 h-full bg-primary/10 dark:bg-background-dark/10 skew-x-12 translate-x-1/4"></div>
+</button>
+</section>
+</main>
+<!-- Sidebar Overlay (Hidden by default) -->
+<div class="fixed inset-0 z-50 pointer-events-none opacity-0 transition-opacity">
+<div class="absolute inset-0 bg-black/50 backdrop-blur-sm pointer-events-auto"></div>
+<aside class="absolute left-0 top-0 h-full w-72 bg-white dark:bg-background-dark border-r border-primary/20 pointer-events-auto transform -translate-x-full transition-transform">
+<div class="p-6">
+<div class="flex items-center justify-between mb-8">
+<div class="flex items-center gap-2">
+<div class="size-8 bg-primary rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-background-dark font-bold">sports_esports</span>
+</div>
+<h2 class="text-xl font-bold tracking-tight">Gaming</h2>
+</div>
+<button class="p-1 hover:bg-primary/10 rounded-lg transition-colors">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<nav class="space-y-2">
+<a class="flex items-center gap-3 p-3 rounded-lg bg-primary/10 text-primary font-bold" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 p-3 rounded-lg hover:bg-primary/5 text-slate-600 dark:text-slate-400 font-medium transition-colors" href="#">
+<span class="material-symbols-outlined">person</span>
+<span>Profile</span>
+</a>
+<a class="flex items-center gap-3 p-3 rounded-lg hover:bg-primary/5 text-slate-600 dark:text-slate-400 font-medium transition-colors" href="#">
+<span class="material-symbols-outlined">leaderboard</span>
+<span>Leaderboard</span>
+</a>
+<a class="flex items-center gap-3 p-3 rounded-lg hover:bg-primary/5 text-slate-600 dark:text-slate-400 font-medium transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span>Settings</span>
+</a>
+<hr class="border-primary/10 my-4"/>
+<button class="w-full flex items-center gap-3 p-3 rounded-lg hover:bg-red-500/10 text-red-500 font-medium transition-colors">
+<span class="material-symbols-outlined">logout</span>
+<span>Logout</span>
+</button>
+</nav>
+</div>
+</aside>
+</div>
+<!-- Mobile Navigation Bar (Bottom) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full bg-white dark:bg-background-dark border-t border-primary/20 flex items-center justify-around py-3 px-6 z-40">
+<button class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-[10px] font-bold uppercase">Home</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-slate-400">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-bold uppercase">Profile</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-slate-400">
+<span class="material-symbols-outlined">leaderboard</span>
+<span class="text-[10px] font-bold uppercase">Rank</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-slate-400">
+<span class="material-symbols-outlined">logout</span>
+<span class="text-[10px] font-bold uppercase">Exit</span>
+</button>
+</nav>
+<!-- Logout Confirmation Modal (Hidden by default) -->
+<!-- To show: remove 'hidden' and 'pointer-events-none', add 'opacity-100' -->
+<div class="fixed inset-0 z-[60] flex items-center justify-center p-4 hidden pointer-events-none bg-black/60 backdrop-blur-md transition-all">
+<div class="bg-white dark:bg-background-dark w-full max-w-sm rounded-2xl border border-primary/20 p-8 shadow-2xl">
+<div class="size-16 bg-red-500/10 text-red-500 rounded-full flex items-center justify-center mx-auto mb-6">
+<span class="material-symbols-outlined text-4xl">logout</span>
+</div>
+<h5 class="text-xl font-bold text-center mb-2">Confirm Logout</h5>
+<p class="text-slate-500 dark:text-slate-400 text-center mb-8">Are you sure you want to end your session, AlexVance?</p>
+<div class="flex gap-4">
+<button class="flex-1 py-3 rounded-xl border border-primary/20 font-bold hover:bg-primary/5 transition-colors">Cancel</button>
+<button class="flex-1 py-3 rounded-xl bg-red-500 text-white font-bold hover:bg-red-600 transition-colors">Logout</button>
+</div>
+</div>
+</div>
+</div>
+</body></html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2bee2b",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102210",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<title>Cricket Rivals - Play vs Bot</title>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<!-- Header Section -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-primary/20 px-6 py-4 lg:px-20 bg-white dark:bg-background-dark/50">
+<div class="flex items-center gap-4 text-slate-900 dark:text-slate-100">
+<div class="size-8 bg-primary rounded-lg flex items-center justify-center text-background-dark">
+<span class="material-symbols-outlined">sports_cricket</span>
+</div>
+<h2 class="text-xl font-bold leading-tight tracking-tight">Cricket Rivals</h2>
+</div>
+<div class="flex flex-1 justify-end gap-6 items-center">
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-sm font-semibold hover:text-primary transition-colors" href="#">Home</a>
+<a class="text-sm font-semibold hover:text-primary transition-colors" href="#">Leagues</a>
+<a class="text-sm font-semibold hover:text-primary transition-colors" href="#">Profile</a>
+</nav>
+<div class="flex gap-3">
+<button class="flex size-10 cursor-pointer items-center justify-center rounded-lg bg-primary/10 text-slate-900 dark:text-slate-100 hover:bg-primary/20 transition-all">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<button class="flex size-10 cursor-pointer items-center justify-center rounded-lg bg-primary/10 text-slate-900 dark:text-slate-100 hover:bg-primary/20 transition-all">
+<span class="material-symbols-outlined">help</span>
+</button>
+</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-primary" data-alt="User profile avatar with green border" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBjUvwcsr6-Q2KvJo2b_e9kevXslvGyYJ0jGFeMkScOfcWa_TKuJ1YhjqvIkuB1zRc63y-MZKIi9ugffFcGGJ37Wr-QGxPKbBfq9CheAj39lA0ijUm29RjpBqzN-rgB0lXkZSX65TmjMN8oJI3rZ4TcBbJhJ67E6uJRzQQE3oKT9HllcbkBqSJTydvv7GYtNChgOeRQOUVuz7hT1IDSJrHntcr1y3gWYINFhw_tId2xVrV0EUcyJX1Wpekj5BvbolU99pSUbJUeyFF-");'></div>
+</div>
+</header>
+<main class="flex flex-col max-w-[1200px] mx-auto w-full px-4 py-8">
+<!-- Title & Context -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8 bg-white dark:bg-background-dark/40 p-6 rounded-xl border border-primary/10 shadow-sm">
+<div class="flex flex-col gap-1">
+<h1 class="text-3xl font-bold tracking-tight">Play vs Bot - 2nd Innings</h1>
+<div class="flex items-center gap-3">
+<span class="px-3 py-1 bg-primary text-background-dark text-xs font-bold rounded-full uppercase">Chasing</span>
+<p class="text-primary font-semibold text-sm">Target: 186 | RRR: 8.68</p>
+</div>
+</div>
+<div class="flex gap-4 w-full md:w-auto overflow-x-auto pb-2 md:pb-0">
+<div class="flex flex-col min-w-[120px] bg-primary/5 p-4 rounded-lg border-l-4 border-primary">
+<span class="text-xs uppercase font-bold text-slate-500 dark:text-slate-400">Score</span>
+<span class="text-2xl font-bold">45/2</span>
+</div>
+<div class="flex flex-col min-w-[120px] bg-primary/5 p-4 rounded-lg border-l-4 border-primary">
+<span class="text-xs uppercase font-bold text-slate-500 dark:text-slate-400">Overs</span>
+<span class="text-2xl font-bold">3.4/20</span>
+</div>
+<div class="flex flex-col min-w-[120px] bg-primary/5 p-4 rounded-lg border-l-4 border-primary">
+<span class="text-xs uppercase font-bold text-slate-500 dark:text-slate-400">Wickets Left</span>
+<span class="text-2xl font-bold">8</span>
+</div>
+</div>
+</div>
+<!-- Match Center -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center mb-12">
+<!-- Player Side -->
+<div class="flex flex-col items-center gap-4 order-2 lg:order-1">
+<div class="relative">
+<div class="size-32 rounded-full border-4 border-primary p-1 bg-white dark:bg-background-dark overflow-hidden">
+<div class="w-full h-full rounded-full bg-center bg-cover" data-alt="User character avatar portrait" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAPz4o9Vr1_0yVcWhtoOf1iO7XuFdu6_32iA6_YBsbGkSpgRpD6iayK_WfWcWO9sakwgC3CTpAzZWABXptWfKSlmEm5e_m_Amd744zTCftOpBlieVtU2vuHEgXrAF6FBlBBNEQttk0Ptwu38X2A9QmGbxLHyFbWi2T8UtLJq-G3e9-ILFtv8MrbhNhVape11iCqSSPBCtN6R7NtqzjiF6K-1fCvXvaO3KNdhGfRhD5Ajz76_3opmNjoGYIcI2adUevkGngbr1pmSord");'></div>
+</div>
+<div class="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-primary text-background-dark px-4 py-1 rounded-full text-sm font-bold shadow-lg">YOU</div>
+</div>
+<div class="text-center">
+<h3 class="text-xl font-bold">Team User</h3>
+<p class="text-slate-500 text-sm">Current Batter: Player 1 (22*)</p>
+</div>
+</div>
+<!-- Result Display -->
+<div class="flex flex-col items-center justify-center gap-6 order-1 lg:order-2 py-10">
+<span class="text-sm font-bold uppercase tracking-widest text-slate-400">Last Delivery</span>
+<div class="relative">
+<div class="size-48 rounded-full border-8 border-primary/20 flex items-center justify-center bg-white dark:bg-background-dark shadow-2xl">
+<span class="text-7xl font-black text-primary drop-shadow-sm">4</span>
+</div>
+<div class="absolute -top-4 -right-4 bg-primary text-background-dark size-12 rounded-full flex items-center justify-center font-bold text-xl animate-pulse">
+                                !
+                            </div>
+</div>
+<div class="text-center">
+<p class="text-lg font-bold text-primary">BOUNDARY!</p>
+<p class="text-sm text-slate-500">Bot v2.0 to User</p>
+</div>
+</div>
+<!-- Bot Side -->
+<div class="flex flex-col items-center gap-4 order-3">
+<div class="relative">
+<div class="size-32 rounded-full border-4 border-slate-300 dark:border-slate-700 p-1 bg-white dark:bg-background-dark overflow-hidden">
+<div class="w-full h-full rounded-full bg-center bg-cover grayscale" data-alt="AI bot character avatar portrait" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAowZR1UoXXgp3J-ltjho8qXREEnWmjB-wwoIRAbQMxGj5-2jKkSYWrCuhwiT2t1L09Rkki7RhaTuGULDyhM4_6JMxk0RVCGL1i1yzNcAGb7pjeZpZqdnuSvD2WpGkY_7pEsoB1otUYefm-wPUjT7nZWv6CYek0TQ_xjUNd4zzoUqhxlm5WhFCA6ppA32z3FcllGOsI6XEIQOeagNdtfd3sYl0Hjy1CidUwEpcrmAd_7pmaS76cY2HOu7We8fUiu1U0QAndN24T49tw");'></div>
+</div>
+<div class="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-slate-700 text-white px-4 py-1 rounded-full text-sm font-bold shadow-lg">BOT v2.0</div>
+</div>
+<div class="text-center">
+<h3 class="text-xl font-bold">The Machine</h3>
+<p class="text-slate-500 text-sm">Bowling: Off-Spin</p>
+</div>
+</div>
+</div>
+<!-- Action Controls -->
+<div class="bg-white dark:bg-background-dark/60 p-8 rounded-2xl border border-primary/10 shadow-xl">
+<div class="flex flex-col items-center gap-8">
+<p class="text-lg font-bold tracking-tight text-slate-600 dark:text-slate-300">Choose your shot</p>
+<div class="grid grid-cols-3 md:grid-cols-6 gap-4 w-full max-w-4xl">
+<!-- Button 1 -->
+<button class="flex flex-col items-center gap-3 p-4 rounded-xl bg-primary/10 hover:bg-primary transition-all group border border-primary/20">
+<span class="material-symbols-outlined text-3xl text-primary group-hover:text-background-dark">filter_1</span>
+<span class="text-xs font-bold group-hover:text-background-dark">SINGLE</span>
+</button>
+<!-- Button 2 -->
+<button class="flex flex-col items-center gap-3 p-4 rounded-xl bg-primary/10 hover:bg-primary transition-all group border border-primary/20">
+<span class="material-symbols-outlined text-3xl text-primary group-hover:text-background-dark">filter_2</span>
+<span class="text-xs font-bold group-hover:text-background-dark">DOUBLE</span>
+</button>
+<!-- Button 3 -->
+<button class="flex flex-col items-center gap-3 p-4 rounded-xl bg-primary/10 hover:bg-primary transition-all group border border-primary/20">
+<span class="material-symbols-outlined text-3xl text-primary group-hover:text-background-dark">filter_3</span>
+<span class="text-xs font-bold group-hover:text-background-dark">TRIPLE</span>
+</button>
+<!-- Button 4 -->
+<button class="flex flex-col items-center gap-3 p-4 rounded-xl bg-primary/20 hover:bg-primary transition-all group border-2 border-primary/40 scale-110 shadow-lg">
+<span class="material-symbols-outlined text-3xl text-primary group-hover:text-background-dark">filter_4</span>
+<span class="text-xs font-bold group-hover:text-background-dark">FOUR</span>
+</button>
+<!-- Button 5 -->
+<button class="flex flex-col items-center gap-3 p-4 rounded-xl bg-primary/10 hover:bg-primary transition-all group border border-primary/20">
+<span class="material-symbols-outlined text-3xl text-primary group-hover:text-background-dark">filter_5</span>
+<span class="text-xs font-bold group-hover:text-background-dark">RUNS</span>
+</button>
+<!-- Button 6 -->
+<button class="flex flex-col items-center gap-3 p-4 rounded-xl bg-primary/30 hover:bg-primary transition-all group border-2 border-primary shadow-xl">
+<span class="material-symbols-outlined text-3xl text-primary group-hover:text-background-dark">filter_6</span>
+<span class="text-xs font-bold group-hover:text-background-dark">SIXER</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Footer Stats -->
+<div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="bg-white dark:bg-background-dark/40 p-4 rounded-lg flex items-center justify-between">
+<span class="text-sm font-medium text-slate-500">Run Rate</span>
+<span class="font-bold text-primary">12.27</span>
+</div>
+<div class="bg-white dark:bg-background-dark/40 p-4 rounded-lg flex items-center justify-between">
+<span class="text-sm font-medium text-slate-500">Partnership</span>
+<span class="font-bold">32 (14)</span>
+</div>
+</div>
+</main>
+</div>
+</div>
+</body></html>

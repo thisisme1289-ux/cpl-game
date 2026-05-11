@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2bee2b",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102210",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="relative flex h-auto min-screen w-full flex-col overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<!-- Top Navigation Bar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-primary/20 px-6 py-4 lg:px-40 bg-white dark:bg-background-dark/50 backdrop-blur-md sticky top-0 z-50">
+<div class="flex items-center gap-4">
+<div class="size-8 flex items-center justify-center rounded-lg bg-primary text-slate-900">
+<span class="material-symbols-outlined">sports_cricket</span>
+</div>
+<h2 class="text-slate-900 dark:text-slate-100 text-xl font-bold leading-tight tracking-tight font-display uppercase italic">Cricket Pro League</h2>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center justify-center rounded-full w-10 h-10 bg-primary/10 hover:bg-primary/20 transition-colors text-slate-900 dark:text-slate-100">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<button class="flex items-center justify-center rounded-full w-10 h-10 bg-primary/10 hover:bg-primary/20 transition-colors text-slate-900 dark:text-slate-100">
+<span class="material-symbols-outlined">volume_up</span>
+</button>
+</div>
+</header>
+<main class="flex flex-1 justify-center py-8 px-4 lg:px-40">
+<div class="max-w-[1000px] w-full flex flex-col gap-8">
+<!-- Hero Section: Innings Summary -->
+<div class="@container w-full">
+<div class="relative overflow-hidden rounded-xl bg-slate-900 h-[320px] flex flex-col justify-end p-8 border-b-4 border-primary">
+<div class="absolute inset-0 opacity-40 bg-cover bg-center" data-alt="Close up of a cricket stadium pitch under bright stadium lights" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD_YDbOfjS7rH7EwV4aIXPA4XDJ5ZEppecsMo-JxpGlyZJLbeuOicrOnfbVkHD1PmkStvL3J7PgP4Qq5ndOwMGrgX901Qi9ZE31J4VscJl9bZkY9QRGtToIbNgQn39HU3CByy5185Z2MpjbtrUMz3FNJpZDD-2lVUMqFxEF43GJ_apfTZYmfufYuB7FoA5sxiCHFEC3xs0dDovunnV8mjtbvvHrqP7L2x7aaV5E4rKHz7CGSrXIF6_yJCyT9TQH7SmaF3vSWsd5ERxr');"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark/60 to-transparent"></div>
+<div class="relative z-10 space-y-2">
+<span class="px-3 py-1 bg-primary text-slate-900 text-xs font-bold rounded-full uppercase tracking-widest">Innings Complete</span>
+<h1 class="text-white text-5xl font-bold leading-tight uppercase font-display italic">Change of Ends</h1>
+<p class="text-primary font-medium text-lg">Bots finished their innings. Time to chase!</p>
+</div>
+</div>
+</div>
+<!-- Stats Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="flex flex-col gap-3 rounded-xl p-8 bg-white dark:bg-slate-800 shadow-sm border border-primary/10">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-sm">scoreboard</span>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-bold uppercase tracking-wider">Final Score</p>
+</div>
+<p class="text-slate-900 dark:text-slate-100 text-4xl font-bold font-display">142/5 <span class="text-lg font-normal text-slate-400">(20.0)</span></p>
+</div>
+<div class="flex flex-col gap-3 rounded-xl p-8 bg-primary/10 dark:bg-primary/5 border border-primary/30 relative overflow-hidden">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-sm">target</span>
+<p class="text-slate-600 dark:text-slate-300 text-sm font-bold uppercase tracking-wider">Target To Win</p>
+</div>
+<p class="text-slate-900 dark:text-slate-100 text-4xl font-bold font-display">143</p>
+<div class="absolute -right-4 -bottom-4 opacity-10">
+<span class="material-symbols-outlined text-[100px]">ads_click</span>
+</div>
+</div>
+<div class="flex flex-col gap-3 rounded-xl p-8 bg-white dark:bg-slate-800 shadow-sm border border-primary/10">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-sm">history</span>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-bold uppercase tracking-wider">Run Rate</p>
+</div>
+<p class="text-slate-900 dark:text-slate-100 text-4xl font-bold font-display">7.15 <span class="text-lg font-normal text-slate-400">RR</span></p>
+</div>
+</div>
+<!-- Countdown & Action Section -->
+<div class="flex flex-col items-center justify-center py-10 gap-8 bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-primary/10">
+<div class="text-center space-y-2">
+<h4 class="text-primary text-sm font-bold leading-normal tracking-[0.2em] uppercase">Get Ready</h4>
+<p class="text-slate-500 dark:text-slate-400 text-base font-medium">Second innings begins shortly</p>
+</div>
+<!-- Visual Countdown Timer -->
+<div class="relative flex items-center justify-center size-32">
+<svg class="size-full -rotate-90">
+<circle class="text-slate-200 dark:text-slate-700" cx="64" cy="64" fill="transparent" r="58" stroke="currentColor" stroke-width="8"></circle>
+<circle class="text-primary" cx="64" cy="64" fill="transparent" r="58" stroke="currentColor" stroke-dasharray="364.4" stroke-dashoffset="100" stroke-width="8"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="text-4xl font-bold text-slate-900 dark:text-slate-100 font-display">30</span>
+<span class="text-[10px] uppercase font-bold text-slate-400 tracking-tighter">Seconds</span>
+</div>
+</div>
+<div class="flex flex-col w-full max-w-sm gap-4 px-6">
+<button class="w-full h-14 bg-primary hover:bg-primary/90 text-slate-900 rounded-lg font-bold text-lg uppercase tracking-wide transition-all shadow-lg shadow-primary/20 flex items-center justify-center gap-2 group">
+                            Play Second Innings
+                            <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">play_arrow</span>
+</button>
+<button class="w-full h-12 bg-transparent border-2 border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 rounded-lg font-bold text-sm uppercase tracking-wide hover:bg-slate-50 dark:hover:bg-slate-700 transition-all">
+                            View Full Scorecard
+                        </button>
+</div>
+</div>
+<!-- Bot Info Footer -->
+<div class="flex items-center justify-between p-6 bg-slate-900 rounded-xl text-white">
+<div class="flex items-center gap-4">
+<div class="size-12 rounded-full bg-slate-700 flex items-center justify-center border-2 border-primary/40">
+<span class="material-symbols-outlined text-primary">smart_toy</span>
+</div>
+<div>
+<p class="text-xs uppercase text-slate-400 font-bold tracking-widest">Opponent</p>
+<p class="text-base font-bold font-display">Expert Bot Engine v2.4</p>
+</div>
+</div>
+<div class="hidden md:flex flex-col items-end">
+<p class="text-xs uppercase text-slate-400 font-bold tracking-widest">Difficulty</p>
+<div class="flex gap-1 mt-1">
+<div class="w-4 h-1 bg-primary rounded-full"></div>
+<div class="w-4 h-1 bg-primary rounded-full"></div>
+<div class="w-4 h-1 bg-primary rounded-full"></div>
+<div class="w-4 h-1 bg-slate-700 rounded-full"></div>
+<div class="w-4 h-1 bg-slate-700 rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer class="py-10 text-center">
+<p class="text-slate-400 dark:text-slate-600 text-xs font-medium uppercase tracking-widest">© 2024 Cricket League Gaming Engine</p>
+</footer>
+</div>
+</div>
+</body></html>

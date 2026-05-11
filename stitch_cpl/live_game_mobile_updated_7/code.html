@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#2bee2b",
+              "background-light": "#f6f8f6",
+              "background-dark": "#102210",
+            },
+            fontFamily: {
+              "display": ["Space Grotesk"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased">
+<div class="relative flex h-screen max-w-md mx-auto flex-col bg-background-light dark:bg-background-dark overflow-hidden">
+<!-- TopAppBar / Status Bar -->
+<div class="flex items-center p-4 pb-2 justify-between border-b border-primary/10">
+<div class="text-slate-900 dark:text-slate-100 flex size-10 shrink-0 items-center justify-center">
+<span class="material-symbols-outlined">arrow_back</span>
+</div>
+<div class="flex flex-col items-center">
+<h2 class="text-slate-900 dark:text-slate-100 text-sm font-bold leading-tight tracking-tight">IND vs AUS</h2>
+<p class="text-primary text-xs font-semibold uppercase tracking-widest">Live Match</p>
+</div>
+<div class="flex size-10 items-center justify-end">
+<span class="material-symbols-outlined">info</span>
+</div>
+</div>
+<!-- Scoreboard Overlay -->
+<div class="bg-primary/10 px-4 py-3 flex justify-between items-center">
+<div>
+<span class="text-2xl font-bold tracking-tighter">124/3</span>
+<span class="text-xs font-medium ml-1 text-slate-600 dark:text-slate-400">(15.2 OV)</span>
+</div>
+<div class="text-right">
+<p class="text-[10px] uppercase font-bold text-slate-500">Target</p>
+<p class="text-sm font-bold">180</p>
+</div>
+</div>
+<!-- Players Profiles -->
+<div class="flex p-4 gap-4 @container justify-center items-center">
+<!-- Batter -->
+<div class="flex-1 flex flex-col items-center p-3 rounded-xl bg-white dark:bg-slate-900/50 shadow-sm border border-primary/5">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-20 w-20 border-2 border-primary mb-2" data-alt="Professional cricket batter profile portrait closeup" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDGvtOyZd978t7fCoLhxpPjjsFlLVito_UpmM22qcVE3RJ0s1RUbTEojTrr_s-BCVdWkDB-am9hvnzRC5n0gC8UGWWS__OAGeeLdqMYgUITza-9CBgEBuExqxCge53Kf2AaoSAD1JHK6GUX_rHQDZTQ4dplQ5Rt-A8OJx7O426Y7De23NowZ-Y8V6SlzLGR12Ti6Qxmg5ihVLzfgjvrqUQF30ytCtytuY1_xcm3Bc5LBxLAJpnnHwePziTKSXxaPTkBdtU4rgkekaAL");'></div>
+<p class="text-slate-900 dark:text-slate-100 text-sm font-bold leading-tight">Virat Kohli</p>
+<p class="text-primary text-xs font-bold leading-normal">45 (32)*</p>
+<span class="text-[10px] uppercase font-bold text-slate-400 mt-1">Striker</span>
+</div>
+<div class="text-primary/30 font-black italic text-xl">VS</div>
+<!-- Bowler -->
+<div class="flex-1 flex flex-col items-center p-3 rounded-xl bg-white dark:bg-slate-900/50 shadow-sm border border-primary/5">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-20 w-20 border-2 border-slate-300 mb-2" data-alt="Professional cricket bowler profile portrait closeup" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDQmxMqSH4C22wacwPD05WCPdB5eOul2clKAIuc-inJkPJJUUDos7ql5IRRK05ek2ObZDB9YCbELaWVAAixizGR37boUDN4sey02adWS21z7b268MyYi2xzwIORVqtZnfScVvytr-9UdIWNhU8T0MR7qM-eezXgW9GXV9uqDGRo1RD4z_wV0P_pDJHTHneND1txtFysgZlF5l5abT76E7v0HZzTKF6ZSq-Dv7Bect_itOhR675EwBIrquNzHNZYudBAnNw-SceFf3Ct");'></div>
+<p class="text-slate-900 dark:text-slate-100 text-sm font-bold leading-tight">J. Anderson</p>
+<p class="text-slate-500 dark:text-slate-400 text-xs font-bold leading-normal">2/28 (3.2)</p>
+<span class="text-[10px] uppercase font-bold text-slate-400 mt-1">Fast-Med</span>
+</div>
+</div>
+<!-- Central Action Area -->
+<div class="flex-1 flex flex-col items-center justify-center p-4">
+<div class="relative">
+<div class="absolute inset-0 bg-primary rounded-full blur-3xl opacity-20 scale-150"></div>
+<div class="relative flex flex-col items-center">
+<h1 class="text-slate-900 dark:text-slate-100 tracking-tighter text-9xl font-black leading-none drop-shadow-sm">4</h1>
+<div class="bg-primary px-6 py-1 rounded-full mt-2 transform -rotate-2">
+<h2 class="text-slate-900 text-lg font-black leading-tight tracking-widest uppercase italic">Boundary!</h2>
+</div>
+</div>
+</div>
+</div>
+<!-- User Controls - Six Buttons Grid -->
+<div class="p-6 bg-white dark:bg-slate-900 rounded-t-3xl shadow-2xl border-t border-primary/10">
+<p class="text-center text-[10px] uppercase font-bold tracking-[0.2em] text-slate-400 mb-4">Choose your next move</p>
+<div class="grid grid-cols-3 gap-4">
+<button class="aspect-square flex items-center justify-center bg-background-light dark:bg-slate-800 border-2 border-primary/20 hover:border-primary rounded-xl transition-all group">
+<span class="text-3xl font-black text-slate-800 dark:text-slate-100 group-hover:text-primary">1</span>
+</button>
+<button class="aspect-square flex items-center justify-center bg-background-light dark:bg-slate-800 border-2 border-primary/20 hover:border-primary rounded-xl transition-all group">
+<span class="text-3xl font-black text-slate-800 dark:text-slate-100 group-hover:text-primary">2</span>
+</button>
+<button class="aspect-square flex items-center justify-center bg-background-light dark:bg-slate-800 border-2 border-primary/20 hover:border-primary rounded-xl transition-all group">
+<span class="text-3xl font-black text-slate-800 dark:text-slate-100 group-hover:text-primary">3</span>
+</button>
+<button class="aspect-square flex items-center justify-center bg-primary border-2 border-primary rounded-xl shadow-lg shadow-primary/20 transition-all hover:scale-95">
+<span class="text-3xl font-black text-slate-900">4</span>
+</button>
+<button class="aspect-square flex items-center justify-center bg-background-light dark:bg-slate-800 border-2 border-primary/20 hover:border-primary rounded-xl transition-all group">
+<span class="text-3xl font-black text-slate-800 dark:text-slate-100 group-hover:text-primary">5</span>
+</button>
+<button class="aspect-square flex items-center justify-center bg-background-light dark:bg-slate-800 border-2 border-primary/20 hover:border-primary rounded-xl transition-all group">
+<span class="text-3xl font-black text-slate-800 dark:text-slate-100 group-hover:text-primary">6</span>
+</button>
+</div>
+<!-- Empty space for home indicator on mobile -->
+<div class="h-6 w-full"></div>
+</div>
+</div>
+</body></html>

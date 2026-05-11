@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Cricket Live Strategy Game</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2bee2b",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102210",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased overflow-x-hidden">
+<div class="relative flex min-h-screen w-full flex-col">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-50 w-full border-b border-primary/20 bg-background-light/80 backdrop-blur-md px-6 py-4 lg:px-20">
+<div class="mx-auto flex max-w-7xl items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="flex h-10 w-10 items-center justify-center rounded-lg bg-primary text-background-dark">
+<span class="material-symbols-outlined font-bold">sports_cricket</span>
+</div>
+<div>
+<h2 class="text-lg font-bold leading-tight tracking-tight">IND vs AUS</h2>
+<p class="text-xs font-medium text-slate-500 uppercase tracking-widest">World Championship Finals</p>
+</div>
+</div>
+<div class="hidden md:flex flex-1 justify-center gap-12">
+<div class="flex flex-col items-center">
+<span class="text-[10px] font-bold text-slate-400 uppercase">Score</span>
+<span class="text-lg font-bold">145/3</span>
+</div>
+<div class="flex flex-col items-center border-x border-primary/10 px-8">
+<span class="text-[10px] font-bold text-slate-400 uppercase">Overs</span>
+<span class="text-lg font-bold">16.4</span>
+</div>
+<div class="flex flex-col items-center border-r border-primary/10 pr-8">
+<span class="text-[10px] font-bold text-slate-400 uppercase">Target</span>
+<span class="text-lg font-bold">182</span>
+</div>
+<div class="flex flex-col items-center">
+<span class="text-[10px] font-bold text-slate-400 uppercase">RR</span>
+<span class="text-lg font-bold text-primary">8.70</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 animate-pulse">
+<div class="h-2 w-2 rounded-full bg-primary"></div>
+<span class="text-xs font-bold text-primary uppercase">Live</span>
+</div>
+<div class="h-10 w-10 rounded-full border-2 border-primary/30 bg-center bg-no-repeat bg-cover" data-alt="User profile avatar portrait" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA_zR6J8fhltXiMfwnnErsSDwdEyE7hchALybAvs38wVuGPuudo8cYT84xjp25T3Pf-LBxsfQryMu_1dRB6Glc8kd9OMkEBhtyfbup-q6T01Z46T8MqrHQAXtrCW-pHMLryLVdBixNQ8IgejrXYpso9RM_Pd0KCMm6Eq3e7SLPiM_OpBrxfCL-z2QpUOgq5yAfFtazfVekJWj5b0ogsAm_m1kZJ9L95fuglasYou4XvUTSuXwclV2Geg_w9I5gcpUqwN-8lycAxl-4U");'></div>
+</div>
+</div>
+</header>
+<main class="mx-auto flex w-full max-w-7xl flex-1 flex-col gap-6 p-6 lg:flex-row lg:p-10">
+<!-- Left Side: Batter Info & Chat Log -->
+<aside class="flex w-full flex-col gap-6 lg:w-1/4">
+<!-- Batter Card -->
+<div class="rounded-xl border border-primary/20 bg-white p-6 shadow-sm dark:bg-slate-900">
+<div class="mb-4 flex items-center justify-between border-b border-slate-100 pb-4 dark:border-slate-800">
+<span class="text-xs font-bold uppercase tracking-widest text-primary">On Strike</span>
+<span class="material-symbols-outlined text-primary">bolt</span>
+</div>
+<h3 class="text-xl font-bold">Virat Kohli</h3>
+<div class="mt-4 flex flex-col gap-1">
+<div class="flex items-end justify-between">
+<span class="text-3xl font-bold">42 <span class="text-sm font-normal text-slate-400">runs</span></span>
+<span class="text-sm font-medium text-slate-500">28 balls</span>
+</div>
+<div class="mt-2 h-1 w-full overflow-hidden rounded-full bg-slate-100 dark:bg-slate-800">
+<div class="h-full w-[65%] bg-primary"></div>
+</div>
+<div class="mt-4 flex justify-between text-xs font-medium">
+<span class="text-slate-400">SR: 150.0</span>
+<span class="text-slate-400">4s: 4 | 6s: 1</span>
+</div>
+</div>
+</div>
+<!-- Match Log -->
+<div class="flex flex-1 flex-col rounded-xl border border-primary/20 bg-white p-6 shadow-sm dark:bg-slate-900">
+<div class="mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-slate-400">history</span>
+<h4 class="text-sm font-bold uppercase tracking-tight">Match Log</h4>
+</div>
+<div class="flex flex-col gap-3">
+<div class="flex items-center gap-3 rounded-lg bg-primary/10 p-3">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1">circle</span>
+<div class="flex flex-col">
+<span class="text-xs font-bold">16.4</span>
+<span class="text-sm font-medium">Single to deep cover</span>
+</div>
+</div>
+<div class="flex items-center gap-3 border-l-2 border-slate-100 p-3 dark:border-slate-800">
+<span class="material-symbols-outlined text-slate-300">circle</span>
+<div class="flex flex-col">
+<span class="text-xs font-bold text-slate-400">16.3</span>
+<span class="text-sm font-medium">FOUR! Square cut perfection</span>
+</div>
+</div>
+<div class="flex items-center gap-3 border-l-2 border-slate-100 p-3 dark:border-slate-800">
+<span class="material-symbols-outlined text-slate-300">circle</span>
+<div class="flex flex-col">
+<span class="text-xs font-bold text-slate-400">16.2</span>
+<span class="text-sm font-medium">Dot ball. Defended back</span>
+</div>
+</div>
+<div class="flex items-center gap-3 border-l-2 border-slate-100 p-3 dark:border-slate-800">
+<span class="material-symbols-outlined text-slate-300">circle</span>
+<div class="flex flex-col">
+<span class="text-xs font-bold text-slate-400">16.1</span>
+<span class="text-sm font-medium">2 runs. Quick running</span>
+</div>
+</div>
+</div>
+</div>
+</aside>
+<!-- Center Content: Action Area & Controls -->
+<div class="flex flex-1 flex-col gap-6">
+<!-- Action Area -->
+<div class="relative flex min-h-[400px] flex-1 flex-col items-center justify-center rounded-2xl bg-white p-8 shadow-xl dark:bg-slate-900 border border-primary/10">
+<div class="absolute inset-0 opacity-5 pointer-events-none" style="background-image: radial-gradient(circle at 2px 2px, #2bee2b 1px, transparent 0); background-size: 24px 24px;"></div>
+<div class="mb-12 text-center">
+<h2 class="text-4xl font-black text-slate-900 dark:text-white">YOUR MOVE</h2>
+<p class="mt-2 text-slate-500">Pick a number to face the delivery</p>
+</div>
+<div class="group relative flex h-48 w-48 items-center justify-center rounded-full bg-primary/5 p-4 transition-all hover:bg-primary/10">
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="h-40 w-40 animate-ping rounded-full bg-primary/20"></div>
+</div>
+<!-- Current Selected Visual -->
+<div class="z-10 flex h-32 w-32 items-center justify-center rounded-full bg-primary text-background-dark shadow-lg shadow-primary/40">
+<span class="text-6xl font-black">4</span>
+</div>
+</div>
+<div class="mt-12 flex items-center gap-4 rounded-full bg-slate-100 px-6 py-2 dark:bg-slate-800">
+<span class="text-xs font-bold uppercase tracking-widest text-slate-400">Opponent strategy:</span>
+<span class="text-sm font-bold text-primary">Defensive</span>
+</div>
+</div>
+<!-- Bottom Controls -->
+<div class="flex flex-col gap-4 rounded-xl bg-slate-900 p-6 text-white shadow-lg">
+<!-- Row 1: Numbers -->
+<div class="grid grid-cols-6 gap-3">
+<button class="flex aspect-square items-center justify-center rounded-lg bg-slate-800 text-xl font-bold transition-all hover:bg-primary hover:text-background-dark focus:ring-2 focus:ring-primary/50">1</button>
+<button class="flex aspect-square items-center justify-center rounded-lg bg-slate-800 text-xl font-bold transition-all hover:bg-primary hover:text-background-dark">2</button>
+<button class="flex aspect-square items-center justify-center rounded-lg bg-slate-800 text-xl font-bold transition-all hover:bg-primary hover:text-background-dark">3</button>
+<button class="flex aspect-square items-center justify-center rounded-lg bg-primary text-xl font-bold text-background-dark transition-all">4</button>
+<button class="flex aspect-square items-center justify-center rounded-lg bg-slate-800 text-xl font-bold transition-all hover:bg-primary hover:text-background-dark">5</button>
+<button class="flex aspect-square items-center justify-center rounded-lg bg-slate-800 text-xl font-bold transition-all hover:bg-primary hover:text-background-dark">6</button>
+</div>
+<!-- Row 2: Gesture Icons -->
+<div class="grid grid-cols-6 gap-3">
+<button class="flex flex-col items-center justify-center gap-2 rounded-lg bg-slate-800/50 py-3 transition-all hover:bg-slate-700">
+<span class="material-symbols-outlined text-slate-400">pan_tool</span>
+<span class="text-[10px] font-bold uppercase text-slate-500">Single</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-2 rounded-lg bg-slate-800/50 py-3 transition-all hover:bg-slate-700">
+<span class="material-symbols-outlined text-slate-400">back_hand</span>
+<span class="text-[10px] font-bold uppercase text-slate-500">Double</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-2 rounded-lg bg-slate-800/50 py-3 transition-all hover:bg-slate-700">
+<span class="material-symbols-outlined text-slate-400">front_hand</span>
+<span class="text-[10px] font-bold uppercase text-slate-500">Triple</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-2 rounded-lg border border-primary/40 bg-primary/10 py-3 transition-all hover:bg-primary/20">
+<span class="material-symbols-outlined text-primary">grid_view</span>
+<span class="text-[10px] font-bold uppercase text-primary">Four</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-2 rounded-lg bg-slate-800/50 py-3 transition-all hover:bg-slate-700">
+<span class="material-symbols-outlined text-slate-400">flare</span>
+<span class="text-[10px] font-bold uppercase text-slate-500">Six</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-2 rounded-lg bg-slate-800/50 py-3 transition-all hover:bg-slate-700">
+<span class="material-symbols-outlined text-slate-400">flare</span>
+<span class="text-[10px] font-bold uppercase text-slate-500">Six</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Right Side: Bowler Info -->
+<aside class="w-full lg:w-1/4">
+<div class="flex flex-col gap-6">
+<!-- Bowler Card -->
+<div class="rounded-xl border border-primary/20 bg-white p-6 shadow-sm dark:bg-slate-900">
+<div class="mb-4 flex items-center justify-between border-b border-slate-100 pb-4 dark:border-slate-800">
+<span class="text-xs font-bold uppercase tracking-widest text-slate-400">Current Bowler</span>
+<span class="material-symbols-outlined text-slate-400">sports_cricket</span>
+</div>
+<h3 class="text-xl font-bold">Pat Cummins</h3>
+<div class="mt-4 flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-xs font-bold text-slate-400 uppercase">Wickets</span>
+<span class="text-2xl font-bold">2</span>
+</div>
+<div class="h-8 w-px bg-slate-100 dark:bg-slate-800"></div>
+<div class="flex flex-col text-right">
+<span class="text-xs font-bold text-slate-400 uppercase">Runs</span>
+<span class="text-2xl font-bold">34</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4 border-t border-slate-100 pt-4 dark:border-slate-800">
+<div>
+<span class="text-[10px] font-bold text-slate-400 uppercase">Overs</span>
+<p class="text-sm font-bold">3.4</p>
+</div>
+<div class="text-right">
+<span class="text-[10px] font-bold text-slate-400 uppercase">Economy</span>
+<p class="text-sm font-bold">9.27</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Prediction / AI Insight -->
+<div class="rounded-xl border border-dashed border-primary/40 bg-primary/5 p-6">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-sm">psychology</span>
+<span class="text-xs font-bold uppercase">AI Prediction</span>
+</div>
+<p class="mt-3 text-sm font-medium leading-relaxed">
+                            Kohli is likely to target the short boundary. Expect a <span class="text-primary font-bold">Six</span> on the final ball of this over.
+                        </p>
+</div>
+</div>
+</aside>
+</main>
+<!-- Footer / Mini Map -->
+<footer class="mt-auto border-t border-primary/10 bg-white py-4 dark:bg-slate-900">
+<div class="mx-auto flex max-w-7xl items-center justify-between px-6">
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2">
+<div class="h-2 w-2 rounded-full bg-slate-300"></div>
+<span class="text-xs font-bold text-slate-400">0</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="h-2 w-2 rounded-full bg-primary"></div>
+<span class="text-xs font-bold text-primary underline">1</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="h-2 w-2 rounded-full bg-primary"></div>
+<span class="text-xs font-bold text-primary underline">2</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="h-2 w-2 rounded-full bg-primary"></div>
+<span class="text-xs font-bold text-primary underline">3</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="h-2 w-2 rounded-full bg-primary shadow-sm shadow-primary"></div>
+<span class="text-xs font-bold text-primary underline decoration-2">4</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="h-2 w-2 rounded-full bg-slate-300"></div>
+<span class="text-xs font-bold text-slate-400">5</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="h-2 w-2 rounded-full bg-slate-300"></div>
+<span class="text-xs font-bold text-slate-400">6</span>
+</div>
+</div>
+<div class="flex items-center gap-2 text-xs font-bold text-slate-400 uppercase tracking-widest">
+<span>Over Progress</span>
+<div class="flex gap-1 ml-2">
+<div class="h-4 w-4 rounded-full bg-primary"></div>
+<div class="h-4 w-4 rounded-full bg-slate-200"></div>
+<div class="h-4 w-4 rounded-full bg-primary"></div>
+<div class="h-4 w-4 rounded-full bg-slate-200"></div>
+<div class="h-4 w-4 rounded-full bg-slate-200"></div>
+<div class="h-4 w-4 rounded-full bg-slate-200"></div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+</body></html>

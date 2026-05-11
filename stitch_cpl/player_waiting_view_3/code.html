@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Captain Selection - Player View</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2bee2b",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102210",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased">
+<div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
+<!-- Navigation -->
+<header class="flex items-center justify-between border-b border-primary/10 bg-white/50 dark:bg-background-dark/50 backdrop-blur-md px-6 py-4 lg:px-20">
+<div class="flex items-center gap-3">
+<div class="size-8 text-primary">
+<span class="material-symbols-outlined text-3xl">sports_esports</span>
+</div>
+<h2 class="text-xl font-bold tracking-tight">Draft Arena</h2>
+</div>
+<div class="flex items-center gap-3">
+<div class="hidden md:flex flex-col items-end mr-2">
+<span class="text-xs uppercase tracking-widest text-slate-500 font-bold">Match ID</span>
+<span class="text-sm font-medium">#GRP-99284</span>
+</div>
+<button class="flex size-10 items-center justify-center rounded-lg bg-primary/10 text-slate-900 dark:text-slate-100 hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<button class="flex size-10 items-center justify-center rounded-lg bg-primary/10 text-slate-900 dark:text-slate-100 hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined">help</span>
+</button>
+</div>
+</header>
+<main class="flex-1 flex flex-col items-center py-8 px-4 lg:px-0">
+<div class="w-full max-w-4xl space-y-8">
+<!-- Progress Section -->
+<div class="bg-white dark:bg-slate-900/50 p-6 rounded-xl border border-primary/10 shadow-sm">
+<div class="flex justify-between items-end mb-4">
+<div>
+<h3 class="text-sm font-bold uppercase tracking-widest text-primary">Drafting Phase</h3>
+<p class="text-2xl font-bold">Captain is choosing...</p>
+</div>
+<div class="text-right">
+<span class="text-3xl font-bold text-primary">65%</span>
+<p class="text-xs text-slate-500 font-medium">Draft Progress</p>
+</div>
+</div>
+<div class="w-full h-3 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+<div class="h-full bg-primary shadow-[0_0_15px_rgba(43,238,43,0.5)] transition-all duration-1000" style="width: 65%;"></div>
+</div>
+<div class="mt-4 flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400">
+<span class="material-symbols-outlined text-primary text-sm">info</span>
+<span>Waiting for Captain Alex Johnson to finalize the middle-order positions.</span>
+</div>
+</div>
+<!-- Captain Focus Card -->
+<div class="flex flex-col md:flex-row gap-6">
+<div class="flex-1 bg-white dark:bg-slate-900/50 p-6 rounded-xl border-l-4 border-primary shadow-sm">
+<div class="flex items-center gap-5">
+<div class="relative">
+<div class="size-20 rounded-full border-2 border-primary p-1">
+<img alt="Captain Alex Johnson Avatar" class="w-full h-full rounded-full object-cover" data-alt="Portrait of a young professional gamer" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8bH5JbONQmFfEDGaoeuRgvzz25u8X9xiCxeJQTkWkkfBYVc3yjAwaGMzA_qXdmLue9vnM3KlEjDqQrrVv5lTBrmpCvbsdlZTCgCdm8xgBF9FYIl-lYDTmkiF_vx6l4B2yf3HUv0yZbgVnPS6JS9tQLjeg8B5bpDsX8FsbI7G3w9sUKVy6pMfwSJAYR00H4OPmhgVL5YLXY36TxDUuu9BMAW_s40CcoBtKw2vvpXSSBbdzvdzEslxTjy0i09sVpzqnqiCu6GA4R-ko"/>
+</div>
+<div class="absolute -bottom-1 -right-1 bg-primary text-background-dark text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-tighter">
+                                Captain
+                            </div>
+</div>
+<div class="flex-1">
+<div class="flex items-center gap-2">
+<h4 class="text-xl font-bold">Alex Johnson</h4>
+<div class="size-2 rounded-full bg-primary animate-pulse"></div>
+</div>
+<p class="text-slate-500 text-sm font-medium italic">Decision Maker • Team Alpha</p>
+<div class="mt-2 inline-flex items-center gap-1.5 px-3 py-1 bg-primary/10 text-primary text-xs font-bold rounded-full">
+<span class="material-symbols-outlined text-xs">timer</span>
+                                00:42 REMAINING
+                            </div>
+</div>
+</div>
+</div>
+<div class="md:w-64 bg-primary text-background-dark p-6 rounded-xl flex flex-col justify-center items-center text-center shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-4xl mb-2">pending_actions</span>
+<p class="text-sm font-bold uppercase tracking-wider opacity-80">Your Status</p>
+<p class="text-xl font-black">OBSERVING</p>
+</div>
+</div>
+<!-- Lineup Visualization -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+<!-- Batting Order -->
+<div class="space-y-4">
+<div class="flex items-center gap-2 px-2">
+<span class="material-symbols-outlined text-primary">format_list_numbered</span>
+<h3 class="font-bold text-lg">Confirmed Batting Order</h3>
+</div>
+<div class="space-y-2">
+<!-- Player 1 -->
+<div class="flex items-center justify-between p-4 bg-white dark:bg-slate-900/40 rounded-lg border border-primary/5">
+<div class="flex items-center gap-4">
+<span class="text-slate-400 font-bold w-4">1</span>
+<div class="size-10 rounded-lg bg-slate-100 dark:bg-slate-800 overflow-hidden">
+<img alt="Sarah Miller" class="w-full h-full object-cover" data-alt="Gaming avatar profile of a player" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAP70OKNH2wW63-2G18t1Djnzlw-c63cT0hXailsGxdAgFPkmIwVWtOyw0aMcUi-LtjfqCAQ76befAa6ErX3iqLIbcYixQvzAY-n39dd6Jm8UUcEMY8BZQ6AYQ9w01TsfulMbZKq-x_RevkHpeRCNSk5XYzF5_egiSvM2L4Vtoh_Cngurydw3eW8IHuhtUU7GkHnsZhQ_z6Fv0euMHFtRzytD7jgfkIu0Bqnu8cqM4ndsCMxOYYbiI0Tgco5aPLFbyopb2L-ebArWw1"/>
+</div>
+<div>
+<p class="font-bold text-sm">Sarah Miller</p>
+<p class="text-xs text-slate-500">Opener</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary text-xl">check_circle</span>
+</div>
+<!-- Player 2 -->
+<div class="flex items-center justify-between p-4 bg-white dark:bg-slate-900/40 rounded-lg border border-primary/5">
+<div class="flex items-center gap-4">
+<span class="text-slate-400 font-bold w-4">2</span>
+<div class="size-10 rounded-lg bg-slate-100 dark:bg-slate-800 overflow-hidden">
+<img alt="Marcus Chen" class="w-full h-full object-cover" data-alt="Gaming avatar profile of a player" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDg1L8SGjtewM8sR0azLQ4FhlevXgsUnOnp0dndE-tAAxB8UozTlvvbwsjgGg7oWbTwNJpwZzK-rvUcoJCs84nVOF1ud3qO-BSuq6_JtqyzDsFJLBahQg5XTOnUc0_29vd9uSsS7FJwTv8fLfkZSUq9_d3ttZVfjNlvoDrRipZ0JfmWZM5wxhMVdDumRCWFZD3cM9tK4jTO2SjY1oefNFbXkkUhhMaHRfzWP-u3z4KfLG5Yjx9ZKeUCulYSD6sjmN8hSAKTu5p4hiv0"/>
+</div>
+<div>
+<p class="font-bold text-sm">Marcus Chen</p>
+<p class="text-xs text-slate-500">All-Rounder</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary text-xl">check_circle</span>
+</div>
+<!-- Slot 3 - Selecting -->
+<div class="flex items-center justify-between p-4 bg-primary/5 rounded-lg border-2 border-dashed border-primary/30">
+<div class="flex items-center gap-4">
+<span class="text-primary font-bold w-4">3</span>
+<div class="size-10 rounded-lg bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">person_search</span>
+</div>
+<div>
+<p class="font-bold text-sm text-primary">Selecting...</p>
+<p class="text-xs text-primary/70">Top Order</p>
+</div>
+</div>
+<div class="flex gap-1">
+<div class="size-1.5 rounded-full bg-primary animate-bounce"></div>
+<div class="size-1.5 rounded-full bg-primary animate-bounce [animation-delay:0.2s]"></div>
+<div class="size-1.5 rounded-full bg-primary animate-bounce [animation-delay:0.4s]"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bowling Attack -->
+<div class="space-y-4">
+<div class="flex items-center gap-2 px-2">
+<span class="material-symbols-outlined text-primary">sports_cricket</span>
+<h3 class="font-bold text-lg">Bowling Strategy</h3>
+</div>
+<div class="space-y-2">
+<!-- Bowler 1 -->
+<div class="flex items-center justify-between p-4 bg-white dark:bg-slate-900/40 rounded-lg border border-primary/5">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-slate-400">bolt</span>
+<div class="size-10 rounded-lg bg-slate-100 dark:bg-slate-800 overflow-hidden">
+<img alt="David V." class="w-full h-full object-cover" data-alt="Gaming avatar profile of a player" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvwhcVLG9UY8FBOI_VlxwNtBAL1owg4fQ1CGNInFC6VeR4OoP_m-BxQT-1AWQcy3W5OvTfwXv2BN5oA-uIGBzPzXdQDpKfdNgejgjDsAfv-zsQhBB9TMETJWW-cJY0X11sSMpQy55Sts5zAFfWKgGVRBi6PaxqofsCu4evp6dXxe6ug1Mqk8reRv21q1SIqqjqzpTqdlCxuZE6oDnbhxBHG0S4Y-auiuGKHHqC9GIk7Ptu8XkULFkbe3sW_9PJOgtu1kosixMkGnqk"/>
+</div>
+<div>
+<p class="font-bold text-sm">David Vance</p>
+<p class="text-xs text-slate-500">Fast Bowler • Opening Over</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary text-xl">check_circle</span>
+</div>
+<!-- Slot 2 - Empty -->
+<div class="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-800/20 rounded-lg border border-slate-200 dark:border-slate-800 opacity-50">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-slate-300">circle</span>
+<div class="size-10 rounded-lg bg-slate-200 dark:bg-slate-800 flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-400">lock</span>
+</div>
+<div>
+<p class="font-bold text-sm text-slate-400">Pending</p>
+<p class="text-xs text-slate-400">Spin Specialist</p>
+</div>
+</div>
+</div>
+<!-- Slot 3 - Empty -->
+<div class="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-800/20 rounded-lg border border-slate-200 dark:border-slate-800 opacity-50">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-slate-300">circle</span>
+<div class="size-10 rounded-lg bg-slate-200 dark:bg-slate-800 flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-400">lock</span>
+</div>
+<div>
+<p class="font-bold text-sm text-slate-400">Pending</p>
+<p class="text-xs text-slate-400">Death Over Specialist</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Recent Activity Feed -->
+<div class="bg-white dark:bg-slate-900/50 rounded-xl overflow-hidden border border-primary/10">
+<div class="bg-primary/5 px-6 py-3 border-b border-primary/10">
+<h4 class="text-xs font-black uppercase tracking-widest text-primary flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">history</span> Draft Log
+                    </h4>
+</div>
+<div class="p-4 space-y-3">
+<div class="flex items-start gap-3 text-sm">
+<span class="text-slate-400 font-mono text-xs mt-0.5">14:02</span>
+<p><span class="font-bold">Captain Alex</span> confirmed <span class="text-primary font-bold">Marcus Chen</span> as All-Rounder.</p>
+</div>
+<div class="flex items-start gap-3 text-sm">
+<span class="text-slate-400 font-mono text-xs mt-0.5">14:01</span>
+<p><span class="font-bold">Captain Alex</span> assigned <span class="text-primary font-bold">Sarah Miller</span> to Position #1.</p>
+</div>
+<div class="flex items-start gap-3 text-sm opacity-60">
+<span class="text-slate-400 font-mono text-xs mt-0.5">13:58</span>
+<p>Draft session started by system.</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Stats / Banner -->
+<footer class="mt-auto py-6 px-4 border-t border-primary/10 bg-white dark:bg-background-dark">
+<div class="max-w-4xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-slate-500 text-xs">
+<div class="flex gap-6">
+<div class="flex flex-col">
+<span class="uppercase tracking-widest font-bold text-[10px]">Team Chemistry</span>
+<span class="text-primary font-bold text-sm">84% Optimal</span>
+</div>
+<div class="flex flex-col border-l border-slate-200 dark:border-slate-800 pl-6">
+<span class="uppercase tracking-widest font-bold text-[10px]">Draft Strategy</span>
+<span class="text-slate-900 dark:text-slate-100 font-bold text-sm">Aggressive</span>
+</div>
+</div>
+<p>© 2024 ProDraft League • Phase 2 Selection • Live Data</p>
+</div>
+</footer>
+</div>
+</body></html>

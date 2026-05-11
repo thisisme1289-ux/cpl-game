@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2bee2b",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102210",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #2bee2b44;
+            border-radius: 10px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen flex flex-col"><div class="fixed top-2 left-2 z-50 pointer-events-none">
+<span class="bg-slate-900/10 dark:bg-white/10 backdrop-blur-sm text-slate-500 dark:text-slate-400 text-[10px] font-bold px-1.5 py-0.5 rounded border border-slate-500/10 tracking-wider">
+        FLOW: 3.2
+    </span>
+</div>
+<!-- Header / Top Bar -->
+<header class="flex items-center bg-background-light dark:bg-background-dark p-4 border-b border-primary/10 justify-between sticky top-0 z-10">
+<div class="flex size-10 items-center justify-center rounded-full bg-primary/10 text-primary">
+<span class="material-symbols-outlined">arrow_back</span>
+</div>
+<div class="flex flex-col items-center">
+<h2 class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-tight">Game Lobby</h2>
+<p class="text-primary text-xs font-medium uppercase tracking-widest">Ranked Match</p>
+</div>
+<button class="flex size-10 items-center justify-center rounded-full bg-primary/10 text-primary">
+<span class="material-symbols-outlined">info</span>
+</button>
+</header>
+<main class="flex-1 overflow-y-auto custom-scrollbar pb-24">
+<!-- Matchmaking Status & Timer -->
+<section class="p-6 flex flex-col items-center">
+<div class="flex gap-3 mb-4">
+<div class="flex flex-col items-center gap-1">
+<div class="flex h-12 w-16 items-center justify-center rounded-xl bg-primary/10 border border-primary/20">
+<p class="text-slate-900 dark:text-slate-100 text-xl font-bold">00</p>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-[10px] font-bold uppercase">Min</p>
+</div>
+<div class="flex h-12 items-center text-primary font-bold">:</div>
+<div class="flex flex-col items-center gap-1">
+<div class="flex h-12 w-16 items-center justify-center rounded-xl bg-primary/10 border border-primary/20">
+<p class="text-slate-900 dark:text-slate-100 text-xl font-bold">42</p>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-[10px] font-bold uppercase">Sec</p>
+</div>
+</div>
+<div class="flex items-center gap-2 px-4 py-2 bg-primary/5 rounded-full">
+<div class="size-2 bg-primary rounded-full animate-pulse"></div>
+<p class="text-primary text-sm font-medium">Finding players for the remaining slots...</p>
+</div>
+</section>
+<!-- Teams Grid -->
+<section class="px-4 space-y-6">
+<!-- Team Alpha -->
+<div class="bg-white dark:bg-slate-900/50 rounded-2xl p-4 shadow-sm border border-primary/5">
+<div class="flex justify-between items-center mb-4">
+<div class="flex items-center gap-2">
+<div class="size-2 bg-primary rounded-full"></div>
+<h3 class="text-slate-900 dark:text-slate-100 font-bold uppercase tracking-wider text-sm">Team Alpha</h3>
+</div>
+<span class="text-xs font-bold text-slate-500 bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded-lg">12 / 12</span>
+</div>
+<div class="grid grid-cols-6 gap-3">
+<!-- 12 slots for Alpha -->
+<div class="aspect-square rounded-lg bg-primary/20 border-2 border-primary flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="User avatar 1" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdGg4I35p3EGmVXCO_qe1SmSYp7qX-qPssFi-fQ8DV3jgsBVQERKVk50K3ZdAALNCXa1RKnVYhREWmZr_QGop_YiqDTCMC767H1u-MiOcFXMCF_7DZb-5_qy90agRrdGc7bKF-j2GfYMRTBYBxnCt_3J1CN7kDNWUspPwwChqTaKFIFuO45rX--YNg0JyLSpLNIPbdcg0IETknHirxLt5bOD4WtxkRSleohPu7rYNEbJRA3bcaWbhGweiSedM4MGbxtLE08lIm-sIC"/>
+</div>
+<div class="aspect-square rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="User avatar 2" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBncTXch4Nk7fuWJzI4jlBrKjc5QqtFsn_IcBu8Ak9aO2rwbL_1K1PMIdFo5etkV1j2hRDbaACtfdMrm0pMYJZrilYTbqTa4W2srMyJja_tfyuND04LiNibcHcIEL4hEeynY26mtmF__SsRcf1kYrUo25q6DVknOjDXjYI6mMLwApuFe6vIkpamXDNlC-VdbjPcApqHGGMRQAgAfP5XRFbZAvXCA-9rZq54cewEG_jEW_UQsxg_0sBpXhEMu3f0PEbcSY-ir2X_IaVe"/>
+</div>
+<div class="aspect-square rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="User avatar 3" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2w8m65dRsLg4WpeDFkELZzqz1UhPy15EVSWdvSBRXAsZw3w9yAeVrApEj8BLN0Cw-nmjsIfUGUmXgvmHr43NOKgIcHI2Xrz8PolvH_z5vCESxDJG3VLQ7ePYSVtTS27_qcHoK_kTWI-updlWLo1CXHSqHM8YlegrJa0f3E8NtViG13x6NXwGrkhSgvH5euC0aWNMEM_LsOpgYesRjq9bycMKqrShMT9ZmbULX9Pr4kYj8aabHsZjI6SvidTc_oveu60I6PxIaQW6T"/>
+</div>
+<div class="aspect-square rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="User avatar 4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAh-hS1MSjd3aHrDtW6-DmSCpvmrEAFMdZ_DivvL9yI-htryaenfF8sBZRW1EZ3KkogqzKgbEKpOCNw3RlwfWesv3_6dRT2GYXGvddX3jeLTFScyaFOwH0olSmuf99CxQLXoZxrYZSKKCBtrgB-yYWAiwQGOQPC1XZnyDsigz_NegmkGO5LjeE3kThWrP6U_m5-s9gNMf3RpryFRUPv1pRbCqgjb5EpV24JiD6W4xjAAhWeWWM8b5CT-P8SEtSq4_z2Kg94nfYmZiEC"/>
+</div>
+<div class="aspect-square rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="User avatar 5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGaxR08k7uf6_M7psV4AZu9qnAR3RXApnO4LhkGiSD4ihU_RpakaorRMGIhi8ItrZ1ZUZyFIY8p1j0Hc2ZlafsixLb-f9FQlrTFV94jnmfEtKTXN9p65Jcs0Tam0_U00EP7YtTdNs5VtBvtN7YIR2Dy423_FIYI5PqwOUn_kRuaPrrSC1oFtfbSXVF70bUBQDKJZK8XtQlXJgpgulqnxXoNk-kdvRKYpZPGkIxxcLTsaBnZj2CER4u5zjcfp3S1V6rBpoElYYx-UJ9"/>
+</div>
+<div class="aspect-square rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="User avatar 6" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTJZ-4rVNoH8z7qa2IxupOmrTFKvXiEGZiJXcGioF3FO6wEIBL3TniQHtM5eLDC4nzkJEfMDksIcumQQ18_6wjrZNxz_0AJ7ctx5xxa-aHnhF6b3QOweuFTzHR-TjVPSajZ0nm78Cd-sQnl-ZhoTu_3ln0TLBl3wmDAKQESHr0MnoNayG6QHYntbEoab_fiP5vjEIQdNMLQZqvQ96R0dUByXufMpbyRtUdjyZ6BWudm9LivDhIBc4-DkXF8vATtfYYrWK1OOjxe2ub"/>
+</div>
+<div class="aspect-square rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="User avatar 7" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIC133WxhriGSwXVemDRa_GlFtOTmoZn9I2FC8GJlVli3GAk_-ix0Fjc_IcehQKJFCu0S3P-_cJWwC-dFPCkt_4Qr-ntgKnGSvgzk51CxJ85YLvPCXz6u_3WAM3UeMB34vE2T59J-MY_8ZxGJ5wvpi2GY-GOiZPkdBqwG3OFUyjpKuj7fwi_KKtpkWzjQl72L0QI2wR0JxA0sOV2sxl9Rqd8wPi2cTbakIevwCBO3DlHbbEU86Zr49iXAFdKnYSFMVmbFAZK0dmrlV"/>
+</div>
+<div class="aspect-square rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="User avatar 8" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXMEGAeBBEwJnbDWq_qChJQ23KrGMkj9gJ-qciuYKhRJ4L_vPu4ZcvpKanTqxxwv-nQ_KzaE4aKvLxFegn6GVRAKeEcMc0DDvgv7aTWpiKh_h22NUfMON90FUiFPRa29rcsLZctHl4jJFayOLzz3_ngeSztAJc0GQ91i6jnZr6ujCb2jvGtDDu3q-DBe3xnrHh0QQ7Dcvl_Dv0f2sdcTTkPHPBMSInJQ7WVpi4pCd_WeMWubcsZzRd69Xl2Xc3MpbiXI5I-ICM9QNS"/>
+</div>
+<div class="aspect-square rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="User avatar 9" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDm9mK5cNN0EpF6bQxIZgK11hmXpv-GmS2uDX7CKuClIjnazac-2TjL7iWXOGpHIVG_pJHXGh4y8sKbdCqs5sKes17A_51xHMVaTon7olCysC9YklRDdiPD6jdOCHeobEC6NwWAXVLiWHFZjeeRypqDPIpNyDb1tqfKwlnfc-fmB-csXrQR72WgVr5KoK89FTg3VkHM2syf4lZDaV-7E9b1GbRmuGxwb59638mWgD39gLCcgeD1jUAXnkwp9CRPkFbyFogLiDC92hx"/>
+</div>
+<div class="aspect-square rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="User avatar 10" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCw1g4a1pAmGpjHYg4zapt0kQBEBeIeAVzsz7CcfngYM9PifTS1Q0tnwtLxljYk2L9Z2tOvqkXxaZlzw-UBD0kbLhqCMKSqsMQiBGt6t25scmbKAPOniBtrQX5D0_ZWlEdeKGzcP6VwNTfdaYwBTEH88gNDA_nELqpM74GoGXYYTy3FcVzdS9A7bVCVM_juQQUVCt7JpgPIIMXizhMg62i6YxYZ5fCDmkTtlR6KzB_Lrc0HxFw2Vu8JXzqoOhiovjIHT3LQ1v4BPoZn"/>
+</div>
+<div class="aspect-square rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="User avatar 11" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZbfc-whzxRU7loK65MWsV3fwtUso2LiJPYeyQ_roIihYgXHUw4h6lz69hARgz_IwCGAxTGBi6Ib7poWh0iEAK8EcKNfRVrBjXpcBUCDR1wVGVFvZHloflwECQCjhkznhCtOycdYqQ_SPlgV8-HLtdI-U7AQg91kKlXN2vSlB_ET0BteZqxrfgacL8veOYkHhgTNKl0DyUu8Uz_Nq8kji-1w1FHyg04MSb9bAkOAE8LhgyzGhO1KXdw-dWRJeiKt299z-DiFVFWXeX"/>
+</div>
+<div class="aspect-square rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="User avatar 12" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYUrWNA8TfbQpymzYNjfHnVTlgqGzfWbmGN8v51imlhwQd0oeP_lqYEYtZFwf7Pm4bOVqeGe8RRR_AJWfQl4wZ83SRzwtj6eOpg_NRfWmjB_xOe1hfebmPVKkNKoGtuEUKooK152qVx5zph7EL8Z6QnDu3f59FdDDiChvKrvv0BBt2Ih7WCTkwwog_VGhZE7F9ra23mP2Tf8M_fsHMymxztoRR1H8lZK8bIjv-mFI6i8rW5B9XW-TvEs3NWy1Skhh8ggKmYi2ap6eg"/>
+</div>
+</div>
+</div>
+<!-- Team Omega -->
+<div class="bg-white dark:bg-slate-900/50 rounded-2xl p-4 shadow-sm border border-primary/5">
+<div class="flex justify-between items-center mb-4">
+<div class="flex items-center gap-2">
+<div class="size-2 bg-orange-400 rounded-full"></div>
+<h3 class="text-slate-900 dark:text-slate-100 font-bold uppercase tracking-wider text-sm">Team Omega</h3>
+</div>
+<span class="text-xs font-bold text-slate-500 bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded-lg">8 / 12</span>
+</div>
+<div class="grid grid-cols-6 gap-3">
+<!-- 8 filled slots for Omega -->
+<div class="aspect-square rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="User avatar 13" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_9h0zvq33sVOP-J9F1bqNzc_xxASXxPwK4pRoPTlEsuSiOopGul5SlYM3Nq7jEw6AcjTkDzVFTNDfcJKZCQ9sPiQCuQn_YtaFVyzbbcBaCh3hWnXHdSCo4zSgdIW3wZjihByifxJ8HxiIBJH1yaLDu4Sbk6ui-Z0sjoz9ns2CjpHp0f_oQKItGboQ1bBdjHIYxTeR0T5EJ8lo3g2hOuthTMj5C-UGELWK9U6A7Kk-mvAmAyR6DZL8_WZRVy4kmgHjazgA6GIibSFA"/>
+</div>
+<div class="aspect-square rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="User avatar 14" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCeqLgrzi9hIgZEZI9d96SEyvJyR4l0ALg5zPQgWoYdTxKJCGENCZRRpdh6zzL4jnkHhpV0_wluqM2-YQyuFTcqFqGcUrVFbL0mT0R7lm0xFOLN15CzG5fzl2y5XWvfF68Ctz02ATzPXGQDHPFO63WIgF1bWZwfKJmvWHk5pv2btpv17oJexFHCpCRhyXd-0ym0sPKVZNNiyzYT9oORR5YiFTv5qM5YcvPmySgkTjj-wnvYRI03wQcpOpQM7fGgGvaHjJEcukUb3iMG"/>
+</div>
+<div class="aspect-square rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="User avatar 15" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDu0DiDm8f6vwuNqq8h9k5cmQ_rDipjcqroHCX-137b-O2w4wekmoGpRMuutNFmuBsGzJrhtweOWcwbGYwIt9rzg159Z7LZvjDFoQDBN8jMu8MnCRuPKIdDOy7QE1AJLI3vrloNqlZcBeB2Ck4REBTPa_sW5lUnOgNcB-tiCfMNXuktBHJgkXx6jNgRQAp_XTti5UmVUskWmDKx3oZq0_x5QVe3iZspj8KzpiAQfO4vPqClDhkXz5kfD_QST6ry_ZrGFPTEczkApPNF"/>
+</div>
+<div class="aspect-square rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="User avatar 16" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcBqJYOts-gkMSSyQUfS-9kImEFv_GLgh1TLdxlqCeZk8un2Ej2CSU8lVMnicPq5yYoZNqjsrmBV_EmxmFKkR9gcevbhjiW6_c5ZxKQx8Ogl9pvzmzs22-BgNus-ZCHlxuHSUDKZExfuCFQ2yrtHWSxm7YsDdNbL8Z4Uek9fIr-r3tWOnCHHPoePV51DNdBcJb6ESyeF8tDGMTGIgsVXQQkXzDpkLaRy_HfFCla2AMZrcb23yZoIc4iV9oiPPAzxSMZFBrf4qLQcBj"/>
+</div>
+<div class="aspect-square rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="User avatar 17" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3LqCatNLvZ2VWvhOT3MGBqm4DLH5wlb3j2WdBRctlPzNlpowrdtIuLIJvOgU4dafcQCPSYcx7Ys0Wi2_gaIugXPjs8q-EW46VXScPti29nHpOUZPT3YQ9AxPatmp5qQ1JmhbLqGnC4Xhue0syNOAklWUjgzf210A5TFs-k_PYKQu4ImqLl3nrePb6SejhKfEiET17rO0vMHAmyVO-o2i0bVNKFblgHlg2131Rpu3cVwUZZOquYxdKmn6DA8a9JYL1jfzO4wuwUxSI"/>
+</div>
+<div class="aspect-square rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="User avatar 18" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXG6LypgNqfBzWDq4QVW-vG3u2SNXoosSIRR7j-Z0c06NGWt5Ltwtxt3zJEJMt5zX-qnLmd7-A2kAsAxrQ7veTOIMkfThP0VzhaF9rRCYpTD2R_BpBqFMpifz-5yXAISJBmBh5f8bZh2bfBZqvJT2SOFSvTf7dNOOhEYHRxXRAArC7MO4nz8AWkKugJq2-QHqK2rXvw8lsSZA_oxAbnAQxNU6cK1ha9HywAsrJ7jT6A7FVKpfwfOK_YGxgvcVXBQhW9rLDitdfpbfk"/>
+</div>
+<div class="aspect-square rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="User avatar 19" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBAVXgHk6qY3YoMCuHxbEQBznSFbK_kay3eZ1PZzI33nLhOlKQL9rq5fukWseJRn47FVfbC28-lFYpocZ_bCt5NbUBdAZgRch549QHIoDMvxKbt4gJ-BCWJH9PQB1YjHs5scGcVMrcNFPF5nCBnngAYB1MbTiOQyIt3v0XHoTBiwTx_TCIe5hX2IeRuQNPBXy5FzmeQ3XXvBuhEoexyq1yTL7IVTTHGw3V4wo9x8bDsZT3RMHUvabT4qyhZAgex1YzZKt6VPY-kOwcV"/>
+</div>
+<div class="aspect-square rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="User avatar 20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSF_CDNF1-bPEOwx9y92wNfWQNr9iEiiBJkmsTwEymfvOJUvW5iZUFu00a94s_CtvBP5Dv-FOKNlBcoB30Hra3TrgrslQaWFVdJIopphFMCGL5e8DVOrUrcU4qb1WEJebNxeEz7DodSKQjO7eji0PezGayTO5CCiFRI26E7G0ZpAaEQx2oN23pHlYwbpa99JtnF23xuxTmd26wwBzvI6J2bY_MsW4m7bAKipUnrqnkAVVoK9z0f4jlqTaQaMhJpus3AFRgrHV_kDAd"/>
+</div>
+<!-- Empty slots -->
+<div class="aspect-square rounded-lg border-2 border-dashed border-slate-200 dark:border-slate-700 flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-300 text-sm">add</span>
+</div>
+<div class="aspect-square rounded-lg border-2 border-dashed border-slate-200 dark:border-slate-700 flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-300 text-sm">add</span>
+</div>
+<div class="aspect-square rounded-lg border-2 border-dashed border-slate-200 dark:border-slate-700 flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-300 text-sm">add</span>
+</div>
+<div class="aspect-square rounded-lg border-2 border-dashed border-slate-200 dark:border-slate-700 flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-300 text-sm">add</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Chat Box -->
+<section class="p-4 mt-4">
+<div class="bg-white dark:bg-slate-900/50 rounded-2xl border border-primary/5 flex flex-col h-48">
+<div class="p-3 border-b border-primary/5 flex items-center justify-between">
+<span class="text-xs font-bold text-slate-400 uppercase tracking-widest">Lobby Chat</span>
+<span class="material-symbols-outlined text-slate-400 text-sm">expand_more</span>
+</div>
+<div class="flex-1 p-3 overflow-y-auto custom-scrollbar space-y-2">
+<div class="text-xs">
+<span class="text-primary font-bold">System:</span>
+<span class="text-slate-500">Welcome to the lobby. Please be respectful.</span>
+</div>
+<div class="text-xs">
+<span class="text-slate-900 dark:text-slate-100 font-bold">ProGamer_X:</span>
+<span class="text-slate-600 dark:text-slate-400">Ready for Alpha win!</span>
+</div>
+<div class="text-xs">
+<span class="text-slate-900 dark:text-slate-100 font-bold">LobbyLead:</span>
+<span class="text-slate-600 dark:text-slate-400">Need 4 more for Omega...</span>
+</div>
+</div>
+<div class="p-2 border-t border-primary/5">
+<div class="relative flex items-center">
+<input class="w-full bg-slate-50 dark:bg-slate-800 border-none rounded-xl py-2 px-4 text-sm focus:ring-1 focus:ring-primary/50 text-slate-900 dark:text-slate-100" placeholder="Send a message..." type="text"/>
+<button class="absolute right-2 text-primary">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 right-0 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md border-t border-primary/10 px-6 py-2 pb-6 flex items-center justify-between z-20">
+<a class="flex flex-col items-center gap-1 group" href="#">
+<div class="text-primary flex h-8 items-center justify-center">
+<span class="material-symbols-outlined fill-1">account_circle</span>
+</div>
+<p class="text-slate-900 dark:text-slate-100 text-[10px] font-bold uppercase tracking-wider">Profile</p>
+</a>
+<div class="relative -top-6">
+<button class="bg-primary text-slate-900 size-14 rounded-full flex items-center justify-center shadow-lg shadow-primary/40 ring-4 ring-background-light dark:ring-background-dark">
+<span class="material-symbols-outlined font-bold">play_arrow</span>
+</button>
+</div>
+<a class="flex flex-col items-center gap-1 group" href="#">
+<div class="text-slate-400 group-hover:text-primary transition-colors flex h-8 items-center justify-center">
+<span class="material-symbols-outlined">leaderboard</span>
+</div>
+<p class="text-slate-400 group-hover:text-slate-900 dark:group-hover:text-slate-100 text-[10px] font-bold uppercase tracking-wider transition-colors">Stats</p>
+</a>
+<a class="flex flex-col items-center gap-1 group" href="#">
+<div class="text-slate-400 group-hover:text-red-500 transition-colors flex h-8 items-center justify-center">
+<span class="material-symbols-outlined">logout</span>
+</div>
+<p class="text-slate-400 group-hover:text-red-500 text-[10px] font-bold uppercase tracking-wider transition-colors">Exit</p>
+</a>
+</nav>
+</body></html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Matchmaking - Waiting Room</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2bee2b",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102210",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="flex h-screen overflow-hidden">
+<!-- Collapsed Sidebar -->
+<aside class="w-20 flex flex-col items-center py-8 border-r border-primary/10 bg-white dark:bg-background-dark/50 transition-all duration-300 ease-in-out">
+<div class="mb-10">
+<div class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center border-2 border-primary" data-alt="User avatar placeholder with green border">
+<span class="material-symbols-outlined text-primary">person</span>
+</div>
+</div>
+<nav class="flex flex-col gap-8">
+<div class="p-2 rounded-lg text-slate-400 hover:text-primary transition-colors cursor-pointer">
+<span class="material-symbols-outlined">grid_view</span>
+</div>
+<div class="p-2 rounded-lg bg-primary text-slate-900 cursor-pointer">
+<span class="material-symbols-outlined font-bold">videogame_asset</span>
+</div>
+<div class="p-2 rounded-lg text-slate-400 hover:text-primary transition-colors cursor-pointer">
+<span class="material-symbols-outlined">emoji_events</span>
+</div>
+<div class="p-2 rounded-lg text-slate-400 hover:text-primary transition-colors cursor-pointer">
+<span class="material-symbols-outlined">group</span>
+</div>
+<div class="p-2 rounded-lg text-slate-400 hover:text-primary transition-colors cursor-pointer">
+<span class="material-symbols-outlined">settings</span>
+</div>
+</nav>
+<div class="mt-auto">
+<div class="p-2 rounded-lg text-slate-400 hover:text-primary transition-colors cursor-pointer">
+<span class="material-symbols-outlined">logout</span>
+</div>
+</div>
+</aside>
+<!-- Main Content: Waiting Room -->
+<main class="flex-1 flex flex-col items-center justify-center p-8 relative">
+<!-- Top Status Section -->
+<div class="max-w-4xl w-full text-center mb-12">
+<h1 class="text-5xl font-bold tracking-tight mb-4 text-slate-900 dark:text-slate-50">Finding Match...</h1>
+<div class="flex items-center justify-center gap-4 text-slate-500 font-medium">
+<span class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm">schedule</span>
+                        Estimated: 1:45
+                    </span>
+<span class="w-1.5 h-1.5 rounded-full bg-slate-300"></span>
+<span class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm">timer</span>
+                        Elapsed: 0:24
+                    </span>
+</div>
+</div>
+<!-- Central Loading State -->
+<div class="relative flex items-center justify-center mb-16">
+<!-- Large Circular Progress Background -->
+<div class="absolute w-64 h-64 rounded-full border-4 border-primary/10"></div>
+<!-- Animated Circular Ring (Simulated with Gradient) -->
+<div class="absolute w-64 h-64 rounded-full border-4 border-transparent border-t-primary border-r-primary/40 rotate-45"></div>
+<!-- Inner Player Icon -->
+<div class="w-48 h-48 rounded-full bg-white dark:bg-background-dark shadow-xl flex items-center justify-center border border-primary/20">
+<div class="text-center">
+<div class="text-4xl font-bold text-primary mb-1">65%</div>
+<div class="text-xs uppercase tracking-widest text-slate-400 font-bold">Synchronizing</div>
+</div>
+</div>
+</div>
+<!-- Player Slots Grid -->
+<div class="max-w-5xl w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+<!-- Slot 1: Found -->
+<div class="bg-white dark:bg-background-dark/40 p-6 rounded-xl border-2 border-primary shadow-sm flex flex-col items-center gap-4">
+<div class="w-20 h-20 rounded-xl bg-primary/10 overflow-hidden border border-primary/20 relative" data-alt="Digital profile avatar for found player">
+<div class="absolute inset-0 bg-cover bg-center opacity-80" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDCSthX5668dSP1hCiWjOkAH7dSXsmo9DyVUk-zkIK0v0Vxd8xWjTj5LzVgp0PIbaH7Fch47xTc95vJfaPCp2JEsYkudXckmdF892iVIahBA5dcEIKvg3UkplPwZ07-GnBZvVXsGK3J_VWUI5Cw7L0zJa-vMkOQPAOvRTK8BI_s-u1occb5sWspHotfDaX7Up23RRE8zGxK7dQv8T-hWpoLXe_pr8vnJ0py6JAuJmpVNvdudMhEK7PJH0HWaeR458tp8ogsGZOkdfvY');"></div>
+</div>
+<div class="text-center">
+<p class="font-bold text-slate-900 dark:text-slate-100">Player 1 (You)</p>
+<p class="text-sm text-primary font-medium">Ready</p>
+</div>
+</div>
+<!-- Slot 2: Searching -->
+<div class="bg-primary/5 dark:bg-primary/5 p-6 rounded-xl border-2 border-dashed border-primary/30 flex flex-col items-center gap-4">
+<div class="w-20 h-20 rounded-xl bg-slate-200 dark:bg-slate-800 flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-400 animate-pulse">search</span>
+</div>
+<div class="text-center">
+<p class="font-bold text-slate-400">Searching...</p>
+<p class="text-sm text-slate-400 font-medium">Pending Slot</p>
+</div>
+</div>
+<!-- Slot 3: Searching -->
+<div class="bg-primary/5 dark:bg-primary/5 p-6 rounded-xl border-2 border-dashed border-primary/30 flex flex-col items-center gap-4">
+<div class="w-20 h-20 rounded-xl bg-slate-200 dark:bg-slate-800 flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-400 animate-pulse">search</span>
+</div>
+<div class="text-center">
+<p class="font-bold text-slate-400">Searching...</p>
+<p class="text-sm text-slate-400 font-medium">Pending Slot</p>
+</div>
+</div>
+<!-- Slot 4: Searching -->
+<div class="bg-primary/5 dark:bg-primary/5 p-6 rounded-xl border-2 border-dashed border-primary/30 flex flex-col items-center gap-4">
+<div class="w-20 h-20 rounded-xl bg-slate-200 dark:bg-slate-800 flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-400 animate-pulse">search</span>
+</div>
+<div class="text-center">
+<p class="font-bold text-slate-400">Searching...</p>
+<p class="text-sm text-slate-400 font-medium">Pending Slot</p>
+</div>
+</div>
+</div>
+<!-- Action Bar -->
+<div class="w-full max-w-md flex flex-col items-center gap-6">
+<button class="w-full h-14 bg-primary hover:bg-primary/90 text-slate-900 font-bold text-lg rounded-xl transition-all shadow-lg flex items-center justify-center gap-2 group">
+<span class="truncate">Cancel Queue</span>
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">close</span>
+</button>
+<div class="flex items-center gap-2 text-slate-500 text-sm">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+</span>
+                    Connecting to server region: US-West
+                </div>
+</div>
+</main>
+<!-- Right Sidebar (Social/Status) - Compact -->
+<aside class="w-80 hidden lg:flex flex-col p-6 bg-white dark:bg-background-dark/50 border-l border-primary/10">
+<h3 class="text-lg font-bold mb-6 flex items-center justify-between">
+                Lobby Chat
+                <span class="text-xs bg-primary/20 text-primary px-2 py-0.5 rounded-full font-bold">4 ONLINE</span>
+</h3>
+<div class="flex-1 overflow-y-auto space-y-4 mb-6 pr-2">
+<div class="bg-slate-50 dark:bg-background-dark p-3 rounded-lg border border-slate-100 dark:border-slate-800">
+<p class="text-xs font-bold text-primary mb-1">System</p>
+<p class="text-sm text-slate-600 dark:text-slate-400">Welcome to the Competitive Queue. Be respectful to others.</p>
+</div>
+<div class="bg-slate-50 dark:bg-background-dark p-3 rounded-lg border border-slate-100 dark:border-slate-800">
+<p class="text-xs font-bold text-slate-900 dark:text-slate-100 mb-1">You</p>
+<p class="text-sm text-slate-600 dark:text-slate-400">GLHF everyone!</p>
+</div>
+</div>
+<div class="relative">
+<input class="w-full bg-slate-100 dark:bg-background-dark border-0 rounded-lg py-3 px-4 focus:ring-2 focus:ring-primary text-sm" placeholder="Type a message..." type="text"/>
+<button class="absolute right-2 top-2 p-1 text-primary">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+</aside>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const sidebar = document.querySelector('aside');
+        const navLinks = sidebar.querySelectorAll('nav div, .mt-auto div');
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                // Logic to close the sidebar - assuming a mobile-responsive 'open' class
+                // This makes the menu slide out or hide if those classes are present.
+                sidebar.classList.add('-translate-x-full');
+                sidebar.classList.remove('translate-x-0');
+            });
+        });
+    });
+</script></body></html>

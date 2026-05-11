@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2bee2b",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102210",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Space Grotesk', sans-serif; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100">
+<div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<div class="px-4 md:px-40 flex flex-1 justify-center py-5">
+<div class="layout-content-container flex flex-col max-w-[960px] flex-1">
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-primary/20 px-4 md:px-10 py-4">
+<div class="flex items-center gap-3 text-slate-900 dark:text-slate-100">
+<div class="size-8 bg-primary rounded flex items-center justify-center text-slate-900">
+<span class="material-symbols-outlined">sports_cricket</span>
+</div>
+<h2 class="text-xl font-bold leading-tight tracking-tight uppercase">Cricket Masters</h2>
+</div>
+<div class="flex gap-3">
+<button class="flex size-10 cursor-pointer items-center justify-center rounded-lg bg-primary/10 text-slate-900 dark:text-slate-100 hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<button class="flex size-10 cursor-pointer items-center justify-center rounded-lg bg-primary/10 text-slate-900 dark:text-slate-100 hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+</div>
+</header>
+<main class="flex flex-col gap-6 py-8">
+<div class="text-center space-y-2">
+<span class="inline-block px-4 py-1 rounded-full bg-primary/20 text-slate-900 font-semibold text-xs uppercase tracking-widest">Innings Break</span>
+<h1 class="text-slate-900 dark:text-slate-100 tracking-tight text-4xl md:text-5xl font-bold leading-tight px-4">1st Innings Completed</h1>
+</div>
+<div class="flex flex-wrap gap-4 px-4">
+<div class="flex min-w-[240px] flex-1 flex-col gap-3 rounded-xl p-8 bg-primary shadow-lg shadow-primary/20">
+<p class="text-slate-900 text-sm font-bold uppercase tracking-wider opacity-80">Total Score</p>
+<div class="flex items-baseline gap-2">
+<p class="text-slate-900 tracking-tight text-5xl font-bold leading-none">145/3</p>
+<p class="text-slate-900 text-lg font-medium">(20.0)</p>
+</div>
+<div class="flex items-center gap-1 text-slate-900 font-bold">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+<p class="text-sm">7.25 RPO</p>
+</div>
+</div>
+<div class="flex min-w-[240px] flex-1 flex-col gap-3 rounded-xl p-8 bg-slate-900 dark:bg-slate-800 text-white shadow-xl">
+<p class="text-primary text-sm font-bold uppercase tracking-wider opacity-90">Target to Win</p>
+<p class="text-white tracking-tight text-5xl font-bold leading-none">146</p>
+<div class="flex items-center gap-1 text-primary font-bold">
+<span class="material-symbols-outlined text-sm">info</span>
+<p class="text-sm">7.30 REQ Rate</p>
+</div>
+</div>
+</div>
+<div class="px-4">
+<div class="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm">
+<h3 class="text-slate-900 dark:text-slate-100 font-bold text-lg mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">analytics</span>
+                                    1st Innings Highlights
+                                </h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="flex items-center gap-4 p-4 rounded-lg bg-background-light dark:bg-slate-700/50 border border-slate-100 dark:border-slate-600">
+<div class="size-12 rounded-full overflow-hidden bg-slate-200">
+<img class="w-full h-full object-cover" data-alt="Portrait of a cricket batsman in gear" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVS_JVeKxF-B0KzyfFKOecrbkIlCOLr2ZRfHOAI1TLJ9fMiq3AYl88tqMIl3-PvtyZtqp9i9CEyZKRsEJsdaYVB7fgLHfYGvu7KFxpMwGXilZ9sMM9d_8qYSh4gVZM4yzDVVi1VS7BKhHpj7J_pL0VgJXE7q7jwmc-8z7kPJZfZ1a34CsJO3Q6G6JY_0O6V-wYq6ipIHYugc29ZNPYHqHc6rpKEdzfduFL6DA1zYRHh6ySrZ2deoK5wSAQITDWHXaYxsIOMccI5Yz5"/>
+</div>
+<div>
+<p class="text-xs text-slate-500 dark:text-slate-400 font-bold uppercase">Top Scorer</p>
+<p class="font-bold text-slate-900 dark:text-slate-100">James Anderson</p>
+<p class="text-primary font-bold">64 (42)</p>
+</div>
+</div>
+<div class="flex items-center gap-4 p-4 rounded-lg bg-background-light dark:bg-slate-700/50 border border-slate-100 dark:border-slate-600">
+<div class="size-12 rounded-full overflow-hidden bg-slate-200">
+<img class="w-full h-full object-cover" data-alt="Portrait of a professional cricket bowler" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRoN05jpaHqxrCjyUSZt1qcAbDJxyJN235ug-dmN8195aYixgJb7qatNXQKWrDVLTGbjQlwHBY-65ADnKmxrIQZxj4m7Z_QUgY8RaOmAtq-V2XbEfWmrXTB3WT8Goel2orDpZophD_Jvd_X38WPFNkiqfcpRplxlBbDCnrLTVEI7TVczW9hlC1Q2PThZWkNSRMJVnuOn6hxifp3Z-8iZc651fkh5J7N1w-PYfPzVtDwxfkfbwBXTqvJeZYVaHfo-1VSVV342fd6jQA"/>
+</div>
+<div>
+<p class="text-xs text-slate-500 dark:text-slate-400 font-bold uppercase">Top Bowler</p>
+<p class="font-bold text-slate-900 dark:text-slate-100">Mark Wilson</p>
+<p class="text-primary font-bold">2/18 (4.0)</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="px-4 py-8 bg-primary/5 rounded-2xl mx-4">
+<h4 class="text-slate-900 dark:text-slate-100 text-sm font-bold leading-normal tracking-widest uppercase text-center mb-6">2nd Innings Starts In</h4>
+<div class="flex justify-center gap-6 md:gap-12">
+<div class="flex flex-col items-center gap-3">
+<div class="flex h-20 w-20 md:h-24 md:w-24 items-center justify-center rounded-2xl bg-white dark:bg-slate-800 shadow-lg border-b-4 border-primary">
+<p class="text-slate-900 dark:text-slate-100 text-3xl md:text-4xl font-bold">01</p>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-xs font-bold uppercase tracking-tighter">Minutes</p>
+</div>
+<div class="flex items-center pt-2">
+<div class="space-y-2">
+<div class="size-2 bg-primary rounded-full"></div>
+<div class="size-2 bg-primary rounded-full"></div>
+</div>
+</div>
+<div class="flex flex-col items-center gap-3">
+<div class="flex h-20 w-20 md:h-24 md:w-24 items-center justify-center rounded-2xl bg-white dark:bg-slate-800 shadow-lg border-b-4 border-primary">
+<p class="text-slate-900 dark:text-slate-100 text-3xl md:text-4xl font-bold">00</p>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-xs font-bold uppercase tracking-tighter">Seconds</p>
+</div>
+</div>
+</div>
+<div class="px-4 flex flex-col md:flex-row gap-3">
+<button class="flex-1 bg-primary text-slate-900 font-bold py-4 rounded-xl shadow-lg shadow-primary/30 hover:brightness-105 active:scale-[0.98] transition-all uppercase tracking-wider">
+                                View Full Scorecard
+                            </button>
+<button class="flex-1 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 border-2 border-slate-200 dark:border-slate-700 font-bold py-4 rounded-xl hover:bg-slate-50 transition-all uppercase tracking-wider">
+                                Strategy Room
+                            </button>
+</div>
+</main>
+<footer class="mt-auto py-10 px-4 text-center">
+<p class="text-slate-400 text-sm font-medium">Match ID: #CRT-2024-9982 • Stadium: Lords Cricket Ground</p>
+</footer>
+</div>
+</div>
+</div>
+</div>
+</body></html>
